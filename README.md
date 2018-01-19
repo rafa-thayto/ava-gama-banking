@@ -1,44 +1,44 @@
 # ava-gama-banking
 
-## topicos
-* [requerimentos](#requerimentos)
-* [instalacao](#instalacao)
-* [pastas do projeto](#pastas-do-projeto)
-* [iniciando os containers](#iniciando-os-containers)
-* [api](#api)
+## Tópicos
+* [Requerimentos](#requerimentos)
+* [Instalação](#instalacao)
+* [Pastas do projeto](#pastas-do-projeto)
+* [Iniciando os containers](#iniciando-os-containers)
+* [Api](#api)
     * [Consultando](#consultando-a-api)
-* [base de dados](#base-de-dados)
+* [Base de dados](#base-de-dados)
     * [Consultando](#consultando-os-dados)
     * [Gerando um "backup"](#consultando-a-api)
     * [Restaurando um "backup"](#restaurando-um-backup)
 
-## requerimentos
-* node (versao >= 8.9.4)
+## Requerimentos
+* node (versão >= 8.9.4)
     ```bash
         $ node -v
         v8.9.4
     ```
-* npm (versao >= 5.6.0)
+* npm (versão >= 5.6.0)
     ```bash
         $ npm -v
         5.6.0
     ```
-* docker (versao >= 17.12.0-ce)
+* docker (versão >= 17.12.0-ce)
     ```bash
         $ docker -v
         Docker version 17.12.0-ce, build c97c6d6
     ```
-* docker-compose (versao >= 1.18.0)
+* docker-compose (versão >= 1.18.0)
     ```bash
         $ docker-compose -v
         docker-compose version 1.18.0, build 8dd22a9
     ```
-* typescript (versao >= 2.6.2)
+* typescript (versão >= 2.6.2)
     ```bash
         $ tsc -v
         Version 2.6.2
     ```
-* @angular/cli (versao >= 1.6.3)
+* @angular/cli (versão >= 1.6.3)
     ```bash
         $ ng -v
             _                      _                 ____ _     ___
@@ -55,39 +55,47 @@
 
     ```
 
-## instalacao
+## Instalação
+
 * node
 
     Acessar o link e seguir os passos:
+    
     [NodeJS](https://nodejs.org/en/download/)
+    
 * npm
 
-    Npm já vem instaldo com o nodejs. Caso não esteja instalado acessar: [NPM](https://www.npmjs.com/get-npm)
+    Npm já vem instalado com o nodejs. Caso não esteja instalado acessar: [NPM](https://www.npmjs.com/get-npm)
+    
 * docker
 
-    Acessar o link e seguir os passos
+    Acessar o link e seguir os passos:
 
     1. [Windows](https://docs.docker.com/docker-for-windows/install/)
-
     2. [Ubuntu](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/)
+    
 * docker-compose
 
     Acessar o link e seguir os passos:
+    
     [Docker Compose](https://docs.docker.com/compose/install/#install-compose)
+    
 * @angular/cli
 
     Acessar o link e seguir os passos:
+    
     [@angular/cli](https://github.com/angular/angular-cli#installation)
 
-## pastas do projeto
-Cada pasta representa um "modulo" do projeto, onde:
+## Pastas do projeto
 
-* api, arquivos para a api (rotas)
-* db, arquivos para a base de dados (schemas e models)
-* www, projeto em angular
+Cada pasta representa um "módulo" do projeto, onde:
+
+* api, arquivos para a api (rotas);
+* db, arquivos para a base de dados (schemas e models);
+* www, projeto em angular.
 
 
-## iniciando os containers
+## Iniciando os containers
 
 1.
     ```bash
@@ -101,10 +109,10 @@ Cada pasta representa um "modulo" do projeto, onde:
 
     TODO: add passos para windows.
 
-## api
+## Api
 ### Consultando a api
     TODO:
-## base de dados
+## Base de dados
 
 ### Consultando os dados
     TODO:
