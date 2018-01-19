@@ -48,3 +48,7 @@ yarn-error.log*
 # Dependency directories
 node_modules/
 bower_components/
+
+
+#mongo data dir
+db/data/
