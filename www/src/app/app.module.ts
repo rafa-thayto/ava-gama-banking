@@ -5,6 +5,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './router/routes';
 
 import { AppComponent } from './app.components/root/app.component';
+import { PainelModule } from './app.bootstrap-components/painel/painel.module';
 import { LoginComponent } from './app.components/auth/login/login.component';
 import { TransactionListComponent } from './app.components/transaction/transaction-list/transaction-list.component';
 import { TransactionCreateComponent } from './app.components/transaction/transaction-create/transaction-create.component';
@@ -34,8 +35,10 @@ import { DashboardComponent } from './app.components/dashboard/dashboard.compone
   ],
   imports: [
     BrowserModule,
+    PainelModule,
     NgbModule.forRoot(),
     routing
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
