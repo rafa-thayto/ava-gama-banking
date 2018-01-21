@@ -5,8 +5,10 @@ services:
     image: mongo:latest
     ports:
       - '27017:27017'
-    volumes:
-      - ./db/data:/data/db
+    # volumes:
+    #   - ./db/data:/data/db
+    # https://hub.docker.com/_/mongo/
+    # docker for windows it is not possible to run a MongoDB container with the data directory mapped to the host.
     command:
       - --storageEngine=wiredTiger
   banking.api:
