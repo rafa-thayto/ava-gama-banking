@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.components/root/app.component';
 import { LoginComponent } from './app.components/auth/login/login.component';
@@ -28,7 +29,8 @@ import { DashboardComponent } from './app.components/dashboard/dashboard.compone
     DashboardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
