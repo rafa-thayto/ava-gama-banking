@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { routing } from './router/routes';
+
 import { AppComponent } from './app.components/root/app.component';
 import { LoginComponent } from './app.components/auth/login/login.component';
 import { TransactionListComponent } from './app.components/transaction/transaction-list/transaction-list.component';
@@ -13,6 +15,8 @@ import { LogoutComponent } from './app.components/auth/logout/logout.component';
 import { HeaderMenuComponent } from './app.components/header-menu/header-menu.component';
 import { SideMenuComponent } from './app.components/side-menu/side-menu.component';
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
+
+
 
 @NgModule({
   declarations: [
@@ -30,7 +34,8 @@ import { DashboardComponent } from './app.components/dashboard/dashboard.compone
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
