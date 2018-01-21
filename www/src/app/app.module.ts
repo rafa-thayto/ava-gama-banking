@@ -11,6 +11,7 @@ import { AccountComponent } from './app.components/account/account.component';
 import { LogoutComponent } from './app.components/auth/logout/logout.component';
 import { HeaderMenuComponent } from './app.components/header-menu/header-menu.component';
 import { SideMenuComponent } from './app.components/side-menu/side-menu.component';
+import { DashboardComponent } from './app.components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SideMenuComponent } from './app.components/side-menu/side-menu.componen
     AccountComponent,
     LogoutComponent,
     HeaderMenuComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule
