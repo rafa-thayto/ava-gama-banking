@@ -1,0 +1,7 @@
+<div class="form-group">
+    <label class="control-label" for="selectFavorecido">Conta a ser creditada</label>
+    <select id="selectFavorecido" class="custom-select">
+      <option selected="">Selecione uma opção</option>
+      <option  *ngFor="let opcao of opcoes" value="{{opcao.valor}}">{{opcao.descricao}}</option>
+    </select>
+  </div>

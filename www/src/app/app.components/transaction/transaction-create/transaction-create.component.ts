@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SelectComponent} from '../../../app.bootstrap-components/select/select.component'
 
 @Component({
   selector: 'app-transaction-create',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionCreateComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {
+  constructor() {
+
+      
   }
+
+  opcoesSelect: Array<any>;         
+    
+    ngOnInit() { 
+        this.opcoesSelect = [
+          {
+            valor : 1,
+            descricao: 'Próprio favorecido'
+          },
+          {
+            valor : 2,
+            descricao: 'Outra conta'
+          },
+        ];
+    } 
 
 }
