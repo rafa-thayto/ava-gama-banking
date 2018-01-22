@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SelectComponent} from '../../../app.bootstrap-components/select/select.component'
+//import { SelectComponent} from '../../../app.bootstrap-components/select/select.component'
 
 @Component({
   selector: 'app-transaction-create',
