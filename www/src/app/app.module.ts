@@ -1,13 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { FormsModule } from '@angular/forms';
 import { routing } from './router/routes';
 
 import { AppComponent } from './app.components/root/app.component';
-import { SelectModule } from './app.bootstrap-components/select/select.module';
-import { PainelModule } from './app.bootstrap-components/painel/painel.module';
+import { SelectModule } from './app.material-components/select/select.module';
+import { PainelModule } from './app.material-components/painel/painel.module';
 import { LoginComponent } from './app.components/auth/login/login.component';
 import { TransactionListComponent } from './app.components/transaction/transaction-list/transaction-list.component';
 import { TransactionCreateComponent } from './app.components/transaction/transaction-create/transaction-create.component';
@@ -39,7 +38,6 @@ import { DashboardComponent } from './app.components/dashboard/dashboard.compone
     BrowserModule,
     PainelModule,
     SelectModule,
-    NgbModule.forRoot(),
     routing,
     FormsModule
     

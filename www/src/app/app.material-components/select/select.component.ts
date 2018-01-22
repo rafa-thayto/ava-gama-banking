@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-select',
