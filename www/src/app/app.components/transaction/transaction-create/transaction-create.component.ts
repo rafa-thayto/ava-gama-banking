@@ -20,8 +20,9 @@ export class TransactionCreateComponent implements OnInit {
   contaDestino: Number
   tipoContaDestino: String
 
+  horarioTransferencia: Date
   valorTransferencia: Number
-  horarioTransferencia
+ 
 
 
 

@@ -1,3 +1,5 @@
-#banco {
-    height: calc(2.25rem + 2px);
+
+
+.card {
+    background-color: #ff5800;
 }

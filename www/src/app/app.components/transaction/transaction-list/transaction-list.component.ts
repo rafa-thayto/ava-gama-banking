@@ -27,8 +27,9 @@ export class TransactionListComponent implements OnInit {
     this.transacao1.nomeOrigem = 'Bruno'
     this.transacao1.tipoContaDestino = 'CC'
     this.transacao1.tipoContaOrigem = 'CC'
+    this.transacao1.horarioTransferencia = new Date('1995/07/12')
     this.transacao1.valorTransferencia = 5000
-    this.transacao1.horarioTransferencia = Date.now();
+    
 
     this.transacao2.agenciaDestino = 2
     this.transacao2.agenciaOrigem = 2
@@ -40,8 +41,9 @@ export class TransactionListComponent implements OnInit {
     this.transacao2.nomeOrigem = 'Bruno'
     this.transacao2.tipoContaDestino = 'CC'
     this.transacao2.tipoContaOrigem = 'CC'
+    this.transacao2.horarioTransferencia = new Date()
     this.transacao2.valorTransferencia = 12000
-    this.transacao2.horarioTransferencia = Date.now();
+    
 
     this.transactions.push(this.transacao1)
     this.transactions.push(this.transacao2)
