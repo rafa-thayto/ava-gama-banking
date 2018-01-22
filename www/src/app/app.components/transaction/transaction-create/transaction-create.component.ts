@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-//import { SelectComponent} from '../../../app.bootstrap-components/select/select.component'
+import { SelectComponent} from '../../../app.material-components/select/select.component'
 
 @Component({
   selector: 'app-transaction-create',
@@ -7,6 +7,22 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./transaction-create.component.css']
 })
 export class TransactionCreateComponent implements OnInit {
+
+  cpfOrigem: Number
+  nomeOrigem: String
+  agenciaOrigem: Number
+  contaOrigem: Number
+  tipoContaOrigem: String
+
+  nomeDestino: String
+  bancoDestino: Number
+  agenciaDestino: Number
+  contaDestino: Number
+  tipoContaDestino: String
+
+  valorTransferencia: Number
+  horarioTransferencia
+
 
 
   constructor() {

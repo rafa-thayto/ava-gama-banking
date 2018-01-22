@@ -1,3 +1,5 @@
-<p>
-  transaction-list works!
-</p>
+<div class="row">
+<div *ngFor="let transaction of transactions" class="col-md-6">
+<app-transaction-card [transaction]="transaction"></app-transaction-card>
+</div>
+</div>

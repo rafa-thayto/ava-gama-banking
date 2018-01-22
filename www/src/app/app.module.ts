@@ -10,6 +10,7 @@ import { PainelModule } from './app.material-components/painel/painel.module';
 import { LoginComponent } from './app.components/auth/login/login.component';
 import { TransactionListComponent } from './app.components/transaction/transaction-list/transaction-list.component';
 import { TransactionCreateComponent } from './app.components/transaction/transaction-create/transaction-create.component';
+import { TransactionCardComponent } from './app.components/transaction/transaction-card/transaction-card.component';
 import { TransactionViewComponent } from './app.components/transaction/transaction-view/transaction-view.component';
 import { BalanceComponent } from './app.components/balance/balance.component';
 import { AccountComponent } from './app.components/account/account.component';
@@ -26,6 +27,7 @@ import { DashboardComponent } from './app.components/dashboard/dashboard.compone
     LoginComponent,
     TransactionListComponent,
     TransactionCreateComponent,
+    TransactionCardComponent,
     TransactionViewComponent,
     BalanceComponent,
     AccountComponent,
