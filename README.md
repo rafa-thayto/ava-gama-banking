@@ -6,6 +6,7 @@
 * [Pastas do projeto](#pastas-do-projeto)
 * [Api](#api)
     * [Consultando](#consultando-a-api)
+* [Interfaces](#interfaces)
 * [Base de dados](#base-de-dados)
     * [Consultando](#consultando-os-dados)
     * [Gerando um "backup"](#consultando-a-api)
@@ -49,17 +50,17 @@
 * node
 
     Acessar o link e seguir os passos:
-    
+
     [NodeJS](https://nodejs.org/en/download/)
-    
+
 * npm
 
     Npm já vem instalado com o nodejs. Caso não esteja instalado acessar: [NPM](https://www.npmjs.com/get-npm)
-    
+
 * @angular/cli
 
     Acessar o link e seguir os passos:
-    
+
     [@angular/cli](https://github.com/angular/angular-cli#installation)
 
 ## Pastas do projeto
@@ -90,6 +91,12 @@ Cada pasta representa um "módulo" do projeto, onde:
     Na primeira execução pode demorar um pouco.
 
 ## Api
+
+## Interfaces
+
+Link:
+[moqups](https://app.moqups.com/pjpimentel/ggNkI8HDZw/edit/page/a63cc1cd1)
+
 ### Consultando a api
     TODO:
 ## Base de dados
