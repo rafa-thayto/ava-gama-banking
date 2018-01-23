@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const host = '127.0.0.1';
+const host = '67.205.161.225';
 const db = 'banking'
 const connectionUri = `mongodb://${host}/${db}`;
 
