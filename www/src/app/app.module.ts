@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { routing } from './router/routes';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.components/root/app.component';
 import { SelectModule } from './app.material-components/select/select.module';
@@ -41,7 +42,8 @@ import { DashboardComponent } from './app.components/dashboard/dashboard.compone
     PainelModule,
     SelectModule,
     routing,
-    FormsModule
+    FormsModule,
+    HttpModule
     
   ],
   providers: [],

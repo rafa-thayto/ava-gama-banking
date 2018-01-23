@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Http, Headers } from '@angular/http';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  http: Http;
+
+  constructor(http: Http) {
+
+    this.http = http;
+
+  }
 
   ngOnInit() {
   }

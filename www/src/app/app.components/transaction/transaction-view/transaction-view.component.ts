@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Http, Headers } from '@angular/http';
 
 @Component({
   selector: 'app-transaction-view',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionViewComponent implements OnInit {
 
-  constructor() { }
+  
+  http: Http;
+
+  constructor(http: Http) {
+
+    this.http = http;
+
+  }
 
   ngOnInit() {
   }
+
+  obterTransacoes() {
+
+    this.http.get('URL')
+        .subscribe(() => {
+          console.log('Sucesso');
+      }, erro => {
+          console.log(erro);
+      });
+}
 
 }

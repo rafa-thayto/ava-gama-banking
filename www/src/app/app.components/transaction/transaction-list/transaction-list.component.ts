@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionCreateComponent} from '../transaction-create/transaction-create.component'
 import { TransactionCardComponent} from '../transaction-card/transaction-card.component'
+import { Http, Headers } from '@angular/http';
 
 @Component({
   selector: 'app-transaction-list',
@@ -14,7 +15,13 @@ export class TransactionListComponent implements OnInit {
   transacao2: TransactionCreateComponent = new TransactionCreateComponent();
   transacao3: TransactionCreateComponent = new TransactionCreateComponent();
 
-  constructor() { }
+  http: Http;
+
+  constructor(http: Http) {
+
+    this.http = http;
+
+  }
 
   ngOnInit() {
     this.transacao1.agenciaDestino = 2
@@ -49,5 +56,15 @@ export class TransactionListComponent implements OnInit {
     this.transactions.push(this.transacao2)
 
   }
+
+  obterTransacoes() {
+
+    this.http.get('URL')
+        .subscribe(() => {
+          console.log('Sucesso');
+      }, erro => {
+          console.log(erro);
+      });
+}
 
 }
