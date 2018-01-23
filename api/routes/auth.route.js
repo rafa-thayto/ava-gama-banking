@@ -32,6 +32,7 @@ router.get('/login', async (req, res, next) => {
         else passwordMissmatch(req, res, next);
     } catch (e) {
         res.status(500);
+    } finally {
         res.end();
     }
 });
