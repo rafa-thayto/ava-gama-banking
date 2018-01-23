@@ -10,4 +10,4 @@ mongoose.connection.once('open', () => console.log('connected!'));
 
 module.exports.Client = require("./models/client/client.model");
 module.exports.Account = require("./models/account/account.model");
-// module.exports.Transaction = require("./models/transaction.model");
+module.exports.Transaction = require("./models/transaction/transaction.model");
