@@ -38,7 +38,7 @@ schema.index({ from: 1 });
 schema.index({ to: 1 });
 schema.index({ from: 1, to: 1 });
 schema.index({ from: 1, to: 1, date: 1 });
-schema.index({ from: 1, to: 1, date: 1, value: 1 }, { unique: true });
+schema.index({ from: 1, to: 1, date: 1, value: 1 });
 schema.index({ status: 1 });
 
 module.exports = schema;
