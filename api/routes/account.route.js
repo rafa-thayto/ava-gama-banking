@@ -10,7 +10,7 @@ router.get(
     auth.isAuthorized,
     async (req, res, next) => {
         try {
-            const account = await db.Account.findOne({ag: req.params.ag, number: req.params.conta})
+            const account = await db.Account.findOne({ag: req.params.ag, account_number: req.params.conta})
             if (!account) return res.status(404);
             res.json(account.toJSON());
             res.send('get account info');

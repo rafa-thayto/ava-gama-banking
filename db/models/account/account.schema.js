@@ -11,7 +11,7 @@ const schema = new Schema(
             type: Number,
             default: 1
         },
-        number: {
+        account_number: {
             type: Number, //TODO: auto increment
             required: true
         },
