@@ -20,25 +20,20 @@ const passwordMatch = (req, res, next, client) => {
     next();
 }
 
-router.get('/login', (req, res, next) => {
-    //TODO: logar pelo CPF/CNPJ ou numero da conta?
+router.get('/login', async (req, res, next) => {
+    //TODO: logar pelo numero da conta?
     const credential = req.body;
     if (!credential) return credentialNotFound(req, res, next);
-    db.Client
-        .findOne({ key: credential.key }) //TODO: verificar qual o campo será o key
-        .then(client => {
-            //caso nao exista o client
-            if (!client) return credentialNotFound(req, res, next);
-            //caso as senhas estejam iguais
-            if (auth.isSamePassword(client.password, credential.password))
-                passwordMatch(req, res, next, client);
-            else
-                passwordMissmatch(req, res, next);
-        })
-        .catch(err => {
-            res.status(500);
-            res.end();
-        })
+    try {
+        const client = await db.Client.findOne({ key: credential.key });
+        if (!client) return credentialNotFound(req, res, next);
+        //caso as senhas estejam iguais
+        if (auth.isSamePassword(client.password, credential.password)) passwordMatch(req, res, next, client);
+        else passwordMissmatch(req, res, next);
+    } catch (e) {
+        res.status(500);
+        res.end();
+    }
 });
 
 module.exports = router;
