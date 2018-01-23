@@ -4,7 +4,9 @@ const maxTransactionValue = 15000;
 const Account = db.Account;
 const Transaction = db.Transaction;
 const transactions = [];
+let mainAccount = {};
 
+let previousAccountId = '';
 
 const howManyTransactions = () => Math.floor(Math.random() * maxTransactionsPerAccount) + 1;
 const transactionValue = () => {
@@ -14,14 +16,7 @@ const transactionValue = () => {
     return value;
 }
 
-//TODO: init saldo, primeira transação será sempre uma transação de credito de origem conta do sistema.
-//TODO: split howManyTransactions into two: debit and credit
-
-const createNewTransaction = account => {
-    accountNumber++;
-    //TODO: conta de destino nao pode ser do mesmo cliente?
-    return { account: account._id, ag: 1, account_number: accountNumber, password: "password" };
-}
+const createNewTransaction = (from, to, value) => ({ from, to, value })
 
 const removeAllTransactions = async () => {
     try {
@@ -32,35 +27,59 @@ const removeAllTransactions = async () => {
         console.log(`all transactions removed!`);
     }
 }
+const resetAccountBalance = async () => {
+    try {
+        await Account.updateMany({}, { balance: 0 })
+    } catch (e) {
+        console.log(e)
+    } finally {
+        console.log(`accounts balance's reseted!`);
+    }
+}
 
 const insertTransactions = async () => {
     let res;
     //TODO: testar triggers no insterMany
     //TODO: trigger só é chamado via create?
     try {
-        res = await db.Transaction.create(transactions);
+        // res = await db.Transaction.insertMany(transactions);
+        res = await db.Transaction.collection.insertMany(transactions)
+        //tanto o create quanto o insertMany esta gerando um memory leak
+        //TODO: fazer create em grupos de 10 000.
     } catch (e) {
         console.log(e)
     } finally {
-        console.log(`${res.length} accounts created`);
+        console.log(`${res.length} transactions created`);
     }
 }
 
+const createFirstTransaction = account => {
+    let value = transactionValue();
+    if (value < 0) value = value * -1;
+    return createNewTransaction(mainAccount, account._id, value); //TODO: get system account
+}
+
 const onAccountRecived = account => {
+    transactions.push(createFirstTransaction(account));
     let transactionQtd = howManyTransactions();
     for (; transactionQtd > 0; transactionQtd--)
-        accounts.push(createNewAccount(account._id, ))
-    console.log("account: ", accounts.length)
+        transactions.push(createNewTransaction(account._id, previousAccountId, transactionValue())); ////TODO: get random account to
+    console.log("transaction: ", transactions.length)
+    previousAccountId = account._id;
+    //flush every 100 000, memory leak
 }
 
 const main = async () => {
+    mainAccount = await Account.findOne().lean();
+    previousAccountId = mainAccount._id;
     await removeAllTransactions();
-    const stream = Account.find({}).stream();
+    await resetAccountBalance();
+
+    const stream = Account.find({}).lean().stream();
     stream.on('data', onAccountRecived);
-    stream.on('end', () => insertTransactions())
+    stream.on('end', () => console.log("stream end"))
+    stream.on('end', insertTransactions)
+
 }
 
 main();
-
-
-
