@@ -10,16 +10,25 @@ router.get(
     auth.isAuthorized,
     async (req, res, next) => {
         try {
-            const account = await db.Account.findOne({ag: req.params.ag, account_number: req.params.conta}).populate('client')
+            res.setHeader('content-type', 'application/json')
+            const account = await db.Account
+                                    .findOne({ag: req.params.ag, account_number: req.params.conta})
+                                    .populate('client')
+                                    .exec((err, res) => {
+                                        // console.log(err, 'erro')
+                                        // console.log(res.client, 'response');
+                                    })
+                                    // .populate({
+                                        
+                                    // }).execPopulate()
             if (!account) return res.status(404)
-            res.json(account.toJSON())
+            res.json(account)
             res.send('get account info')
-            res.end()
         } catch (e) {
             res.status(500);
-            console.log(e);
+            res.send(`${e}`)
         } finally {
-            res.end();
+            res.end()
         }
     }
 );
@@ -30,14 +39,14 @@ router
         auth.isAuthenticated,
         auth.isAuthorized,
         (req, res, next) => {
-            res.send('get account transactions');
+            res.send('get account transactions')
         }
     )
     .post(
         auth.isAuthenticated,
         auth.isAuthorized,
         (req, res, next) => {
-            res.send('create new transaction');
+            res.send('create new transaction')
         }
     );
 
