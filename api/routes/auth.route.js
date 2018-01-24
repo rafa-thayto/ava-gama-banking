@@ -6,11 +6,13 @@ const SECRET = "TODO:CRIAR_UMA_SECRET";
 const JWT_OPTIONS = { expiresIn: '1h' };
 
 const credentialNotFound = (req, res, next) => {
-    res.status(404).json({ message: 'user not found.' });
+    res.status(404)
+        .json({ message: 'user not found.' });
     res.end();
 }
 const passwordMissmatch = (req, res, next) => {
-    res.status(401).json({ message: 'wrong password.' });
+    res.status(401)
+        .json({ message: 'wrong password.' });
     res.end();
 }
 const passwordMatch = (req, res, next, client) => {

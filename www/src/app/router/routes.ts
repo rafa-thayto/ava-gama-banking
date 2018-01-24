@@ -7,7 +7,8 @@ import { DashboardComponent } from '../app.components/dashboard/dashboard.compon
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'transferencia', component: TransactionListComponent },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'transferencia/novo', component: TransactionCreateComponent }
 ];
 
 export const routing = RouterModule.forRoot(routes) 
