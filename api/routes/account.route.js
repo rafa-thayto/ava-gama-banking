@@ -31,7 +31,6 @@ router
         auth.isAuthenticated,
         auth.isAuthorized,
         (req, res, next) => {
-<<<<<<< HEAD
             console.log('passou')
             
             const agencia = req.params.ag
@@ -44,16 +43,12 @@ router
                 res.end();
             })
             console.log('depois do find')  
-=======
-            res.send('get account transactions')
->>>>>>> 734dacb375b02844513e639f98d180f76b8b49f3
         }
     )
     .post(
         auth.isAuthenticated,
         auth.isAuthorized,
         (req, res, next) => {
-<<<<<<< HEAD
 
             res.send('create new transaction')
 
@@ -72,9 +67,6 @@ router
             })
 
 // 92ea10d69e70618e58331464dab421ffbf6351c1
-=======
-            res.send('create new transaction')
->>>>>>> 734dacb375b02844513e639f98d180f76b8b49f3
         }
     );
 
