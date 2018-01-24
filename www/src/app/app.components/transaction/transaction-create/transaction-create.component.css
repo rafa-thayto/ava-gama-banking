@@ -1,3 +1,14 @@
 #banco {
     height: calc(2.25rem + 2px);
 }
+
+.nav-transaction{
+    background: white;
+    text-align: center;
+}
+
+.fundo{
+    background: white;
+    color: black;
+    font-size:2.5em;
+}
