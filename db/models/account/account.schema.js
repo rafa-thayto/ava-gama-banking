@@ -11,7 +11,7 @@ const schema = new Schema(
             type: Number,
             default: 1
         },
-        number: {
+        account_number: {
             type: Number, //TODO: auto increment
             required: true
         },
@@ -31,6 +31,6 @@ const schema = new Schema(
 );
 
 schema.index({ client: 1 });
-schema.index({ ag: 1, number: 1 }, { unique: true });
+schema.index({ ag: 1, account_number: 1 }, { unique: true });
 
 module.exports = schema;
