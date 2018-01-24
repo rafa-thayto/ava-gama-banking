@@ -1,4 +1,4 @@
-const db = require("../db");
+const db = require("../");
 const maxClients = 10000;
 const names = ["pedro", "bruno", "rafael", "anselmo", "geovana", "jennfer", "marcos", "paulo", "ricardo"];
 const Client = db.Client;

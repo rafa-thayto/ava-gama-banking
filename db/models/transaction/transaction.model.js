@@ -9,8 +9,6 @@ function beforeSave(next) {
     if (!this.isNew) return next();
     const fromAccount = this.from;
     const transactionValue = this.value;
-    console.log("a", fromAccount);
-    console.log("b", transactionValue);
     const Account = model.model("Account");
 
     Account.findById(fromAccount)
@@ -36,7 +34,6 @@ function beforeSave(next) {
 
 function afterSave(doc, next) {
     const Account = model.model("Account");
-    // console.log(doc);
     if (this.status != "processando") return next();
 
     const fromAccount = this.from;
