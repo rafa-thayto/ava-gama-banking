@@ -22,7 +22,7 @@ const schema = new Schema(
         },
         status: {
             type: String,
-            enum: ["pendente", "completado", "abortado"] //TODO: status melhores
+            enum: ["pendente", "processando" ,"completado", "abortado"] //TODO: status numeros: 0, 1, 2
         },
         msg: {
             type: String,

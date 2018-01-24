@@ -1,6 +1,6 @@
 const express = require('express');
 const auth = require("../auth");
-const router = express.Router();
+const router = express.Router()
 const db = require('../../db')
 
 
@@ -10,20 +10,11 @@ router.get(
     auth.isAuthorized,
     async (req, res, next) => {
         try {
-            res.setHeader('content-type', 'application/json')
             const account = await db.Account
                                     .findOne({ag: req.params.ag, account_number: req.params.conta})
                                     .populate('client')
-                                    .exec((err, res) => {
-                                        // console.log(err, 'erro')
-                                        // console.log(res.client, 'response');
-                                    })
-                                    // .populate({
-                                        
-                                    // }).execPopulate()
             if (!account) return res.status(404)
             res.json(account)
-            res.send('get account info')
         } catch (e) {
             res.status(500);
             res.send(`${e}`)
@@ -40,6 +31,7 @@ router
         auth.isAuthenticated,
         auth.isAuthorized,
         (req, res, next) => {
+<<<<<<< HEAD
             console.log('passou')
             
             const agencia = req.params.ag
@@ -52,12 +44,16 @@ router
                 res.end();
             })
             console.log('depois do find')  
+=======
+            res.send('get account transactions')
+>>>>>>> 734dacb375b02844513e639f98d180f76b8b49f3
         }
     )
     .post(
         auth.isAuthenticated,
         auth.isAuthorized,
         (req, res, next) => {
+<<<<<<< HEAD
 
             res.send('create new transaction')
 
@@ -76,6 +72,9 @@ router
             })
 
 // 92ea10d69e70618e58331464dab421ffbf6351c1
+=======
+            res.send('create new transaction')
+>>>>>>> 734dacb375b02844513e639f98d180f76b8b49f3
         }
     );
 
