@@ -39,7 +39,7 @@
                        |___/
         Angular CLI: 1.6.3
         Node: 8.9.4
-        OS: linux x64
+        OS: linux x64 / win
         Angular:
         ...
 
@@ -68,7 +68,8 @@
 Cada pasta representa um "módulo" do projeto, onde:
 
 * api, arquivos para a api (rotas);
-* www, projeto em angular.
+* db, módulo do banco de dados (schemas e models);
+* www, projeto de Internet Banking em angular.
 
 
 ## Iniciando o projeto
@@ -77,7 +78,8 @@ Cada pasta representa um "módulo" do projeto, onde:
 
 1.
     ```bash
-    $ cd ~/ava-gama-banking/api && npm install
+    $ cd ~/ava-gama-banking/db && npm install
+    $ cd ../api && npm install
     $ npm start
     ```
 * ###### Segundo prompt
