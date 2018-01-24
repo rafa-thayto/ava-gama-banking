@@ -10,11 +10,8 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'transferencia', component: TransactionListComponent },
   { path: 'dashboard', component: DashboardComponent },
-<<<<<<< HEAD
-  { path: 'account', component: AccountComponent }
-=======
+  { path: 'account', component: AccountComponent },
   { path: 'transferencia/novo', component: TransactionCreateComponent }
->>>>>>> cc1a5cbea4bc1ebd2751ec3bcb353c0a80f07358
 ];
 
 export const routing = RouterModule.forRoot(routes) 

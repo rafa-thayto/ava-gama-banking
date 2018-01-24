@@ -19,11 +19,8 @@ import { LogoutComponent } from './app.components/auth/logout/logout.component';
 import { HeaderMenuComponent } from './app.components/header-menu/header-menu.component';
 import { SideMenuComponent } from './app.components/side-menu/side-menu.component';
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
-<<<<<<< HEAD
 import { AccountService } from '../app/app.services/account.service';
-=======
-import { SearchComponent } from './search/search.component';
->>>>>>> cc1a5cbea4bc1ebd2751ec3bcb353c0a80f07358
+import { SearchComponent } from './app.components/search/search.component';
 
 
 
