@@ -10,16 +10,25 @@ router.get(
     auth.isAuthorized,
     async (req, res, next) => {
         try {
-            const account = await db.Account.findOne({ag: req.params.ag, account_number: req.params.conta}).populate('client')
+            res.setHeader('content-type', 'application/json')
+            const account = await db.Account
+                                    .findOne({ag: req.params.ag, account_number: req.params.conta})
+                                    .populate('client')
+                                    .exec((err, res) => {
+                                        // console.log(err, 'erro')
+                                        // console.log(res.client, 'response');
+                                    })
+                                    // .populate({
+                                        
+                                    // }).execPopulate()
             if (!account) return res.status(404)
-            res.json(account.toJSON())
+            res.json(account)
             res.send('get account info')
-            res.end()
         } catch (e) {
             res.status(500);
-            console.log(e);
+            res.send(`${e}`)
         } finally {
-            res.end();
+            res.end()
         }
     }
 );
@@ -31,6 +40,9 @@ router
         auth.isAuthenticated,
         auth.isAuthorized,
         (req, res, next) => {
+<<<<<<< HEAD
+            res.send('get account transactions')
+=======
 
             db.Transaction.find({value: 3089}, function(err, docs){
                 if (!docs) return res.status(404)               
@@ -38,12 +50,16 @@ router
                 res.end();
             })
             
+>>>>>>> 92ea10d69e70618e58331464dab421ffbf6351c1
         }
     )
     .post(
         auth.isAuthenticated,
         auth.isAuthorized,
         (req, res, next) => {
+<<<<<<< HEAD
+            res.send('create new transaction')
+=======
             console.log('criando nova transição')
 
             var transaction = req.body
@@ -58,6 +74,7 @@ router
                 res.end();
             })
 
+>>>>>>> 92ea10d69e70618e58331464dab421ffbf6351c1
         }
     );
 
