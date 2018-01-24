@@ -33,20 +33,48 @@ router.get(
     }
 );
 
+// http://localhost:3000/accounts/1/10/transactions
 router
     .route('/:ag/:conta/transactions')
     .get(
         auth.isAuthenticated,
         auth.isAuthorized,
         (req, res, next) => {
+<<<<<<< HEAD
             res.send('get account transactions')
+=======
+
+            db.Transaction.find({value: 3089}, function(err, docs){
+                if (!docs) return res.status(404)               
+                res.json(docs)
+                res.end();
+            })
+            
+>>>>>>> 92ea10d69e70618e58331464dab421ffbf6351c1
         }
     )
     .post(
         auth.isAuthenticated,
         auth.isAuthorized,
         (req, res, next) => {
+<<<<<<< HEAD
             res.send('create new transaction')
+=======
+            console.log('criando nova transição')
+
+            var transaction = req.body
+            console.log(transaction)
+
+            db.Transaction.create(transaction, function(err, docs) {
+                /*
+                if (err) throw err;
+                    console.log('INSERIU COM SUCESSO')
+                    res.status(201).json(transaction)  
+                */
+                res.end();
+            })
+
+>>>>>>> 92ea10d69e70618e58331464dab421ffbf6351c1
         }
     );
 
