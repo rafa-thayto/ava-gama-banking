@@ -11,11 +11,11 @@ import { ITransaction } from "../app.interfaces/transaction";
 
 @Injectable()
 export class AccountService {
-    private _Url = 'https://api.myjson.com/bins/rtba9';
+    private _Url = 'http://localhost:3000/accounts/1/1';
 
     constructor(private _http: Http) { }
     
-    getAccount(agencia: number, conta: number) : Observable<IAccount> {
+    getAccount(ag: number, account_number: number) : Observable<IAccount> {
         return this._http.get(this._Url)
             .map((response: Response) => <IAccount>response.json())
             .do(data => console.log('Dados: ' + JSON.stringify(data)))

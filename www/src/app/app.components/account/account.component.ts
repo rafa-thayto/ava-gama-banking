@@ -11,13 +11,13 @@ import { IAccount } from "../../app.interfaces/account"
 export class AccountComponent implements OnInit {
 
 	account: IAccount;
-  agencia: number;
-  conta: number;
+  ag: number;
+  account_number: number;
     
     constructor(private _accountService: AccountService) {}
 
     MostrarAccount(): void {
-        this._accountService.getAccount(this.agencia, this.conta)
+        this._accountService.getAccount(this.ag, this.account_number)
             .subscribe((data: IAccount) => this.account = data,
             error => console.log(error));
     }
