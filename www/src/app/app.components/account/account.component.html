@@ -1,3 +1,36 @@
-<p>
-  account works!
-</p>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Consultar Conta</h3>
+    </div>
+
+     <div class="panel-body">
+        <div class="col-lg-12">
+          <div class="col-lg-3 form-group">
+            <div class="col-lg-12 form-group">
+              <input id="btnAccount" value="buscar Conta" class="btn btn-primary form-control" 
+              type="submit" (click)='MostrarAccount()' />   
+            </div>                        
+          </div>
+
+          <div class="col-lg-5">
+              <div class="col-lg-6">
+              <div *ngIf="account">
+                  <strong> Agência: {{account.agencia}} </strong>
+              </div>
+              </div>
+          </div>
+
+
+          <div class="col-lg-5">
+              <div class="col-lg-6">
+              <div *ngIf="account">
+                  <strong> Number: {{account?.conta}} </strong>
+              </div>
+              </div>
+          </div>
+
+      </div>
+     </div>
+  </div>
+</div>

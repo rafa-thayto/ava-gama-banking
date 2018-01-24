@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { AccountService } from "../../app.services/account.service"
+import { IAccount } from "../../app.interfaces/account"
 
 @Component({
   selector: 'app-account',
@@ -8,13 +10,17 @@ import { Http, Headers } from '@angular/http';
 })
 export class AccountComponent implements OnInit {
 
-  http: Http;
+	account: IAccount;
+  agencia: number;
+  conta: number;
+    
+    constructor(private _accountService: AccountService) {}
 
-  constructor(http: Http) {
-
-    this.http = http;
-
-  }
+    MostrarAccount(): void {
+        this._accountService.getAccount(this.agencia, this.conta)
+            .subscribe((data: IAccount) => this.account = data,
+            error => console.log(error));
+    }
 
   ngOnInit() {
   }

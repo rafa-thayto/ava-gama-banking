@@ -19,6 +19,7 @@ import { LogoutComponent } from './app.components/auth/logout/logout.component';
 import { HeaderMenuComponent } from './app.components/header-menu/header-menu.component';
 import { SideMenuComponent } from './app.components/side-menu/side-menu.component';
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
+import { AccountService } from '../app/app.services/account.service';
 
 
 
@@ -46,7 +47,7 @@ import { DashboardComponent } from './app.components/dashboard/dashboard.compone
     HttpModule
     
   ],
-  providers: [],
+  providers: [AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
