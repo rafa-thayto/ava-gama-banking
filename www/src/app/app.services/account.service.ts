@@ -9,15 +9,15 @@ import { ITransaction } from "../app.interfaces/transaction";
 export class AccountService {
 
   constructor() { }
-  getAccounts(agencia: number, conta: number) : Observable<IAccount>{
+  // getAccounts(agencia: number, conta: number) : Observable<IAccount>{
 
-  }
+  // }
   
-  getTransactions(agencia: number, conta: number) : Observable<ITransaction[]>{
+  // getTransactions(agencia: number, conta: number) : Observable<ITransaction[]>{
 
-  }
+  // }
 
-  createTransaction(transaction: ITransaction) : Observable<ITransaction>{
+  // createTransaction(transaction: ITransaction) : Observable<ITransaction>{
     
-  }
+  // }
 }
