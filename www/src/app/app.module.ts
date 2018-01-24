@@ -19,7 +19,7 @@ import { LogoutComponent } from './app.components/auth/logout/logout.component';
 import { HeaderMenuComponent } from './app.components/header-menu/header-menu.component';
 import { SideMenuComponent } from './app.components/side-menu/side-menu.component';
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
-import { SearchComponent } from './search/search.component';
+import { SearchComponent } from './app.components/search/search.component';
 
 
 
