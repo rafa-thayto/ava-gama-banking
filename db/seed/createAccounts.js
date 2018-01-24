@@ -1,4 +1,5 @@
-const db = require("../db");
+const db = require("../");
+const auth = require("../../api/auth");
 const maxAccountsPerClient = 5;
 const Client = db.Client;
 const Account = db.Account;
@@ -7,10 +8,18 @@ const accounts = [];
 
 const howManyAccounts = () => Math.floor(Math.random() * maxAccountsPerClient) + 1;
 
+//https://gist.github.com/endel/321925f6cafa25bbfbde
+Number.prototype.pad = function(size) {
+    var s = String(this);
+    while (s.length < (size || 2)) {s = "0" + s;}
+    return s;
+}
+
 const createNewAccount = clientId => {
     accountNumber++;
+    const password = auth.strToHash(accountNumber.pad(6));
     //TODO: gerar password com base no numero da conta
-    return { client: clientId, ag: 1, account_number: accountNumber, password: "password" };
+    return { client: clientId, ag: 1, account_number: accountNumber, password: password };
 }
 
 const removeAllAccounts = async () => {

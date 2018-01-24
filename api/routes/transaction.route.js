@@ -1,22 +1,26 @@
-const express = require('express');
-const auth = require("../auth");
-const router = express.Router();
-const db = require('../../db');
+const express = require('express')
+const auth = require("../auth")
+const router = express.Router()
+const db = require('../../db')
 
 router.get(
-    '/:trasactionId',
+    '/:transactionId',
     auth.isAuthenticated,
     auth.isAuthorized,
     async (req, res, next) => {
         try {
-            const transaction = await db.Transaction.findById(req.params.transactionId);
-            res.send('get transaction info');
+            const transaction = await db.Transaction
+                                        .findById(req.params.transactionId)
+                                        .populate('from to')
+            if (!transaction) return res.status(404)
+            res.json(transaction)
         } catch (e) {
-            res.status(500);
+            res.status(500)
+            res.send(`${e}`)
         } finally {
-            res.end();
+            res.end()
         }
     }
 );
 
-module.exports = router;
+module.exports = router
