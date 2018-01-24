@@ -40,26 +40,27 @@ router
         auth.isAuthenticated,
         auth.isAuthorized,
         (req, res, next) => {
-<<<<<<< HEAD
-            res.send('get account transactions')
-=======
+            console.log('passou')
+            
+            const agencia = req.params.ag
+            const conta = req.params.conta
 
-            db.Transaction.find({value: 3089}, function(err, docs){
-                if (!docs) return res.status(404)               
-                res.json(docs)
+            db.Account.findTransactionsByAccount(agencia, conta).then(function(accounts){
+                if (!accounts) return res.status(404)   
+                console.log('passou pelo call')            
+                res.status(200).json(accounts)
                 res.end();
             })
-            
->>>>>>> 92ea10d69e70618e58331464dab421ffbf6351c1
+            console.log('depois do find')  
         }
     )
     .post(
         auth.isAuthenticated,
         auth.isAuthorized,
         (req, res, next) => {
-<<<<<<< HEAD
+
             res.send('create new transaction')
-=======
+
             console.log('criando nova transição')
 
             var transaction = req.body
@@ -74,7 +75,7 @@ router
                 res.end();
             })
 
->>>>>>> 92ea10d69e70618e58331464dab421ffbf6351c1
+// 92ea10d69e70618e58331464dab421ffbf6351c1
         }
     );
 
