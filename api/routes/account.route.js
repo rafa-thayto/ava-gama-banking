@@ -2,22 +2,25 @@ const express = require('express');
 const auth = require("../auth");
 const router = express.Router()
 const db = require('../../db')
+const Account = db.Account
 
 
 router.get(
     '/:ag/:conta',
-    auth.isAuthenticated,
-    auth.isAuthorized,
+    // auth.isAuthenticated,
+    // auth.isAuthorized,
     async (req, res, next) => {
         try {
-            const account = await db.Account
-                                    .findOne({ag: req.params.ag, account_number: req.params.conta})
+            const agencia = req.params.ag
+            const conta = req.params.conta
+            const account = await Account
+                                    .findOne({ag: agencia, account_number: conta})
                                     .populate('client')
             if (!account) return res.status(404)
-            res.json(account)
+            res.status(200).json(account)
         } catch (e) {
+            console.log(e)
             res.status(500);
-            res.send(`${e}`)
         } finally {
             res.end()
         }
@@ -28,26 +31,28 @@ router.get(
 router
     .route('/:ag/:conta/transactions')
     .get(
-        auth.isAuthenticated,
-        auth.isAuthorized,
-        (req, res, next) => {
-            console.log('passou')
+        // auth.isAuthenticated,
+        // auth.isAuthorized,
+        async (req, res, next) => {
+            try {
+                const agencia = req.params.ag
+                const conta = req.params.conta
+                const transactions = await Account
+                                        .findTransactionsByAccount(agencia, conta)
+                if (!transactions) return res.status(404)   
+                res.status(200).json(transactions)
+            } catch (e) {
+                console.log(e);
+                res.status(500)
+            } finally {
+                res.end()
+            }
             
-            const agencia = req.params.ag
-            const conta = req.params.conta
-
-            db.Account.findTransactionsByAccount(agencia, conta).then(function(accounts){
-                if (!accounts) return res.status(404)   
-                console.log('passou pelo call')            
-                res.status(200).json(accounts)
-                res.end();
-            })
-            console.log('depois do find')  
         }
     )
     .post(
-        auth.isAuthenticated,
-        auth.isAuthorized,
+        // auth.isAuthenticated,
+        // auth.isAuthorized,
         (req, res, next) => {
 
             res.send('create new transaction')
@@ -58,15 +63,14 @@ router
             console.log(transaction)
 
             db.Transaction.create(transaction, function(err, docs) {
-                /*
-                if (err) throw err;
+                
+                /* if (err) throw err;
                     console.log('INSERIU COM SUCESSO')
-                    res.status(201).json(transaction)  
-                */
+                    res.status(201).json(transaction)   */
+                
                 res.end();
             })
 
-// 92ea10d69e70618e58331464dab421ffbf6351c1
         }
     );
 
