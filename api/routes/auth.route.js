@@ -27,7 +27,17 @@ const passwordMatch = (req, res, next, account) => {
     res.json({ token: token });
     next();
 }
-
+/**
+ * @api {post} /auth/login Autenticar usuario
+ * @apiName AuthLogin
+ * @apiGroup Auth
+ *
+ * @apiParam {Number} ag                Agencia
+ * @apiParam {Number} account_number    Numero da conta
+ * @apiParam {String} password          Senha
+ * @apiHeader {String} authorization JWT \<token\>
+ * @apiSuccess {Sting} token JWT token.
+ */
 router.post('/login', async (req, res, next) => {
     if (!req.body) req.body = {};
     const account_number = req.body.account_number;
@@ -50,7 +60,14 @@ router.post('/login', async (req, res, next) => {
         res.end();
     }
 });
-
+/**
+ * @api {post} /auth/isTokenValid Validar token
+ * @apiName AuthToken
+ * @apiGroup Auth
+ *
+ *
+ * @apiSuccess {IAccount} account obj.
+ */
 router.get('/isTokenValid',
     auth.isAuthenticated,
     (req, res, next) => res.status(200).end()

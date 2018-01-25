@@ -25,6 +25,7 @@
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/hammerjs/hammer.min.js",
         "../node_modules/materialize-css/dist/js/materialize.min.js"
       ],
       "environmentSource": "environments/environment.ts",

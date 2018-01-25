@@ -16,5 +16,8 @@
     "jsonwebtoken": "^8.1.0",
     "mongoose": "^5.0.1",
     "node-restful": "^0.2.6"
+  },
+  "devDependencies": {
+    "apidoc": "^0.17.6"
   }
 }

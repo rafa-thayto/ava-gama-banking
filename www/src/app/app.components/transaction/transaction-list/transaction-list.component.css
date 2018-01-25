@@ -1,9 +1,11 @@
 h3{
     text-align: center;
 }
+
 p{
     text-align: center;
 }
+
 .saldo{
     margin-top: 70px;
 }
@@ -15,4 +17,12 @@ p{
 
 .pointer {
     cursor: pointer;
+}
+
+.texto-verde{
+    color:green;
+}
+
+.texto-vermelho{
+    color:red;
 }
