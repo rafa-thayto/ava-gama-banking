@@ -13,7 +13,15 @@ const populateToOpt = { path: 'to', select: 'ag account_number -_id', populate: 
  * @apiGroup Transaction
  *
  * @apiHeader {String} authorization JWT \<token\>
- * @apiParam {String} transactionId id da transacao
+ * @apiParam {Date} dateStart data de inicio
+ * @apiParam {Date} dateEnd data de fim
+ * @apiParam {Number} valueStart valor da transacao (inicio)
+ * @apiParam {Number} valueEnd valor da transacao (fim)
+ * @apiParam {Number} ag numero da agencia
+ * @apiParam {Number} account_number numero da conta
+ * @apiParam {String} clientName nome do cliente
+ * @apiParam {String} type credito|debito
+ *
  * @apiSuccess {Object[]} transactions transacoes localizadas
  * @apiSuccess {Object} transactions.from dados da origem da transação
  * @apiSuccess {Number} transactions.from.ag agencia de origem
