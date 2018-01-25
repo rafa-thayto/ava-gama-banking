@@ -1,5 +1,5 @@
 const express = require('express');
-const auth = require("../auth");
+const auth = require("../config/auth");
 const router = express.Router()
 const db = require('../../db')
 const Account = db.Account
@@ -55,11 +55,11 @@ router
         // auth.isAuthorized,
         (req, res, next) => {
 
-            res.send('create new transaction')
-
+            // res.send('create new transaction')
             console.log('criando nova transição')
-
+            
             var transaction = req.body
+            res.json(transaction)
             console.log(transaction)
 
             db.Transaction.create(transaction, function(err, docs) {

@@ -16,8 +16,10 @@
     font-size:2.5em;
 }
 
+
+
 .icone{
-    float: left;
+   float: left;
     background:white;
     color:black;
 }
@@ -30,7 +32,8 @@ margin-right: 1%;
 label{
     margin-left: 1%;
     color:black;
-    font-size: 1.5em;
+    font-size: 2em;
+    
 }
 
 .botao-continuar{
@@ -41,9 +44,22 @@ label{
     margin-right: 1%;
 }
 
+.formulario{
+    width: 100%;
+}
+
+
 @media(max-width:390px){
 
-    fundo{
-        font-size: 1em;
+    .fundo{
+        font-size:1.5em;
+    }
+
+    label{
+        font-size: 1.5em;
+    }
+
+    i{
+        font-size: 2rem;
     }
 }

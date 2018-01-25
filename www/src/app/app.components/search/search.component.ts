@@ -7,6 +7,8 @@ import {MaterializeAction} from 'angular2-materialize';
 
 
 
+
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',

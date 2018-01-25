@@ -1,5 +1,5 @@
 const express = require('express');
-const auth = require('../auth');
+const auth = require('../config/auth');
 const router = express.Router();
 const db = require("../../db");
 const SECRET = "TODO:CRIAR_UMA_SECRET";

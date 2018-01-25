@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, transition } from '@angular/core';
 import { SelectComponent} from '../../../app.material-components/select/select.component';
+import { ITransaction} from '../../../app.interfaces/transaction'
+import { AccountComponent} from '../../account/account.component'
 import { Http, Headers } from '@angular/http';
 
 @Component({
@@ -10,26 +12,15 @@ import { Http, Headers } from '@angular/http';
 export class TransactionCreateComponent implements OnInit {
 
   http: Http;
-
+  
+ public transaction: ITransaction;
   constructor() {
-
 
   }
 
-  cpfOrigem: Number
-  nomeOrigem: String
-  agenciaOrigem: Number
-  contaOrigem: Number
-  tipoContaOrigem: String
-
-  nomeDestino: String
-  bancoDestino: Number
-  agenciaDestino: Number
-  contaDestino: Number
-  tipoContaDestino: String
-
-  horarioTransferencia: Date
-  valorTransferencia: Number
+  public getTransaction() {
+    return this.transaction
+  }
 
 
   opcoesSelect: Array<any>;         
@@ -47,20 +38,6 @@ export class TransactionCreateComponent implements OnInit {
         ];
     } 
 
-    efetivarTransacao(event) {
-      event.preventDefault();
 
-      // cria uma instância de Headers
-      let headers = new Headers();
-      // Adiciona o tipo de conteúdo application/json 
-      headers.append('Content-Type', 'application/json');
-
-      this.http.post('URL', JSON.stringify(null), { headers: headers })
-          .subscribe(() => {
-              console.log('Sucesso');
-          }, erro => {
-              console.log(erro);
-          });
-  }
 
 }

@@ -4,32 +4,35 @@
         <h3>R$1.000,00</h3>
         <p>Saldo Atual</p>
         <br>
-        <h3 style = color:green>R$1.000,00</h3>
+        <h3 class="texto-verde">R$1.000,00</h3>
         <p>Créditos (Últimos 30 dias)</p>
         <br>
-        <h3 style = color:red>R$1.000,00</h3>
+        <h3 class="texto-vermelho">R$1.000,00</h3>
         <p>Débitos (Últimos 30 dias)</p>
     </div>
 
     <div class="col s12 m6">
+<<<<<<< HEAD
         <div class="input-field col s12 m12">
              <a class="btn modal-trigger" (click)="openModal()" ><i class="material-icons filtro">filter_list</i></a>
             <!-- <a class="btn modal-trigger" (click)="openModal()">Modal</a> -->
+=======
+        <div class="input-field pointer col s12 m12">
+            <a routerLink=''><i class="material-icons filtro">filter_list</i></a>
+>>>>>>> aed9d07a8d93c219464b62e607ecf94b881b9bdf
             <input placeholder="Pesquisar" id="" type="text" class="validate">
 
-            <div class="card  grey lighten-5">
+            <div class="card hoverable  grey lighten-5">
                 <div class="card-content black-text">
-                <a href="#"><i class="material-icons">add</i></a>
+                <a routerLink=''><i class="material-icons">add</i></a>
                 <span class="card-title center-align">Nova Tranferência</span>
                 </div>
             </div>
             
         </div>
-
-            <div *ngFor="let transaction of transactions" class="col m6">
-                <app-transaction-card [transaction]="transaction"></app-transaction-card>
-            </div>
-        
+        <div *ngFor="let transaction of transactions" class="col s12 m6">
+            <app-transaction-card [transaction]="transaction"></app-transaction-card>
+        </div>
     </div>
 
 </div>

@@ -1,22 +1,12 @@
 
-<!-- <painel titulo="Enviar Para"  class="col-md-4">
-    <app-select [opcoes]="opcoesSelect"></app-select>
-
-    <div class="form-group">
-        <label for="banco">Banco</label>
-        <input type="text" class="form-control" id="banco"
-          placeholder="Informe o código do banco"/>
-      </div>
-</painel> -->
-
 <div class="row">
-    <div class="col s12 m6">
-      <div class="card ">
+    <div class="col s12 m12">
+      <div class="card hoverable">
         <div class="card-content white-text">
           <span class="card-title">Transferência</span>
-          <p>{{transaction.nomeDestino}}</p> 
-          <p> {{transaction.horarioTransferencia | date:'dd/MM/yyyy HH:mm '}}</p>
-          <p>R${{transaction.valorTransferencia}}</p>
+          <p>{{transaction?.from?.client?.name}}</p> 
+          <!-- <p> {{transaction.horarioTransferencia | date:'dd/MM/yyyy HH:mm '}}</p>
+          <p>R${{transaction.valorTransferencia}}</p> -->
         </div>
         <div class="card-action">
           <a href="#">Detalhes</a>
