@@ -1,7 +1,7 @@
 const express = require('express');
 const auth = require("../config/auth");
 const router = express.Router()
-const db = require('../../db')
+const db = require('../db')
 const Account = db.Account
 
 /**
