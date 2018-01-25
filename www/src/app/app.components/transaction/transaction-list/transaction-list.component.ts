@@ -2,7 +2,6 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { TransactionCreateComponent} from '../transaction-create/transaction-create.component'
 import { TransactionCardComponent} from '../transaction-card/transaction-card.component'
 import { Http, Headers } from '@angular/http';
-import { MaterializeModule, MaterializeAction } from 'materialize-css';
 import { MaterializeModule, MaterializeAction } from 'angular2-materialize'
 import { ITransaction} from '../../../app.interfaces/transaction'
 

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { IClient } from '../app.interfaces/client';
-import { HttpParams } from '@angular/common/http/src/params';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
