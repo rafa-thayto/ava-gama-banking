@@ -10,20 +10,19 @@ import { AccountComponent } from '../../account/account.component'
 })
 export class TransactionCreateComponent implements OnInit {
 
-  
-//iniciando as variaveis 
+
+//iniciando as variaveis
 public agencia = ''
 public conta = ''
 
 //mascara numero da agência
 public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
 
-//mascara numero da conta 
+//mascara numero da conta
 public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
 
 
-  http: Http;
-  
+
   constructor (private service: TransactionService) {
   }
 
@@ -34,9 +33,9 @@ public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
   }
 
 
-  opcoesSelect: Array<any>;         
-    
-    ngOnInit() { 
+  opcoesSelect: Array<any>;
+
+    ngOnInit() {
         this.opcoesSelect = [
           {
             valor : 1,
@@ -47,7 +46,7 @@ public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
             descricao: 'Outra conta'
           },
         ];
-    } 
+    }
 
 
 
