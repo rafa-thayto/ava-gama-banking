@@ -10,7 +10,8 @@ import { TransitionConfirmComponent } from '../app.components/transaction/transi
 import { SearchComponent } from '../app.components/search/search.component';
 import { AccountComponent } from '../app.components/account/account.component';
 
-import { TransactionViewComponent } from '../app.components/transaction/transaction-view/transaction-view.component'
+import { TransactionViewComponent } from '../app.components/transaction/transaction-view/transaction-view.component';
+
 
 const routes: Routes = [
   { path: '', component: LoginComponent },

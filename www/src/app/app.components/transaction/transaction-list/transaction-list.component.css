@@ -19,10 +19,9 @@ p{
     cursor: pointer;
 }
 
-.texto-verde{
-    color:green;
-}
 
-.texto-vermelho{
-    color:red;
+
+label{
+    font-size: 3em;
+    margin-left: 100px;
 }

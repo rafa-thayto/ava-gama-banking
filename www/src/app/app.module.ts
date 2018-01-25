@@ -18,7 +18,7 @@ import { HeaderMenuComponent } from './app.components/header-menu/header-menu.co
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
 
 import { SearchComponent } from './app.components/search/search.component';
-import { MaterializeModule } from 'materialize-css';
+import { MaterializeModule } from 'angular2-materialize';
 import { TransitionConfirmComponent} from './app.components/transaction/transition-confirm/transition-confirm.component';
 
 import { AccountService } from '../app/app.services/account.service';
@@ -41,9 +41,8 @@ import { AccountService } from '../app/app.services/account.service';
     HeaderMenuComponent,
     DashboardComponent,
     SearchComponent,
-    TransitionConfirmComponent,
-   // MaterializeModule
-  ],
+    TransitionConfirmComponent
+    ],
   imports: [
     BrowserModule,
     routing,

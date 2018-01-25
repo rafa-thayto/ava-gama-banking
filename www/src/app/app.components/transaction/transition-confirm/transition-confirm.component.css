@@ -2,10 +2,9 @@ h4{
     float:right;
     text-align: center;
 }
-p{
+label{
+    color: #000000;
     font-size: 15px;
-    margin-top: 15px;
-    
 }
 
 .input-senha{
@@ -20,7 +19,6 @@ p{
 
 .btn-confirmar{
     color: #FFF;
-    margin-top: 30px;
 }
 
 a{
