@@ -24,14 +24,9 @@
         "styles.css"
       ],
       "scripts": [
-<<<<<<< HEAD
-        "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/hammerjs/hammer.js",
-        "../node_modules/materialize-css/dist/js/materialize.js"
-=======
         "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/hammerjs/hammer.min.js",
         "../node_modules/materialize-css/dist/js/materialize.min.js"
->>>>>>> aed9d07a8d93c219464b62e607ecf94b881b9bdf
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
