@@ -12,3 +12,7 @@ p{
     float: right;
     
 }
+
+.pointer {
+    cursor: pointer;
+}
