@@ -7,7 +7,7 @@ nav {
 }
 
 #nav-mobile h5 {
-    margin-top: 0.2rem;
+    margin-top: 1.2rem;
 }
 
 #nav-mobile  p {
@@ -16,4 +16,18 @@ nav {
 
 a{
     height: 4rem;
+}
+
+.usuario{
+    font-size: 1rem;
+}
+
+.agencia-conta{
+    font-size: 0.8rem;
+}
+
+.icon-pessoa{
+    padding: 6px;
+    margin-top: 0.2rem;
+    font-size: 2.8rem;
 }
