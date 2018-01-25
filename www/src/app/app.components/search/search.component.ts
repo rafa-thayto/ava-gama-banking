@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Http, Headers } from '@angular/http'
 import { ActivatedRoute } from '@angular/router';
-import { MaterializeModule , MaterializeAction} from 'materialize-css';
+import { MaterializeAction } from 'angular2-materialize';
 
 
 
@@ -14,8 +14,8 @@ import { MaterializeModule , MaterializeAction} from 'materialize-css';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-     
-  Pesquisa: any ={
+  //TODO: remover any e criar uma interface tipando o dado
+  pesquisa: any = {
     val_ini: '',
     val_fim: '',
     dt_ini: '',
@@ -25,32 +25,32 @@ export class SearchComponent implements OnInit {
     name: ''
   }
 
-  constructor() { 
-    
-    }
+  constructor() {
 
-  
-    limpa(form){
-      console.log(form)
-    }
-  
-      onSubmit(form){
-        console.log(form);
-      }
-  
+  }
+
+
+  limpa(form?) {
+    console.log(form)
+  }
+
+  onSubmit(form) {
+    console.log(form);
+  }
+
 
 
   ngOnInit() {
   }
 
 
-  public modalActions = new EventEmitter<string|MaterializeAction>();
-  
+  public modalActions = new EventEmitter<string | MaterializeAction>();
+
   openModal() {
-    this.modalActions.emit({action:"modal",params:['open']});
+    this.modalActions.emit({ action: "modal", params: ['open'] });
   }
   closeModal() {
-    this.modalActions.emit({action:"modal",params:['close']});
+    this.modalActions.emit({ action: "modal", params: ['close'] });
   }
-  
+
 }

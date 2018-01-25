@@ -10,18 +10,19 @@ import { TransitionConfirmComponent } from '../app.components/transaction/transi
 import { SearchComponent } from '../app.components/search/search.component';
 import { AccountComponent } from '../app.components/account/account.component';
 
-import { TransactionViewComponent } from '../app.components/transaction/transaction-view/transaction-view.component'
+import { TransactionViewComponent } from '../app.components/transaction/transaction-view/transaction-view.component';
+
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'transferencia', component: TransactionListComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'confirmacao', component: TransitionConfirmComponent},
+  { path: 'transferencia/novo/confirmacao', component: TransitionConfirmComponent},
   { path: 'search', component: SearchComponent },
   { path: 'account', component: AccountComponent },
   { path: 'transferencia/novo', component: TransactionCreateComponent },
   { path: 'transferencia/visualizar/:idTransf', component: TransactionViewComponent}
-  
+
 ];
 
 export const routing = RouterModule.forRoot(routes) 

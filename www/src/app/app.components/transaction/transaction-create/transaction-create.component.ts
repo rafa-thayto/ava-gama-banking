@@ -1,8 +1,7 @@
+import { ITransaction } from './../../../app.interfaces/transaction';
+import { TransactionService } from './../../../app.services/transaction.service';
 import { Component, OnInit, Input, transition } from '@angular/core';
-import { SelectComponent} from '../../../app.material-components/select/select.component';
-import { ITransaction} from '../../../app.interfaces/transaction'
-import { AccountComponent} from '../../account/account.component'
-import { Http, Headers } from '@angular/http';
+import { AccountComponent } from '../../account/account.component'
 
 @Component({
   selector: 'app-transaction-create',
@@ -25,13 +24,13 @@ public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
 
   http: Http;
   
- public transaction: ITransaction;
-  constructor() {
-
+  constructor (private service: TransactionService) {
   }
 
-  public getTransaction() {
-    return this.transaction
+  public performTransaction(transaction) {
+     this.service.performTransaction(transaction)
+    //  .subscribe( () => console.log(`Efetuou: ${transaction}`)),
+    //    erro => console.log(erro)
   }
 
 
