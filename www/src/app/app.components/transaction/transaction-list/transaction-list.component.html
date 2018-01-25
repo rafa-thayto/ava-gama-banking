@@ -12,8 +12,14 @@
     </div>
 
     <div class="col s12 m6">
+<<<<<<< HEAD
         <div class="input-field pointer col s12 m12">
             <a routerLink=''><i class="material-icons filtro">filter_list</i></a>
+=======
+        <div class="input-field col s12 m12">
+             <a class="modal-trigger" (click)="openModal()" ><i class="material-icons filtro pointer">filter_list</i></a>
+            <!-- <a class="btn modal-trigger" (click)="openModal()">Modal</a> -->
+>>>>>>> 270c88a0afd5ee5bf24034b80833f15f515f6c84
             <input placeholder="Pesquisar" id="" type="text" class="validate">
 
             <div class="card hoverable  grey lighten-5">
@@ -44,7 +50,7 @@
 
         </div>
         <div class="modal-footer">
-          <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
-          <a class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+          <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Fechar</a>
+          <!--<a class="modal-action modal-close waves-effect waves-green btn-flat">Aceitar</a>-->
         </div>
       </div> 
