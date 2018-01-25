@@ -22,6 +22,8 @@ import { DashboardComponent } from './app.components/dashboard/dashboard.compone
 
 import { SearchComponent } from './app.components/search/search.component';
 import { TransitionConfirmComponent} from './app.components/transaction/transition-confirm/transition-confirm.component';
+import { TextMaskModule } from 'angular2-text-mask';
+
 
 import { AccountService } from '../app/app.services/account.service';
 
@@ -52,8 +54,8 @@ import { AccountService } from '../app/app.services/account.service';
     SelectModule,
     routing,
     FormsModule,
-    HttpModule
-    
+    HttpModule,
+    TextMaskModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]
