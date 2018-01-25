@@ -20,12 +20,12 @@ export class TransactionCreateComponent implements OnInit {
 
   
   
-  constructor(private service: TransactionService, public transaction: ITransaction) {
+  constructor() {
     
   }
 
   public performTransaction(transaction) {
-    this.service.performTransaction(transaction)
+    // this.service.performTransaction(transaction)
     // .subscribe( () => console.log(`Efetuou: ${transaction}`)),
     //   erro => console.log(erro)
   }
