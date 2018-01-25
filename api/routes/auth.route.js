@@ -64,13 +64,10 @@ router.post('/login', async (req, res, next) => {
  * @api {post} /auth/isTokenValid Validar token
  * @apiName AuthToken
  * @apiGroup Auth
- *
- *
- * @apiSuccess {IAccount} account obj.
+*
+ * @apiHeader {String} authorization JWT \<token\>
+ * @apiSuccess {empty} empty
  */
-router.get('/isTokenValid',
-    auth.isAuthenticated,
-    (req, res, next) => res.status(200).end()
-);
+router.get('/isTokenValid', auth.isAuthenticated, (req, res, next) => res.status(200).end());
 
 module.exports = router;
