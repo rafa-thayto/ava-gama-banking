@@ -5,6 +5,14 @@ const db = require('../../db')
 const Account = db.Account
 
 
+/**
+ * @api {get} /accounts/ Obter informações da conta
+ * @apiName GetAccount
+ * @apiGroup Account
+ *
+ * @apiHeader {String} authorization JWT \<token\>
+ * @apiSuccess {IAccount} account obj.
+ */
 router.get(
     '/:ag/:conta',
     // auth.isAuthenticated,
@@ -39,7 +47,7 @@ router
                 const conta = req.params.conta
                 const transactions = await Account
                                         .findTransactionsByAccount(agencia, conta)
-                if (!transactions) return res.status(404)   
+                if (!transactions) return res.status(404)
                 res.status(200).json(transactions)
             } catch (e) {
                 console.log(e);
@@ -47,7 +55,7 @@ router
             } finally {
                 res.end()
             }
-            
+
         }
     )
     .post(
@@ -57,17 +65,17 @@ router
 
             // res.send('create new transaction')
             console.log('criando nova transição')
-            
+
             var transaction = req.body
             res.json(transaction)
             console.log(transaction)
 
             db.Transaction.create(transaction, function(err, docs) {
-                
+
                 /* if (err) throw err;
                     console.log('INSERIU COM SUCESSO')
                     res.status(201).json(transaction)   */
-                
+
                 res.end();
             })
 

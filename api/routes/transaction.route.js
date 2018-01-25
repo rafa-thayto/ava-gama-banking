@@ -2,7 +2,14 @@ const express = require('express')
 const auth = require("../config/auth")
 const router = express.Router()
 const db = require('../../db')
-
+/**
+ * @api {get} /transactions/:transactionId Obter informações de uma transação
+ * @apiName TransactionGet
+ * @apiGroup Transaction
+ *
+ * @apiHeader {String} authorization JWT \<token\>
+ * @apiSuccess {IAccount} account obj.
+ */
 router.get(
     '/:transactionId',
     auth.isAuthenticated,
@@ -22,5 +29,14 @@ router.get(
         }
     }
 );
+
+/**
+ * @api {post} /transactions/ Criar uma nova transação
+ * @apiName TransactionPost
+ * @apiGroup Transaction
+ *
+ *
+ * @apiSuccess {IAccount} account obj.
+ */
 
 module.exports = router
