@@ -20,21 +20,13 @@ import { HeaderMenuComponent } from './app.components/header-menu/header-menu.co
 import { SideMenuComponent } from './app.components/side-menu/side-menu.component';
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
 
-<<<<<<< HEAD
-/*<<<<<<< HEAD
-=======*/
-import { AccountService } from '../app/app.services/account.service';
-/*>>>>>>> aa9642f3956beb446c91d3d8659dc11dc31fddd5*/
 import { SearchComponent } from './app.components/search/search.component';
 import { MaterializeModule } from 'angular2-materialize';
-=======
-import { SearchComponent } from './app.components/search/search.component';
 import { TransitionConfirmComponent} from './app.components/transaction/transition-confirm/transition-confirm.component';
 
 import { AccountService } from '../app/app.services/account.service';
 
 
->>>>>>> aed9d07a8d93c219464b62e607ecf94b881b9bdf
 
 
 
@@ -53,10 +45,7 @@ import { AccountService } from '../app/app.services/account.service';
     SideMenuComponent,
     DashboardComponent,
     SearchComponent,
-<<<<<<< HEAD
-=======
     TransitionConfirmComponent
->>>>>>> aed9d07a8d93c219464b62e607ecf94b881b9bdf
   ],
   imports: [
     BrowserModule,
@@ -66,7 +55,7 @@ import { AccountService } from '../app/app.services/account.service';
     FormsModule,
     HttpModule,
     MaterializeModule
-    
+
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]
