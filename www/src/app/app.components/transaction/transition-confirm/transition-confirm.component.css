@@ -1,0 +1,24 @@
+h4{
+    float:right;
+    text-align: center;
+}
+p{
+    font-size: 15px;
+    margin-top: 15px;
+    
+}
+
+.input-senha{
+    margin-top: 0;
+}
+
+.btn-senha{
+    margin-top: 5px;
+    width: 100%;
+    text-align: center
+}
+
+.btn-confirmar{
+    color: #FFF;
+}
+
