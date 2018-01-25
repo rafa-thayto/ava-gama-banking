@@ -99,7 +99,15 @@ Link:
 
 ## Base de dados
 
-dados de aceso:
+### Diagrama de Classe
+
+![diagrama](https://raw.githubusercontent.com/rafa-thayto/ava-gama-banking/dev/db/diagrama.png)
+
+### ODM - Mongoose
+
+Utilizado para gerenciar a conexao com a base de dados e criar, consultar e validar documentos.
+
+### dados de aceso:
 
     ip: 67.205.161.225
     usuario: gama
@@ -115,11 +123,43 @@ dados de aceso:
 ```
 *Importante: executar na respectiva ordem.
 
+### Senhas
+
+Todas as senhas são armazenadas em hash. O bcrypt é utilizado para gerar os hashs.
+
 ## Api
 
-Para gerar a documentação, seguir os passos:
+### Framework = ExpressJS
+### Autenticacao
+
+* [Json Web Token](https://jwt.io/)
+
+        header.payload.signature
+
+* Fluxo para geracao do token:
+  1. Requisição contendo credencial
+  2. API recebe dados
+  3. Consulta base de dados pelo respectivo usuário
+  4. Confere se a senha enviada coincide com a hash da senha armazenada no db
+  5. Gera TOKEN e envia token ao cliente
+
+* O token expira a cada 1 hora, sendo necessário uma nova autenticação
+
+* Fluxo para autenticacao:
+  1. Usuario envia requisição à api com o seguinte header:
+``` http
+    Authorization: JWT <token>
+```
+  2. API recebe solicitação
+  3. Verifica se o token é valido (autentica)
+  4. Captura o payload do token e armazena na req
+  5. As rotas utilizam as informações que estão no escopo da req
+  6. Reposta é fornecida ao usuario conforme documentação abaixo.
+### Documentacao
+
+1. gerar:
 ```bash
     $ cd ~/ava-gama-banking/api
     $ ./generateDocs.sh
 ```
-Para consultar a documentação, abrir o arquivo ~/ava-gama-banking/api/docs/index.html no navegador
+2. abrir arquivo ~/ava-gama-banking/api/docs/index.html no navegador
