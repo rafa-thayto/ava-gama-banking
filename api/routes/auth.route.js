@@ -5,6 +5,12 @@ const db = require("../../db");
 const SECRET = "TODO:CRIAR_UMA_SECRET";
 const JWT_OPTIONS = { expiresIn: '1h' };
 
+const invalidRequest = (req, res, next) => {
+    res.status(400)
+        .json({ message: 'invalid parameters.' });
+    res.end();
+}
+
 const credentialNotFound = (req, res, next) => {
     res.status(404)
         .json({ message: 'user not found.' });
@@ -15,28 +21,39 @@ const passwordMissmatch = (req, res, next) => {
         .json({ message: 'wrong password.' });
     res.end();
 }
-const passwordMatch = (req, res, next, client) => {
-    const payload = { _id: client._id, name: client.name };
+const passwordMatch = (req, res, next, account) => {
+    const payload = account;
     const token = auth.createToken(payload);
     res.json({ token: token });
     next();
 }
 
-router.get('/login', async (req, res, next) => {
-    //TODO: logar pelo numero da conta?
-    const credential = req.body;
-    if (!credential) return credentialNotFound(req, res, next);
+router.post('/login', async (req, res, next) => {
+    if (!req.body) req.body = {};
+    const account_number = req.body.account_number;
+    const ag = req.body.ag;
+    const password = req.body.password;
+    if (typeof account_number !== "number") return invalidRequest(req, res, next);
+    if (typeof ag !== "number") return invalidRequest(req, res, next);
+    if (typeof password !== "string") return invalidRequest(req, res, next);
+
     try {
-        const client = await db.Client.findOne({ key: credential.key });
-        if (!client) return credentialNotFound(req, res, next);
+        const account = await db.Account.findOne({ ag: ag, account_number: account_number });
+        if (!account) return credentialNotFound(req, res, next);
         //caso as senhas estejam iguais
-        if (auth.isSamePassword(client.password, credential.password)) passwordMatch(req, res, next, client);
+        if (auth.isSamePassword(password, account.password)) passwordMatch(req, res, next, account.toObject());
         else passwordMissmatch(req, res, next);
     } catch (e) {
+        console.log(e);
         res.status(500);
     } finally {
         res.end();
     }
 });
+
+router.get('/isTokenValid',
+    auth.isAuthenticated,
+    (req, res, next) => res.status(200).end()
+);
 
 module.exports = router;

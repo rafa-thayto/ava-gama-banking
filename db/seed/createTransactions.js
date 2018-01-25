@@ -1,4 +1,4 @@
-const db = require("../db");
+const db = require("../");
 const maxTransactionsPerAccount = 50;
 const maxTransactionValue = 15000;
 const Account = db.Account;
@@ -12,7 +12,7 @@ const howManyTransactions = () => Math.floor(Math.random() * maxTransactionsPerA
 const transactionValue = () => {
     //https://stackoverflow.com/questions/13455042/random-number-between-negative-and-positive-value
     let value = Math.floor(Math.random() * maxTransactionValue) + 1; // this will get a number between 1 and 99;
-    value *= Math.floor(Math.random() * 2) == 1 ? 1 : -1; // this will add minus sign in 50% of cases
+    // value *= Math.floor(Math.random() * 2) == 1 ? 1 : -1; // this will add minus sign in 50% of cases
     //TODO: nao precisa ser negativo, bastar verificar a origem/destino
     return value;
 }
@@ -30,7 +30,7 @@ const removeAllTransactions = async () => {
 }
 const resetAccountBalance = async () => {
     try {
-        await Account.updateMany({}, { balance: 0 })
+        await Account.updateMany({}, { balance: 25000 })
     } catch (e) {
         console.log(e)
     } finally {
@@ -59,7 +59,6 @@ const insertTransactions = async () => {
 
 const createFirstTransaction = account => {
     let value = transactionValue();
-    if (value < 0) value = value * -1;
     return createNewTransaction(mainAccount, account._id, value); //TODO: get system account
 }
 
