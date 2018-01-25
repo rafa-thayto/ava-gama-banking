@@ -1,5 +1,5 @@
 const db = require("../");
-const auth = require("../../api/auth");
+const auth = require("../../config/auth");
 const maxAccountsPerClient = 5;
 const Client = db.Client;
 const Account = db.Account;
