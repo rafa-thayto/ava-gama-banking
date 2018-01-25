@@ -18,8 +18,8 @@ const routes: Routes = [
   { path: 'transferencia', component: TransactionListComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'transferencia/novo/confirmacao', component: TransitionConfirmComponent},
-  { path: 'search', component: SearchComponent },
-  { path: 'account', component: AccountComponent },
+  { path: 'pesquisa', component: SearchComponent },
+  { path: 'conta', component: AccountComponent },
   { path: 'transferencia/novo', component: TransactionCreateComponent },
   { path: 'transferencia/visualizar/:idTransf', component: TransactionViewComponent}
 

@@ -3,7 +3,10 @@ nav {
 }
 
 .brand-logo img {
-    height: 4rem;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 8rem;
+    height: 3rem;
 }
 
 #nav-mobile h5 {
