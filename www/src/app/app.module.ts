@@ -22,10 +22,9 @@ import { MaterializeModule } from 'angular2-materialize';
 import { TransitionConfirmComponent} from './app.components/transaction/transition-confirm/transition-confirm.component';
 
 import { AccountService } from '../app/app.services/account.service';
-
-
-
-
+import { AuthService } from './app.services/auth.service';
+import { ClientService } from './app.services/client.service';
+import { TokenInterceptor } from './app.interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -51,7 +50,12 @@ import { AccountService } from '../app/app.services/account.service';
     MaterializeModule
 
   ],
-  providers: [AccountService],
+  providers: [
+    AccountService,
+    TokenInterceptor,
+    AuthService,
+    ClientService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
