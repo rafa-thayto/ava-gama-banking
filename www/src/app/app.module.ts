@@ -19,11 +19,13 @@ import { LogoutComponent } from './app.components/auth/logout/logout.component';
 import { HeaderMenuComponent } from './app.components/header-menu/header-menu.component';
 import { SideMenuComponent } from './app.components/side-menu/side-menu.component';
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
+
 /*<<<<<<< HEAD
 =======*/
 import { AccountService } from '../app/app.services/account.service';
 /*>>>>>>> aa9642f3956beb446c91d3d8659dc11dc31fddd5*/
 import { SearchComponent } from './app.components/search/search.component';
+import { MaterializeModule } from 'angular2-materialize';
 
 
 
@@ -41,7 +43,7 @@ import { SearchComponent } from './app.components/search/search.component';
     HeaderMenuComponent,
     SideMenuComponent,
     DashboardComponent,
-    SearchComponent
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { SearchComponent } from './app.components/search/search.component';
     SelectModule,
     routing,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MaterializeModule
     
   ],
   providers: [AccountService],
