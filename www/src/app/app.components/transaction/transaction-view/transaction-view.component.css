@@ -1,0 +1,39 @@
+.nav-transaction{
+    background: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.icone{
+   float: left;
+    background:rgb(255, 255, 255);
+    color:black;
+}
+
+label{    margin-left: 1%;
+    color:black;
+    font-size: 16px;
+    
+}
+
+.tranf{
+    color:black;
+    font-size: 20px;
+}
+
+.saldoGreen{
+    color:rgb(6, 173, 26);
+    font-size: 20px;
+}
+
+.saldoRed{
+    color:rgb(255, 5, 5);
+    font-size: 20px;
+}
+i.medium {
+    font-size: 35px;
+}
+
+.codigoAutent{
+    background: rgb(255, 255, 255);
+    text-align: center;
+}
