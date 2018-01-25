@@ -20,8 +20,10 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'account', component: AccountComponent },
   { path: 'transferencia/novo', component: TransactionCreateComponent },
-  { path: 'transferencia/visualizar/:idTransf', component: TransactionViewComponent}
-  
+  { path: 'transferencia/visualizar/:idTransf', component: TransactionViewComponent},
+  { path: "**", redirectTo: "" }
+
+
 ];
 
-export const routing = RouterModule.forRoot(routes) 
+export const routing = RouterModule.forRoot(routes)

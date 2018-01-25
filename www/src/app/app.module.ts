@@ -22,6 +22,7 @@ import { MaterializeModule } from 'angular2-materialize';
 import { TransitionConfirmComponent} from './app.components/transaction/transition-confirm/transition-confirm.component';
 
 import { AccountService } from '../app/app.services/account.service';
+import { SecretkeyComponent } from './app.components/auth/secret-key/secretkey.component';
 
 
 
@@ -41,17 +42,12 @@ import { AccountService } from '../app/app.services/account.service';
     HeaderMenuComponent,
     DashboardComponent,
     SearchComponent,
-    TransitionConfirmComponent
-  ],
-  imports: [
-    BrowserModule,
-    routing,
-    FormsModule,
-    HttpModule,
-    MaterializeModule
+    TransitionConfirmComponent,
+    SecretkeyComponent,
 
   ],
+  imports: [BrowserModule, routing, FormsModule, HttpModule, MaterializeModule],
   providers: [AccountService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

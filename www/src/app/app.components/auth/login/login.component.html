@@ -1,12 +1,19 @@
-<div class="container">
-  <div class="jumbotron">
-    <h1>Welcome</h1>
-    <h2>Angular & Bootstrap Demo</h2>
+<h1>Login</h1>
+<div class="divider"></div><br><br>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Insira sua Agencia" id="agencia" type="text" class="validate">
+          <label for="Agencia">Agencia</label>
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="Insira o numero de sua Conta" id="conta" type="text" class="validate">
+          <label for="conta">Conta</label>
+        </div>
+        <secret-key></secret-key>
+        </div>
+        <button class="waves-effect waves-light btn send">entrar</button><br><br>
+        <label>Esqueceu a senha?</label>
+    </form>
   </div>
-  <div class="panel panel-primary">
-    <div class="panel-heading">Status</div>
-    <div class="panel-body">
-      <h3>{{title}}</h3>
-    </div>
-  </div>
-</div>
