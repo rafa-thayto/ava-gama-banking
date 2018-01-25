@@ -4,6 +4,9 @@ const router = express.Router()
 const db = require('../../db');
 const Account = db.Account;
 const Transaction = db.Transaction;
+const populateClientOpt = { path: 'client', select: 'name -_id' };
+const populateFromOpt = { path: 'from', select: 'ag account_number -_id', populate: populateClientOpt };
+const populateToOpt = { path: 'to', select: 'ag account_number -_id', populate: populateClientOpt };
 /**
  * @api {get} /transactions/:transactionId Obter informações de uma transação
  * @apiName TransactionGet
@@ -14,11 +17,13 @@ const Transaction = db.Transaction;
  * @apiSuccess {Object} from dados da origem da transação
  * @apiSuccess {Number} from.ag agencia de origem
  * @apiSuccess {Number} from.account_number conta de origem
- * @apiSuccess {Number} from.client_name nome do cliente de origem
+ * @apiSuccess {Object} from.client cliente de origem
+ * @apiSuccess {String} from.client.name nome do cliente de origem
  * @apiSuccess {Object} to dados do destino da transação
  * @apiSuccess {Number} to.ag agencia de destino
  * @apiSuccess {Number} to.account_number conta de destino
- * @apiSuccess {Number} to.client_name nome do cliente de destino
+ * @apiSuccess {Object} to.client cliente de destino
+ * @apiSuccess {String} to.client.name nome do cliente de destino
  * @apiSuccess {Number} value valor da transação
  * @apiSuccess {Date} date data da transação
  * @apiSuccess {String} status status da transação
@@ -29,11 +34,15 @@ router.get(
     '/:transactionId',
     auth.isAuthenticated,
     auth.isAuthorized,
+    //TODO: apenas possui autorização para pegar transacoes com sua conta de origem ou destino.
     async (req, res, next) => {
         try {
             const transaction = await db.Transaction
                 .findById(req.params.transactionId)
-                .populate('from to')
+                .populate(populateFromOpt)
+                .populate(populateToOpt)
+                .select('-createdAt -updatedAt')
+                .lean();
             if (!transaction) return res.status(404)
             res.json(transaction)
         } catch (e) {
@@ -70,6 +79,9 @@ const createTransaction = async (req, res, next) => {
     if (isInvalidTransaction) return res.status(400).end();
     try {
         await transaction.save();
+        // await transaction.populate(populateFromOpt).populate(populateToOpt)
+                                    // .select('-createdAt -updatedAt')
+                                    // .lean()
         //TODO: retornar obj com transação criada conforme docs
         res.status(200).json(transaction);
     } catch (e) {
@@ -95,11 +107,13 @@ const createTransaction = async (req, res, next) => {
  * @apiSuccess {Object} from dados da origem da transação
  * @apiSuccess {Number} from.ag agencia de origem
  * @apiSuccess {Number} from.account_number conta de origem
- * @apiSuccess {Number} from.client_name nome do cliente de origem
+ * @apiSuccess {Object} from.client cliente de origem
+ * @apiSuccess {String} from.client.name nome do cliente de origem
  * @apiSuccess {Object} to dados do destino da transação
  * @apiSuccess {Number} to.ag agencia de destino
  * @apiSuccess {Number} to.account_number conta de destino
- * @apiSuccess {Number} to.client_name nome do cliente de destino
+ * @apiSuccess {Object} to.client cliente de destino
+ * @apiSuccess {String} to.client.name nome do cliente de destino
  * @apiSuccess {Number} value valor da transação
  *
  * @apiError AccountNotFound conta não localizada
