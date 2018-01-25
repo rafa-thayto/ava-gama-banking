@@ -1,0 +1,15 @@
+nav {
+    background-color: #ff5800;
+}
+
+.brand-logo img {
+    height: 4rem;
+}
+
+#nav-mobile h5 {
+    margin-top: 0.2rem;
+}
+
+#nav-mobile  p {
+    margin-top: -1.7rem;
+}

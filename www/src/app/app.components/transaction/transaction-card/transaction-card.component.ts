@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TransactionCreateComponent } from '../transaction-create/transaction-create.component';
-//import { SelectComponent} from '../../../app.bootstrap-components/select/select.component'
 
 
 @Component({
