@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TransactionCreateComponent } from '../transaction-create/transaction-create.component';
+import { ITransaction } from '../../../app.interfaces/transaction';
 
 
 @Component({
@@ -9,16 +10,16 @@ import { TransactionCreateComponent } from '../transaction-create/transaction-cr
 })
 export class TransactionCardComponent implements OnInit {
 
-  @Input() transaction: TransactionCreateComponent
+  @Input() transaction: ITransaction
 
   constructor() {
 
-      
+
   }
 
-  opcoesSelect: Array<any>;         
-    
-    ngOnInit() { 
+  opcoesSelect: Array<any>;
+
+    ngOnInit() {
         this.opcoesSelect = [
           {
             valor : 1,
@@ -29,6 +30,6 @@ export class TransactionCardComponent implements OnInit {
             descricao: 'Outra conta'
           },
         ];
-    } 
+    }
 
 }

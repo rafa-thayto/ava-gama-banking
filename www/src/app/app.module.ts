@@ -18,14 +18,14 @@ import { HeaderMenuComponent } from './app.components/header-menu/header-menu.co
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
 
 import { SearchComponent } from './app.components/search/search.component';
-import { MaterializeModule } from 'materialize-css';
+import { MaterializeModule } from 'angular2-materialize';
 import { TransitionConfirmComponent} from './app.components/transaction/transition-confirm/transition-confirm.component';
 
 import { AccountService } from '../app/app.services/account.service';
 import { TransactionService } from './app.services/transaction.service';
-
-
-
+import { AuthService } from './app.services/auth.service';
+import { ClientService } from './app.services/client.service';
+import { TokenInterceptor } from './app.interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,13 @@ import { TransactionService } from './app.services/transaction.service';
     MaterializeModule
 
   ],
-  providers: [AccountService, TransactionService],
+  providers: [
+    AccountService,
+    TokenInterceptor,
+    AuthService,
+    ClientService,
+    TransactionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
