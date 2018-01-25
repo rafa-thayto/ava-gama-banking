@@ -8,7 +8,6 @@ import {MaterializeAction} from 'angular2-materialize';
 
 
 
-
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -16,6 +15,15 @@ import {MaterializeAction} from 'angular2-materialize';
 })
 export class SearchComponent implements OnInit {
      
+  Pesquisa: any ={
+    val_ini: '',
+    val_fim: '',
+    dt_ini: '',
+    dt_fim: '',
+    ag_dest: '',
+    ac_dest: '',
+    name: ''
+  }
 
   constructor() { 
     
