@@ -6,7 +6,7 @@ import { MaterializeModule, MaterializeAction } from "angular2-materialize";
 import { ITransaction} from '../../../app.interfaces/transaction'
 
 @Component({
-  selector: 'app-transaction-list',
+  selector: 'transaction-list',
   templateUrl: './transaction-list.component.html',
   styleUrls: ['./transaction-list.component.css']
 })

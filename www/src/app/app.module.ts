@@ -22,7 +22,7 @@ import { MaterializeModule } from 'angular2-materialize';
 import { TransitionConfirmComponent} from './app.components/transaction/transition-confirm/transition-confirm.component';
 
 import { AccountService } from '../app/app.services/account.service';
-
+import { TransactionService } from './app.services/transaction.service';
 
 
 
@@ -51,7 +51,7 @@ import { AccountService } from '../app/app.services/account.service';
     MaterializeModule
 
   ],
-  providers: [AccountService],
+  providers: [AccountService, TransactionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

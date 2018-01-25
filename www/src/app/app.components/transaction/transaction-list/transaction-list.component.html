@@ -1,56 +1,42 @@
-<div class="row">
-        
-    <div class="col s12 m6 saldo">
-        <h3>R$1.000,00</h3>
-        <p>Saldo Atual</p>
-        <br>
-        <h3 class="texto-verde">R$1.000,00</h3>
-        <p>Créditos (Últimos 30 dias)</p>
-        <br>
-        <h3 class="texto-vermelho">R$1.000,00</h3>
-        <p>Débitos (Últimos 30 dias)</p>
-    </div>
+<div class="col s12 m6">
+    <div class="input-field col s12 m12">
+        <a class="btn modal-trigger" (click)="openModal()">
+            <i class="material-icons filtro">filter_list</i>
+        </a>
+        <!-- <a class="btn modal-trigger" (click)="openModal()">Modal</a> -->
+        <input placeholder="Pesquisar" id="" type="text" class="validate">
 
-    <div class="col s12 m6">
-<<<<<<< HEAD
-        <div class="input-field col s12 m12">
-             <a class="btn modal-trigger" (click)="openModal()" ><i class="material-icons filtro">filter_list</i></a>
-            <!-- <a class="btn modal-trigger" (click)="openModal()">Modal</a> -->
-=======
-        <div class="input-field pointer col s12 m12">
-            <a routerLink=''><i class="material-icons filtro">filter_list</i></a>
->>>>>>> aed9d07a8d93c219464b62e607ecf94b881b9bdf
-            <input placeholder="Pesquisar" id="" type="text" class="validate">
-
-            <div class="card hoverable  grey lighten-5">
-                <div class="card-content black-text">
-                <a routerLink=''><i class="material-icons">add</i></a>
+        <div routerLink='/transferencia/novo' class="card hoverable pointer  grey lighten-5">
+            <div class="card-content black-text">
+                <a>
+                    <i class="material-icons">add</i>
+                </a>
                 <span class="card-title center-align">Nova Tranferência</span>
-                </div>
             </div>
-            
         </div>
-        <div *ngFor="let transaction of transactions" class="col s12 m6">
-            <app-transaction-card [transaction]="transaction"></app-transaction-card>
-        </div>
-    </div>
 
+    </div>
+    <div *ngFor="let transaction of transactions" class="col s12 m6">
+        <app-transaction-card [transaction]="transaction"></app-transaction-card>
+    </div>
 </div>
 
 
-    <div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
-        <div class="modal-content">
-          
 
 
-<app-search>
-    
-</app-search>
+<div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+    <div class="modal-content">
 
 
-        </div>
-        <div class="modal-footer">
-          <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
-          <a class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
-      </div> 
+
+        <app-search>
+
+        </app-search>
+
+
+    </div>
+    <div class="modal-footer">
+        <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
+        <a class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
