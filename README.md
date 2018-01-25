@@ -92,20 +92,34 @@ Cada pasta representa um "módulo" do projeto, onde:
 
     Na primeira execução pode demorar um pouco.
 
-## Api
-
 ## Interfaces
 
 Link:
 [moqups](https://app.moqups.com/pjpimentel/ggNkI8HDZw/edit/page/a63cc1cd1)
 
-### Consultando a api
-    TODO:
 ## Base de dados
 
-### Consultando os dados
-    TODO:
-### Gerando um "backup"
-    TODO:
-### Restaurando um "backup"
-    TODO:
+dados de aceso:
+
+    ip: 67.205.161.225
+    usuario: gama
+    senha: Z3xXgYkQVnsuJ3Cu
+
+### Gerando novos dados
+
+```bash
+    $ cd ~/ava-gama-banking/db/seed
+    $ node ./createClients.js
+    $ node ./createAccounts.js
+    $ node ./createTransactions.js
+```
+*Importante: executar na respectiva ordem.
+
+## Api
+
+Para gerar a documentação, seguir os passos:
+```bash
+    $ cd ~/ava-gama-banking/api
+    $ ./generateDocs.sh
+```
+Para consultar a documentação, abrir o arquivo ~/ava-gama-banking/api/docs/index.html no navegador
