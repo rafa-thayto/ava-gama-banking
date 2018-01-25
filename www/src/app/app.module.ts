@@ -17,11 +17,12 @@ import { LogoutComponent } from './app.components/auth/logout/logout.component';
 import { HeaderMenuComponent } from './app.components/header-menu/header-menu.component';
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
 
+
 import { SearchComponent } from './app.components/search/search.component';
 
+import { MaterializeModule } from 'materialize-css';
 import { TransitionConfirmComponent} from './app.components/transaction/transition-confirm/transition-confirm.component';
 import { TextMaskModule } from 'angular2-text-mask';
-/*import { MaterializeModule} from 'angular2-materialize';*/
 
 import { AccountService } from '../app/app.services/account.service';
 
@@ -43,7 +44,8 @@ import { AccountService } from '../app/app.services/account.service';
     HeaderMenuComponent,
     DashboardComponent,
     SearchComponent,
-    TransitionConfirmComponent
+    TransitionConfirmComponent,
+    MaterializeModule
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,7 @@ import { AccountService } from '../app/app.services/account.service';
     FormsModule,
     HttpModule,
     TextMaskModule,
-  /*  MaterializeModule*/
+   MaterializeModule
 
   ],
   providers: [AccountService],

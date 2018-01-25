@@ -22,12 +22,12 @@ export class TransactionService {
 
     // }
 
-    // filterTransactions() {
-    //     return this._http.get(`http://localhost:3000/transactions/${id}`)
-    //         .map((response: Response) => <ITransaction>response.json())
-    //         .do(data => console.log('Dados: ' + JSON.stringify(data)))
-    //         .catch(this.handleError);
-    // }
+    filterTransactions(id: number) {
+        return this._http.get(`http://localhost:3000/transactions/${id}`)
+            .map((response: Response) => <ITransaction>response.json())
+            .do(data => console.log('Dados: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    } 
 
     performTransaction(transaction: ITransaction) {
 

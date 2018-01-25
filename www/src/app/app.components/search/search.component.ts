@@ -3,8 +3,7 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Http, Headers } from '@angular/http'
 import { ActivatedRoute } from '@angular/router';
-import { MaterializeModule ,MaterializeAction} from 'angular2-materialize';
-
+import { MaterializeModule , MaterializeAction} from 'materialize-css';
 
 
 
@@ -16,6 +15,15 @@ import { MaterializeModule ,MaterializeAction} from 'angular2-materialize';
 })
 export class SearchComponent implements OnInit {
      
+  Pesquisa: any ={
+    val_ini: '',
+    val_fim: '',
+    dt_ini: '',
+    dt_fim: '',
+    ag_dest: '',
+    ac_dest: '',
+    name: ''
+  }
 
   constructor() { 
     
