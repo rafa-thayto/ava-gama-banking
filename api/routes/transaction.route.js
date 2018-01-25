@@ -8,6 +8,61 @@ const populateClientOpt = { path: 'client', select: 'name -_id' };
 const populateFromOpt = { path: 'from', select: 'ag account_number -_id', populate: populateClientOpt };
 const populateToOpt = { path: 'to', select: 'ag account_number -_id', populate: populateClientOpt };
 /**
+ * @api {get} /transactions/ Obter lista de transações
+ * @apiName TransactionsGet
+ * @apiGroup Transaction
+ *
+ * @apiHeader {String} authorization JWT \<token\>
+ * @apiParam {Date} dateStart data de inicio
+ * @apiParam {Date} dateEnd data de fim
+ * @apiParam {Number} valueStart valor da transacao (inicio)
+ * @apiParam {Number} valueEnd valor da transacao (fim)
+ * @apiParam {Number} ag numero da agencia
+ * @apiParam {Number} account_number numero da conta
+ * @apiParam {String} clientName nome do cliente
+ * @apiParam {String} type credito|debito
+ *
+ * @apiSuccess {Object[]} transactions transacoes localizadas
+ * @apiSuccess {Object} transactions.from dados da origem da transação
+ * @apiSuccess {Number} transactions.from.ag agencia de origem
+ * @apiSuccess {Number} transactions.from.account_number conta de origem
+ * @apiSuccess {Object} transactions.from.client cliente de origem
+ * @apiSuccess {String} transactions.from.client.name nome do cliente de origem
+ * @apiSuccess {Object} transactions.to dados do destino da transação
+ * @apiSuccess {Number} transactions.to.ag agencia de destino
+ * @apiSuccess {Number} transactions.to.account_number conta de destino
+ * @apiSuccess {Object} transactions.to.client cliente de destino
+ * @apiSuccess {String} transactions.to.client.name nome do cliente de destino
+ * @apiSuccess {Number} transactions.value valor da transação
+ * @apiSuccess {Date} transactions.date data da transação
+ * @apiSuccess {String} transactions.status status da transação
+ * @apiSuccess {ObjectId} transactions._id id da transação
+ * @apiError TransactionBadRequest Parametros invalidos
+ */
+router.get(
+    '/',
+    auth.isAuthenticated,
+    auth.isAuthorized,
+    async (req, res, next) => {
+        try {
+            const transaction = await db.Transaction
+                .findById(req.params.transactionId)
+                .populate(populateFromOpt)
+                .populate(populateToOpt)
+                .select('-createdAt -updatedAt')
+                .lean();
+            if (!transaction) return res.status(404)
+            res.json(transaction)
+        } catch (e) {
+            res.status(500)
+            res.send(`${e}`)
+        } finally {
+            res.end()
+        }
+    }
+);
+
+/**
  * @api {get} /transactions/:transactionId Obter informações de uma transação
  * @apiName TransactionGet
  * @apiGroup Transaction
