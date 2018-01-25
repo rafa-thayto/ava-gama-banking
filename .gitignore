@@ -52,3 +52,6 @@ bower_components/
 
 #mongo data dir
 db/data/
+
+#api docs
+api/docs
