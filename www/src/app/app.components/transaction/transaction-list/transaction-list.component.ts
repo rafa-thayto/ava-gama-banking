@@ -2,12 +2,11 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { TransactionCreateComponent} from '../transaction-create/transaction-create.component'
 import { TransactionCardComponent} from '../transaction-card/transaction-card.component'
 import { Http, Headers } from '@angular/http';
-import { MaterializeModule, MaterializeAction } from 'angular2-materialize';
-
+import { MaterializeModule, MaterializeAction } from 'angular2-materialize'
 import { ITransaction} from '../../../app.interfaces/transaction'
 
 @Component({
-  selector: 'app-transaction-list',
+  selector: 'transaction-list',
   templateUrl: './transaction-list.component.html',
   styleUrls: ['./transaction-list.component.css']
 })

@@ -17,12 +17,12 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'transferencia', component: TransactionListComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'confirmacao', component: TransitionConfirmComponent},
+  { path: 'transferencia/novo/confirmacao', component: TransitionConfirmComponent},
   { path: 'search', component: SearchComponent },
   { path: 'account', component: AccountComponent },
   { path: 'transferencia/novo', component: TransactionCreateComponent },
   { path: 'transferencia/visualizar/:idTransf', component: TransactionViewComponent}
-  
+
 ];
 
 export const routing = RouterModule.forRoot(routes) 

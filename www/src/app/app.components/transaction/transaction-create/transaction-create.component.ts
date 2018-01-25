@@ -1,6 +1,6 @@
+import { ITransaction } from './../../../app.interfaces/transaction';
 import { TransactionService } from './../../../app.services/transaction.service';
 import { Component, OnInit, Input, transition } from '@angular/core';
-import { ITransaction } from '../../../app.interfaces/transaction'
 import { AccountComponent } from '../../account/account.component'
 
 @Component({
@@ -20,14 +20,13 @@ export class TransactionCreateComponent implements OnInit {
 
   
   
-  constructor() {
-    
+  constructor (private service: TransactionService) {
   }
 
   public performTransaction(transaction) {
-    // this.service.performTransaction(transaction)
-    // .subscribe( () => console.log(`Efetuou: ${transaction}`)),
-    //   erro => console.log(erro)
+     this.service.performTransaction(transaction)
+    //  .subscribe( () => console.log(`Efetuou: ${transaction}`)),
+    //    erro => console.log(erro)
   }
 
   ngOnInit() {

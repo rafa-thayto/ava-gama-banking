@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Headers } from '@angular/http';
 
 @Component({
-  selector: 'app-balance',
+  selector: 'balance',
   templateUrl: './balance.component.html',
   styleUrls: ['./balance.component.css']
 })
 export class BalanceComponent implements OnInit {
 
-  http: Http;
+  balance: number = 1000.00
+  credits: number = 566.45
+  debits: number = 102.03
 
-  constructor(http: Http) {
+  constructor() {
 
-    this.http = http;
 
   }
 
