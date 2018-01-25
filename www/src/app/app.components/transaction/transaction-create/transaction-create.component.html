@@ -1,16 +1,16 @@
   <!--header-->
     <div class="nav-transaction">       
-        <a routerLink='' class=" fundo"> <i class="medium  material-icons icone">clear</i>nova transferência</a>
+        <a routerLink='' class="fundo"> <i class="medium material-icons icone">close</i></a>
+        <label class="tranf">Nova Transferência </label>
     </div>  
-
 
   <!--main-->
   <main>    
       <form class="col s12 formulario">
         <div class="row">
             <div class="input-field col s12 digitos">
-                <input [(ngModel)]="transaction.to.ag"  placeholder="agencia de destino " id="agencia-destino" type="number"  class="validate">
-                <input [(ngModel)]="transaction.to.account_number" placeholder="conta destino " id="conta-destino" type="number" class="validate">
+                <input placeholder="agencia de destino " id="agencia-destino" type="number"  class="validate">
+                <input placeholder="conta destino " id="conta-destino" type="number" class="validate">
                 <input placeholder="R$ valor a ser transferido " id="agencia-destino" type="number" class="validate">
             </div>
         </div>

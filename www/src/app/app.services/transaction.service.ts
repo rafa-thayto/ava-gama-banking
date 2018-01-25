@@ -13,21 +13,30 @@ export class TransactionService {
 
     constructor(private _http: Http) { }
 
-    getById(id: number) {
+    // getById(id: number) {
 
+    //     return this._http.get(`http://localhost:3000/transactions/${id}`)
+    //         .map((response: Response) => <ITransaction>response.json())
+    //         .do(data => console.log('Dados: ' + JSON.stringify(data)))
+    //         .catch(this.handleError);
+
+    // }
+
+<<<<<<< HEAD
+    filterTransactions(id: number) {
         return this._http.get(`http://localhost:3000/transactions/${id}`)
             .map((response: Response) => <ITransaction>response.json())
             .do(data => console.log('Dados: ' + JSON.stringify(data)))
             .catch(this.handleError);
-
-    }
-
-    filterTransactions() {
-        return this._http.get(`http://localhost:3000/transactions/${id}`)
-            .map((response: Response) => <ITransaction>response.json())
-            .do(data => console.log('Dados: ' + JSON.stringify(data)))
-            .catch(this.handleError);
-    }
+    } 
+=======
+    // filterTransactions() {
+    //     return this._http.get(`http://localhost:3000/transactions/${id}`)
+    //         .map((response: Response) => <ITransaction>response.json())
+    //         .do(data => console.log('Dados: ' + JSON.stringify(data)))
+    //         .catch(this.handleError);
+    // }
+>>>>>>> be72456ec67885302cd1dfabe6d590fe1abe6a14
 
     performTransaction(transaction: ITransaction) {
 
