@@ -20,5 +20,15 @@ p{
 
 .btn-confirmar{
     color: #FFF;
+    margin-top: 30px;
 }
 
+a{
+    color: #000000;
+}
+
+.box{
+    -webkit-box-shadow: 6px 6px 10px #999; 
+	   -moz-box-shadow: 6px 6px 10px #999;
+	        box-shadow: 6px 6px 10px #999;	
+}
