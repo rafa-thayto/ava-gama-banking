@@ -1,8 +1,7 @@
+import { TransactionService } from './../../../app.services/transaction.service';
 import { Component, OnInit, Input, transition } from '@angular/core';
-import { SelectComponent} from '../../../app.material-components/select/select.component';
-import { ITransaction} from '../../../app.interfaces/transaction'
-import { AccountComponent} from '../../account/account.component'
-import { Http, Headers } from '@angular/http';
+import { ITransaction } from '../../../app.interfaces/transaction'
+import { AccountComponent } from '../../account/account.component'
 
 @Component({
   selector: 'app-transaction-create',
@@ -11,33 +10,28 @@ import { Http, Headers } from '@angular/http';
 })
 export class TransactionCreateComponent implements OnInit {
 
-  http: Http;
+  //  Atributos de transaction para serem vinculados por ngModel
+  //from: IAccount,
+  // to: IAccount,
+  // date: Date,
+  // value: number,
+  // status: TransactionStatus,
+  // msg: string
+
   
- public transaction: ITransaction;
-  constructor() {
-
-  }
-
-  public getTransaction() {
-    return this.transaction
-  }
-
-
-  opcoesSelect: Array<any>;         
+  
+  constructor(private service: TransactionService, public transaction: ITransaction) {
     
-    ngOnInit() { 
-        this.opcoesSelect = [
-          {
-            valor : 1,
-            descricao: 'Próprio favorecido'
-          },
-          {
-            valor : 2,
-            descricao: 'Outra conta'
-          },
-        ];
-    } 
+  }
 
+  public performTransaction(transaction) {
+    this.service.performTransaction(transaction)
+    // .subscribe( () => console.log(`Efetuou: ${transaction}`)),
+    //   erro => console.log(erro)
+  }
 
+  ngOnInit() {
+
+  }
 
 }
