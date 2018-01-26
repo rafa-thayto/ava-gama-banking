@@ -14,7 +14,7 @@ export class HeaderMenuComponent implements OnInit {
   conta: number
 
   constructor() {
-    this.nomeUsuario = "Bruno Marchini"
+    this.nomeUsuario = "John Doe"
     this.agencia = 1234
     this.conta = 987654321
    }
