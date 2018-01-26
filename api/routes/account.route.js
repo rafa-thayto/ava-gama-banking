@@ -13,14 +13,14 @@ const Account = db.Account
  * @apiSuccess {IAccount} account obj.
  */
 router.get(
-    '/:ag/:conta',
+    '',
     //TODO: remover parametros
     auth.isAuthenticated,
     auth.isAuthorized,
     async (req, res, next) => {
         try {
-            const agencia = req.params.ag
-            const conta = req.params.conta
+            const agencia = req.account.ag
+            const conta = req.account.account_number
             const account = await Account
                                     .findOne({ag: agencia, account_number: conta})
                                     .populate('client')

@@ -30,7 +30,7 @@ import { TransactionService } from './app.services/transaction.service';
 import { AuthService } from './app.services/auth.service';
 import { ClientService } from './app.services/client.service';
 import { TokenInterceptor } from './app.interceptors/token.interceptor';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
 
 @NgModule({
@@ -62,8 +62,10 @@ import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
   ],
 
   providers: [
+
     AccountService,
-    TokenInterceptor,
+    TokenInterceptor, //TODO: not working
+
     AuthService,
     ClientService,
     TransactionService,
@@ -73,4 +75,4 @@ import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
 
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
