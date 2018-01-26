@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.authService.login(1,5,"000005").subscribe(d => console.log(d))
+    // this.authService.login(1,5,"000005").subscribe(d => console.log(d))
   }
 
   ngOnDestroy(){
