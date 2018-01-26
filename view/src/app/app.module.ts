@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
@@ -19,15 +21,31 @@ import { DashboardComponent } from './app.components/dashboard/dashboard.compone
 
 
 import { SearchComponent } from './app.components/search/search.component';
-import { MaterializeModule } from 'angular2-materialize';
-import { TransitionConfirmComponent} from './app.components/transaction/transition-confirm/transition-confirm.component';
+// import { MaterializeModule } from 'angular2-materialize';
+import { TransitionConfirmComponent } from './app.components/transaction/transition-confirm/transition-confirm.component';
 import { TextMaskModule } from 'angular2-text-mask';
 
 import { AccountService } from '../app/app.services/account.service';
+import { SecretkeyComponent } from './app.components/auth/secret-key/secretkey.component';
+
 import { TransactionService } from './app.services/transaction.service';
 import { AuthService } from './app.services/auth.service';
 import { ClientService } from './app.services/client.service';
 import { TokenInterceptor } from './app.interceptors/token.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
+import { NavbarService } from './app.services/navbar.service';
+
+import { FlexLayoutModule } from '@angular/flex-layout'
+
+/**
+ * material components
+ *
+ */
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -43,24 +61,38 @@ import { TokenInterceptor } from './app.interceptors/token.interceptor';
     HeaderMenuComponent,
     DashboardComponent,
     SearchComponent,
-    TransitionConfirmComponent
-    ],
+    TransitionConfirmComponent,
+    SecretkeyComponent
+  ],
   imports: [
     BrowserModule,
+    FlexLayoutModule,
     routing,
     FormsModule,
     HttpModule,
     TextMaskModule,
-   MaterializeModule
+    // MaterializeModule,
+    HttpClientModule,
+    MatInputModule,
+    MatCardModule,
+    BrowserAnimationsModule,
+    MatButtonModule
 
   ],
+
   providers: [
+
     AccountService,
-    TokenInterceptor,
+    TokenInterceptor, //TODO: not working
+
     AuthService,
     ClientService,
-    TransactionService
+    TransactionService,
+    IsAuthenticatedGuard,
+    NavbarService
   ],
+
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

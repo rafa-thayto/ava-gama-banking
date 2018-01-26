@@ -1,27 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { IAccount } from '../app.interfaces/account'
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
+import { environment } from '../../environments/environment';
+import { AuthService } from './auth.service';
+import { TokenInterceptor } from '../app.interceptors/token.interceptor';
 
 
 @Injectable()
 export class AccountService {
-    private _Url = 'http://localhost:3000/accounts/1/1';
+    private endpoint: string = '/accounts';
 
-    constructor(private _http: Http) { }
-    
+    constructor(public http: HttpClient, public tokenService: TokenInterceptor) { }
+
+
     getAccount(ag: number, account_number: number) : Observable<IAccount> {
-        return this._http.get(this._Url)
-            .map((response: Response) => <IAccount>response.json())
-            .do(data => console.log('Dados: ' + JSON.stringify(data)))
-            .catch(this.handleError);
+        return this.http.get<IAccount>(`${environment.api.host}${this.endpoint}`, { headers: this.tokenService.defaultHeaders })
+            // .map((response: Response) => <IAccount>response.json())
+            // .do(data => console.log('Dados: ' + JSON.stringify(data)))
+            // .catch(this.handleError);
     }
 
     private handleError(error: Response) {
         console.error(error);
-        return Observable.throw(error.json().error || 'Server error');
+        // return Observable.throw(error.json().error || 'Server error');
     }
 }

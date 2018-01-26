@@ -1,4 +1,4 @@
-<nav>
+<nav [ngClass]="{'hide':navBarService.isHidden}">
   <div class="nav-wrapper">
     <a routerLink='dashboard' class="brand-logo valign-wrapper">
       <img src="../../../assets/ava-gama-banking-logo-branco.png" class="imagem-logo">
@@ -7,8 +7,8 @@
       <i class="material-icons icon-pessoa">person</i>
     </div>
     <div id="nav-mobile" class="right hide-on-med-and-down">
-      <h5 class="usuario">{{nomeUsuario}}</h5>
-      <p class="agencia-conta">Ag: {{agencia}} C/C: {{conta}}</p>
+      <h5 class="usuario">{{(client | async)?.name}}</h5>
+      <p class="agencia-conta">Ag: {{(account | async)?.ag}} C/C: {{(account | async)?.account_number}}</p>
     </div>
     <!-- <ul class="right hide-on-med-and-down navegacao">
         <li><a routerLink='#'>Minha Conta</a></li>

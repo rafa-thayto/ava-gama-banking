@@ -1,22 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { AuthService } from '../../../app.services/auth.service';
+import { NavbarService } from '../../../app.services/navbar.service';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  http: Http;
+  public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
 
-  constructor(http: Http) {
+  public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
 
-    this.http = http;
 
+  constructor(private authService: AuthService, public navbarService: NavbarService) {
+    // hideToolbar()
+    this.navbarService.hide();
   }
 
   ngOnInit() {
+    // this.authService.login(1,5,"000005").subscribe(d => console.log(d))
+  }
+
+  ngOnDestroy(){
+   this.navbarService.show();
   }
 
 }
