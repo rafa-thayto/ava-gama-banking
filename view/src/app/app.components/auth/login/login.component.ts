@@ -10,10 +10,9 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
+  // public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
 
-  public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
-
+  public maskCpf = [/[0-9]/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]
 
   constructor(private authService: AuthService, public navbarService: NavbarService) {
     // hideToolbar()
