@@ -1,4 +1,4 @@
-<nav>
+<nav [ngClass]="{'hide':navBarService.isHidden}">
   <div class="nav-wrapper">
     <a routerLink='dashboard' class="brand-logo valign-wrapper">
       <img src="../../../assets/ava-gama-banking-logo-branco.png" class="imagem-logo">

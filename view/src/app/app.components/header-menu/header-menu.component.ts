@@ -3,7 +3,7 @@ import { IClient } from '../../app.interfaces/client';
 import { IAccount } from '../../app.interfaces/account';
 import { AuthService } from '../../app.services/auth.service';
 import { Observable } from 'rxjs/Observable';
-
+import { NavbarService } from '../../app.services/navbar.service'
 @Component({
   selector: 'header-menu',
   templateUrl: './header-menu.component.html',
@@ -14,7 +14,7 @@ export class HeaderMenuComponent implements OnInit {
   public client: Observable<IClient>;
   public account: Observable<IAccount>;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, public navBarService: NavbarService) {
     this.account = this.authService.account;
     this.client = this.authService.client;
   }

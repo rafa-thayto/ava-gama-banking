@@ -1,10 +1,27 @@
 
 
 .send {
-
   background-color: #ff5800;
 }
 
-h1 {
-  font-size: 2em;
+
+.valign-wrapper{
+  height: 100vh;
+  margin: auto;
+}
+
+.logo-row{
+  margin: 4em 0;
+  text-align: center;
+}
+img{
+  height: 50px;
+  width: auto;
+}
+
+.a3{
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin-left: -15px;
 }

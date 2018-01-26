@@ -1,19 +1,32 @@
-<h1>Login</h1>
-<div class="divider"></div><br><br>
-  <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <input [textMask] =" {mask: maskAgencia}" placeholder="Insira sua Agencia" id="agencia" type="text" class="validate" required>
-          <label for="Agencia">Agencia</label>
+<img src='/assets/a3.png' width="50px" class=a3 />
+<!-- <div class="valign-wrapper card"> -->
+<div fxLayout="row" fxLayoutAlign="center center" fxFlexFill fxLayoutGap="25px">
+  <div fxFlex=100 fxFlex.gt-sm=400px>
+    <div class=logo-row>
+      <img src='/assets/ava-gama-banking-laranja.png' class='col s6 offset-s3' />
+    </div>
+    <div>
+      <form>
+        <div class="row">
+          <div class="input-field col s3">
+            <input [textMask]=" {mask: maskAgencia}" placeholder="agencia" id="agencia" type="text" class="validate" required>
+            <label for="Agencia">Agencia</label>
+          </div>
+          <div class="input-field col s9">
+            <input [textMask]=" {mask: maskConta}" placeholder="conta" id="conta" type="text" class="validate" required>
+            <label for="conta">Conta</label>
+          </div>
         </div>
-        <div class="input-field col s6">
-          <input [textMask] =" {mask: maskConta}" placeholder="Insira o numero de sua Conta" id="conta" type="text" class="validate" required>
-          <label for="conta">Conta</label>
+        <div class=row>
+          <div class="input-field col s12">
+            <input placeholder="Senha" id="pass" type="password" class="validate" required maxlength="6" [(ngModel)]="pass" readonly>
+            <label for="pass">Senha</label>
+          </div>
         </div>
-        <secret-key></secret-key>
+        <div class=row>
+          <button class="waves-effect waves-light btn send col s12">entrar</button>
         </div>
-        <button class="waves-effect waves-light btn send">entrar</button><br><br>
-        <label>Esqueceu a senha?</label>
-    </form>
+      </form>
+    </div>
   </div>
+</div>

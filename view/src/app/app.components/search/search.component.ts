@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Http, Headers } from '@angular/http'
 import { ActivatedRoute } from '@angular/router';
-import { MaterializeAction } from 'angular2-materialize';
+// import { MaterializeAction } from 'angular2-materialize';
 
 
 
@@ -44,13 +44,13 @@ export class SearchComponent implements OnInit {
   }
 
 
-  public modalActions = new EventEmitter<string | MaterializeAction>();
+  // public modalActions = new EventEmitter<string | MaterializeAction>();
 
   openModal() {
-    this.modalActions.emit({ action: "modal", params: ['open'] });
+    // this.modalActions.emit({ action: "modal", params: ['open'] });
   }
   closeModal() {
-    this.modalActions.emit({ action: "modal", params: ['close'] });
+    // this.modalActions.emit({ action: "modal", params: ['close'] });
   }
 
 }

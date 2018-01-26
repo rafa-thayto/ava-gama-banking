@@ -19,7 +19,7 @@ import { DashboardComponent } from './app.components/dashboard/dashboard.compone
 
 
 import { SearchComponent } from './app.components/search/search.component';
-import { MaterializeModule } from 'angular2-materialize';
+// import { MaterializeModule } from 'angular2-materialize';
 import { TransitionConfirmComponent } from './app.components/transaction/transition-confirm/transition-confirm.component';
 import { TextMaskModule } from 'angular2-text-mask';
 
@@ -32,6 +32,9 @@ import { ClientService } from './app.services/client.service';
 import { TokenInterceptor } from './app.interceptors/token.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
+import { NavbarService } from './app.services/navbar.service';
+
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 @NgModule({
   declarations: [
@@ -52,11 +55,12 @@ import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
   ],
   imports: [
     BrowserModule,
+    FlexLayoutModule,
     routing,
     FormsModule,
     HttpModule,
     TextMaskModule,
-    MaterializeModule,
+    // MaterializeModule,
     HttpClientModule
 
   ],
@@ -69,7 +73,8 @@ import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
     AuthService,
     ClientService,
     TransactionService,
-    IsAuthenticatedGuard
+    IsAuthenticatedGuard,
+    NavbarService
   ],
 
 
