@@ -9,9 +9,9 @@
       <form class="col s12 formulario">
         <div class="row">
             <div class="input-field col s12 digitos">
-                <input  [textMask] =" {mask: maskAgencia} "[(ngModel)] =" agencia" name="agencia" placeholder="agencia de destino " id="agencia-destino" type="text"  class="validate" >
-                <input [textMask] =" {mask: maskConta} "[(ngModel)] =" conta" name="conta"  placeholder="conta destino " id="conta-destino" type="text" class="validate" required>
-                <input placeholder="R$ valor a ser transferido " id="agencia-destino" type="number" class="validate">
+               <input  [textMask] =" {mask: maskAgencia}" [(ngModel)] ="agencia" name="agencia" placeholder="agencia de destino " id="agencia-destino" type="text"  class="validate" >
+                <input [textMask] =" {mask: maskConta} " [(ngModel)] ="conta" name="conta"  placeholder="conta destino " id="conta-destino" type="text" class="validate" >
+                <input  name="transfe" placeholder="R$ valor a ser transferido " id="transferencia" type="number" class="validate"> 
             </div>
         </div>
 
