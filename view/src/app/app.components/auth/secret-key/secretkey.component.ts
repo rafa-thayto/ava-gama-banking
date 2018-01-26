@@ -8,8 +8,22 @@ import {Component} from '@angular/core';
 })
 
 
-export class SecretkeyComponent {
+export class SecretkeyComponent{
 
-  buttonpad = new Array(10);
+  private _MAX_PASS_LEN = 6;
 
+  buttonpad : Array <number> = new Array(10);
+  pass : string;
+
+  constructor(){
+    this.pass="";
+  }
+  pushPass(pass){
+    if(this.pass.length <= this._MAX_PASS_LEN)
+        this.pass+=pass;
+  }
+
+  cleanPass(){
+    this.pass = "";
+  }
 }

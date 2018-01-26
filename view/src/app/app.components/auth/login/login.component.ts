@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { AuthService } from '../../../app.services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,15 +8,15 @@ import { Http, Headers } from '@angular/http';
 })
 export class LoginComponent implements OnInit {
 
-  http: Http;
+  public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
 
-  constructor(http: Http) {
+  public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
 
-    this.http = http;
 
-  }
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
+    this.authService.login(1,5,"000005").subscribe(d => console.log(d))
   }
 
 }

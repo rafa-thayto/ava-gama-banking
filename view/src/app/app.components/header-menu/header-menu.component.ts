@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IClient } from '../../app.interfaces/client';
 import { IAccount } from '../../app.interfaces/account';
+import { AuthService } from '../../app.services/auth.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'header-menu',
@@ -9,15 +11,13 @@ import { IAccount } from '../../app.interfaces/account';
 })
 export class HeaderMenuComponent implements OnInit {
 
-  nomeUsuario: string
-  agencia: number
-  conta: number
+  public client: Observable<IClient>;
+  public account: Observable<IAccount>;
 
-  constructor() {
-    this.nomeUsuario = "Bruno Marchini"
-    this.agencia = 1234
-    this.conta = 987654321
-   }
+  constructor(private authService: AuthService) {
+    this.account = this.authService.account;
+    this.client = this.authService.client;
+  }
 
   ngOnInit() {
   }
