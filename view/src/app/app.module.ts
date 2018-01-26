@@ -26,15 +26,11 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { AccountService } from '../app/app.services/account.service';
 import { SecretkeyComponent } from './app.components/auth/secret-key/secretkey.component';
 
-
-
-
-=======
 import { TransactionService } from './app.services/transaction.service';
 import { AuthService } from './app.services/auth.service';
 import { ClientService } from './app.services/client.service';
 import { TokenInterceptor } from './app.interceptors/token.interceptor';
->>>>>>> 17160b78df4dd0b42f5810f21b63620091c47401:view/src/app/app.module.ts
+
 
 @NgModule({
   declarations: [
