@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { TransactionCreateComponent} from '../transaction-create/transaction-create.component'
 import { TransactionCardComponent} from '../transaction-card/transaction-card.component'
 import { Http, Headers } from '@angular/http';
-import { MaterializeModule, MaterializeAction } from 'angular2-materialize'
+// import { MaterializeModule, MaterializeAction } from 'angular2-materialize'
 import { ITransaction} from '../../../app.interfaces/transaction'
 
 @Component({
@@ -36,13 +36,13 @@ export class TransactionListComponent implements OnInit {
           console.log(erro);
       });
 }
-  public modalActions = new EventEmitter<string|MaterializeAction>();
+  // public modalActions = new EventEmitter<string|MaterializeAction>();
 
 openModal() {
-  this.modalActions.emit({action:"modal",params:['open']});
+  // this.modalActions.emit({action:"modal",params:['open']});
 }
 closeModal() {
-  this.modalActions.emit({action:"modal",params:['close']});
+  // this.modalActions.emit({action:"modal",params:['close']});
 }
 
 
