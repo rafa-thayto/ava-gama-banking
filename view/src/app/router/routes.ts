@@ -19,7 +19,7 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     canActivate: [IsAuthenticatedGuard]
-  },{
+  }, {
     path: 'login',
     component: LoginComponent
   }, {
@@ -46,6 +46,9 @@ const routes: Routes = [
     path: 'transferencia/visualizar/:idTransf',
     component: TransactionViewComponent,
     canActivate: [IsAuthenticatedGuard]
+  }, {
+    path: "**",
+    redirectTo: ""
   }
 ];
 
