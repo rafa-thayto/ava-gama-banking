@@ -1,0 +1,36 @@
+nav {
+    background-color: #ff5800;
+}
+
+.brand-logo img {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 8rem;
+    height: 3rem;
+}
+
+#nav-mobile h5 {
+    margin-top: 1.2rem;
+}
+
+#nav-mobile  p {
+    margin-top: -1.7rem;
+}
+
+a{
+    height: 4rem;
+}
+
+.usuario{
+    font-size: 1rem;
+}
+
+.agencia-conta{
+    font-size: 0.8rem;
+}
+
+.icon-pessoa{
+    padding: 6px;
+    margin-top: 0.2rem;
+    font-size: 2.8rem;
+}
