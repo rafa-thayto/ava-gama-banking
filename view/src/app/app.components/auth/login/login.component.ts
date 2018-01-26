@@ -8,6 +8,10 @@ import { AuthService } from '../../../app.services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
+
+  public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
+
 
   constructor(private authService: AuthService) {}
 

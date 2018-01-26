@@ -14,6 +14,7 @@ export class TransactionCreateComponent implements OnInit {
 //iniciando as variaveis
 public agencia = ''
 public conta = ''
+public transfe = ''
 
 //mascara numero da agência
 public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
@@ -21,6 +22,8 @@ public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
 //mascara numero da conta
 public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
 
+
+public maskTransf = [ /[1-9]/,/\d/,/\d/,'.',/\d/,/\d/,/\d/,'.',/\d/]
 
 
   constructor (private service: TransactionService) {
