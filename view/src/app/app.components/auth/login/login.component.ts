@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
 @Component({
@@ -7,6 +7,10 @@ import { Http, Headers } from '@angular/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
+
+  public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
 
   http: Http;
 
