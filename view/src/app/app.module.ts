@@ -20,7 +20,7 @@ import { DashboardComponent } from './app.components/dashboard/dashboard.compone
 
 import { SearchComponent } from './app.components/search/search.component';
 import { MaterializeModule } from 'angular2-materialize';
-import { TransitionConfirmComponent} from './app.components/transaction/transition-confirm/transition-confirm.component';
+import { TransitionConfirmComponent } from './app.components/transaction/transition-confirm/transition-confirm.component';
 import { TextMaskModule } from 'angular2-text-mask';
 
 import { AccountService } from '../app/app.services/account.service';
@@ -28,6 +28,8 @@ import { TransactionService } from './app.services/transaction.service';
 import { AuthService } from './app.services/auth.service';
 import { ClientService } from './app.services/client.service';
 import { TokenInterceptor } from './app.interceptors/token.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
 
 @NgModule({
   declarations: [
@@ -44,14 +46,15 @@ import { TokenInterceptor } from './app.interceptors/token.interceptor';
     DashboardComponent,
     SearchComponent,
     TransitionConfirmComponent
-    ],
+  ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
     HttpModule,
     TextMaskModule,
-   MaterializeModule
+    MaterializeModule,
+    HttpClientModule
 
   ],
   providers: [
@@ -59,7 +62,8 @@ import { TokenInterceptor } from './app.interceptors/token.interceptor';
     TokenInterceptor,
     AuthService,
     ClientService,
-    TransactionService
+    TransactionService,
+    IsAuthenticatedGuard
   ],
   bootstrap: [AppComponent]
 })
