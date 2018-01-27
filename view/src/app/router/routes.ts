@@ -50,6 +50,10 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [IsAuthenticatedGuard]
+  },{
+    path: 'confirmacao',
+    component: TransitionConfirmComponent,
+    canActivate: [IsAuthenticatedGuard]
   }, {
     path: "**",
     redirectTo: ""
