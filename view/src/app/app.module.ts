@@ -89,7 +89,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatToolbarModule,
     MatIconModule,
     MatTableModule,
-    MatDatepickerModule
+    MatDatepickerModule,
     CurrencyMaskModule
 
   ],
