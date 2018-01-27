@@ -3,13 +3,12 @@
   <div fxFlex fxHide fxShow.gt-sm class=bg>
     <div class=filter></div>
   </div>
+  <div fxFlex=7.5 fxHide fxShow.gt-sm></div>
   <form fxFlex=100 fxFlex.gt-sm=400px fxLayout=column fxLayoutAlign='center stretch' fxFlexAlign=center >
     <mat-card class=mat-elevation-z0 fxFlex=100 fxLayout=column>
       <mat-card-header fxLayout="row" fxLayoutAlign="center center" >
         <mat-card-title>
-          <!-- <div class=logo-row> -->
-            <img src='/assets/ava-gama-banking-laranja.png' />
-          <!-- </div> -->
+          <img src='/assets/ava-gama-banking-laranja.png' />
         </mat-card-title>
       </mat-card-header>
       <mat-card-content fxFlex=100 fxLayout=column fxLayoutAlign='start stretch'>
@@ -23,11 +22,9 @@
       </mat-card-content>
       <h3 fxFlex=100 *ngIf=error class=error color=warn>{{error}}</h3>
       <mat-card-actions fxFlexFill align=end>
-        <!-- <a color=primary mat-button routerLink='/recuperar-senha' queryParamsHandling=merge>Esqueceu sua senha?</a> -->
-        <!-- <span fxFlex></span> -->
-        <button mat-raised-button color=primary mat-button (click)=login() fxFlex>Entrar</button>
+        <button mat-raised-button color=primary mat-button (click)=login() fxFlex>entrar</button>
       </mat-card-actions>
     </mat-card>
   </form>
-  <div fxFlex=15 fxHide fxShow.gt-sm></div>
+  <div fxFlex=7.5 fxHide fxShow.gt-sm></div>
 </div>
