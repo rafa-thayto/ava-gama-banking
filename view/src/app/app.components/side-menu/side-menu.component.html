@@ -1,0 +1,45 @@
+<mat-sidenav-container fullscreen>
+  <div *ngIf="router.url != '/login'">
+    <mat-sidenav #sidenav mode="push" class="app-sidenav">
+      <mat-toolbar color="primary">
+        <span class="toolbar-filler"></span>
+        <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button" [hidden]="!sidenav.opened">
+          <mat-icon aria-label="Menu" class="material-icons">close</mat-icon>
+        </button>
+      </mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item class="sidenav-link" [routerLink]="['/transferencia/novo']" (click)="sidenav.toggle()">
+          <mat-icon mat-list-icon>add_box</mat-icon>
+          <span class="title" mat-line>Nova Transferência</span>
+        </a>
+        <a mat-list-item class="sidenav-link" [routerLink]="['/pesquisa']" (click)="sidenav.toggle()">
+          <mat-icon mat-list-icon>account_balance</mat-icon>
+          <span class="title" mat-line>Extrato</span>
+        </a>
+        <a mat-list-item class="sidenav-link" [routerLink]="['']" (click)="sidenav.toggle()">
+          <mat-icon mat-list-icon></mat-icon>
+          <span class="title" mat-line>Sair</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-toolbar id="appToolbar" color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button" [hidden]="sidenav.opened">
+                  <mat-icon aria-label="Menu" class="material-icons">menu</mat-icon>
+          </button>
+      <h1 class="component-title">
+              <a routerLink='dashboard' class="brand-logo valign-wrapper">
+                      <img src="../../../assets/ava-gama-banking-logo-branco.png" class="imagem-logo">
+                    </a>
+      </h1>
+      <span class="toolbar-filler"></span>
+            <div class="right" fxShow.gt-xs='true' fxShow.xs='false'>  
+              <i class="material-icons icon-pessoa">person</i>
+            </div>
+            <div id="nav-mobile" class="right" fxShow.gt-xs='true'  fxShow.xs='false'>
+              <h5 class="usuario">Olá, {{(client | async)?.name}}</h5>
+              <p class="agencia-conta">Ag: {{(account | async)?.ag}} C/C: {{(account | async)?.account_number}}</p>
+            </div>
+    </mat-toolbar>
+  </div>
+<ng-content></ng-content>
+  </mat-sidenav-container>

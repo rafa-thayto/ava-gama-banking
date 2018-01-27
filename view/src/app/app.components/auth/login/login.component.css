@@ -1,36 +1,17 @@
 :host{
   height: 100%;
 }
-/*
-.send {
-  background-color: #ff5800;
-}
- */
-
-/* .valign-wrapper{
-  height: 100vh;
-  margin: auto;
-} */
-
-/* .logo-row{
-  margin: 4em 0;
-  text-align: center; */
-/* } */
-/*
-
- */
 
 img{
   height: 50px;
   width: auto;
 }
-
 .a3{
   position: fixed;
   left: 0;
   top: 0;
   margin-left: -15px;
-  z-index: 99999;
+  z-index: 10;
 }
 .bg{
   background-image: url(//financialservices.mazars.com/wp-content/uploads/2016/07/Business-stats-people-talking-background.jpg);
@@ -44,4 +25,11 @@ img{
   position: absolute;
   left: 0;
   right: 0;
+}
+.error{
+  text-align: center;
+  color: red;
+  font-weight: 300;
+  font-size: 1em;
+  height: 18px;
 }

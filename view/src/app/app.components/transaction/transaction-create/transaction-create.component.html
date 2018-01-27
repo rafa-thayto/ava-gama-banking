@@ -1,47 +1,53 @@
-  <!--header-->
-    <div class="nav-transaction">       
-        <a routerLink='/dashboard' class="fundo"> <i class="medium material-icons icone">close</i></a>
-        <label class="tranf">Nova Transferência </label>
-    </div>  
+<!--header-->
+<div class="nav-transaction">
+    <a routerLink='/dashboard' class="fundo"> <i class="medium material-icons icone">close</i></a>
+    <label class="tranf">Nova Transferência </label>
+</div>
 
-  <!--main-->
-  <main >    
-      <form class="col s12 formulario">
-        <div class="row">
-            <div class="input-field col s12 digitos">
-               <input  [textMask] =" {mask: maskAgencia}" [(ngModel)] ="agencia" name="agencia" placeholder="agencia de destino " id="agencia-destino" type="text"  class="validate" ><br>
-                <input [textMask] =" {mask: maskConta} " [(ngModel)] ="conta" name="conta"  placeholder="conta destino " id="conta-destino" type="text" class="validate" ><br>
-                <input currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="R$ valor a ser transferido " name="transferencia" type="text" class="validate" maxlength="23"><br> 
-            </div>
-        </div>
+<!--main-->
+<main>
 
-            <div class="row espaco">
-                <div class="input-field col s12">          
-                    <label>de:</label>
-                </div>    
-            </div>
-            <br>
-            <br>
-            
-            <div class="row espaco">
-                <div class="input-field col s12 ">   
-                    <label>para:</label>
-                </div>  
-            </div>
-            <br>
-            <br>
+    <!-- <input  matInput [textMask] =" {mask: maskAgencia}" [(ngModel)] ="agencia" name="Agência" placeholder="agencia de destino " id="agencia-destino" type="text"  class="validate" ><br>
+                <input matInput [textMask] =" {mask: maskConta} " [(ngModel)] ="conta" name="Conta"  placeholder="conta destino " id="conta-destino" type="text" class="validate" ><br>
+                <input matInput currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="R$ valor a ser transferido " name="transferencia" type="text" class="validate" maxlength="23"><br> 
+                <label>para:</label>
+                <label>saldo atual:</label>      
+                <button routerLink='confirmacao' class="waves-effect waves-light btn botao-continuar" id="btn-continuar" >continuar</button> -->
 
-            <div class="row espaco">
-                <div class="input-field  col s12">
-                    <label>saldo atual:</label>
-                </div>    
-            </div>
-            <br>
-            <br>
-            <footer>          
-                <button routerLink='confirmacao' class="waves-effect waves-light btn botao-continuar" id="btn-continuar" >continuar</button>
-            </footer>
-      
+    <form>
+        <mat-form-field class="demo-full-width">
+            <input matInput [textMask]=" {mask: maskAgencia}" [(ngModel)]="agencia" name="Agência" placeholder="agencia de destino "
+                id="agencia-destino" type="text" class="validate">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="demo-full-width">
+            <input matInput [textMask]=" {mask: maskConta} " [(ngModel)]="conta" name="Conta" placeholder="conta destino " id="conta-destino"
+                type="text" class="validate">
+        </mat-form-field>
+        <br>
+
+        <mat-form-field class="demo-full-width">
+            <input matInput currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="R$ valor a ser transferido "
+                name="transferencia" type="text" class="validate" maxlength="23">
+        </mat-form-field>
+        <br>
+
+        <br>
+        <mat-form-field class="demo-full-width">
+            <label>De:</label>
+        </mat-form-field>
+
+        <br>
+        <mat-form-field class="demo-full-width">
+            <label>Para:</label>
+        </mat-form-field>
+
+        <br>
+        <mat-form-field class="demo-full-width">
+            <label>saldo atual:</label>
+        </mat-form-field>
+
+        <button routerLink='confirmacao' class="waves-effect waves-light btn botao-continuar" id="btn-continuar">continuar</button>
     </form>
-  </main>
- 
+
+</main>

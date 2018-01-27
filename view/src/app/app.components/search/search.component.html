@@ -1,50 +1,53 @@
-        <form>
-              <table class="table" style="width: 50%" cellspacing="0"><tr>
-                    <td>
-                      <mat-form-field class="demo-full-width">
-                          <input [textMask] =" {mask: maskTransf}" matInput placeholder="de" [textMask] =" {mask: maskTransf}" id="val_ini" type="text" class="validate" name="val_ini" [(ngModel)]="pesquisa.val_ini">
-                      </mat-form-field>
-                    </td>
-                    <td>
-                      <mat-form-field class="demo-full-width">
-                        <input [textMask] =" {mask: maskTransf}" matInput placeholder="até">
-                      </mat-form-field>
-                    </td>
-                  </tr>
-                  <tr>
-                      <td>
-                        <mat-form-field class="demo-full-width">
-                          <input matInput type="date">
-                        </mat-form-field>
-                      </td>
-                      <td>
-                        <mat-form-field class="demo-full-width">
-                          <input matInput type="date">
-                        </mat-form-field>
-                      </td>
-                    </tr>
-                    <tr>
-                        <td>
-                          <mat-form-field class="demo-full-width">
-                            <input  matInput [textMask] =" {mask: maskAgencia}" placeholder="Agência">
-                          </mat-form-field>
-                        </td>
+<form>
+  <table class="table" style="width: 50%" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="demo-full-width">
+          <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="de" id="val_ini" type="text"
+            class="validate" name="val_ini" [(ngModel)]="pesquisa.val_ini">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="demo-full-width">
+          <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="até" id="val_ini" type="text"
+            class="validate" name="val_fim" [(ngModel)]="pesquisa.val_fim">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="demo-full-width">
+          <input matInput type="date">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="demo-full-width">
+          <input matInput type="date">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="demo-full-width">
+          <input matInput [textMask]=" {mask: maskAgencia}" placeholder="Agência">
+        </mat-form-field>
+      </td>
 
-                        <td>
-                            <mat-form-field class="demo-full-width">
-                              <input matInput [textMask] =" {mask: maskConta}" placeholder="Conta">
-                            </mat-form-field>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>
-                            <mat-form-field style="width: 180%" class="demo-full-width">
-                              <input matInput placeholder="Pessoa" >
-                            </mat-form-field>
-                          </td>
-                      </tr>
-                    
-              </table>
-              <button mat-raised-button color="warn" (click)=limpar() >Limpar</button>
-              <button mat-raised-button color="warn" (click)=filtrar()>Filtar</button>
-            </form>
+      <td>
+        <mat-form-field class="demo-full-width">
+          <input matInput [textMask]=" {mask: maskConta}" placeholder="Conta">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field style="width: 180%" class="demo-full-width">
+          <input matInput placeholder="Pessoa">
+        </mat-form-field>
+      </td>
+    </tr>
+
+  </table>
+  <button mat-raised-button color="warn" (click)=limpar()>Limpar</button>
+  <button mat-raised-button color="warn" (click)=filtrar()>Filtar</button>
+</form>

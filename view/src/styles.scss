@@ -30,6 +30,7 @@ html, body{
   width: 100vw;
   margin: 0;
   overflow: hidden;
+  background-color: #ffffff;
 }
 body{
   font-family: Roboto,
@@ -51,8 +52,9 @@ body{
     left: 0;
     z-index: 100;
   }
-  .hide{
-    display: none;
+  .loading.hide{
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
   }
   .loader,
   .loader:after {

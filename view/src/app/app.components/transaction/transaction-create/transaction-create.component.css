@@ -32,10 +32,10 @@ label{
 }
 
 .botao-continuar{
-    width: 100%;
+    width: 80%;
     height: 50px;
     background: #f25526;
-    margin-left: 1%;
+    margin-left: 7%;
     margin-right: 1%;
 }
 
@@ -67,3 +67,10 @@ i.medium {
     }
     
 }
+
+.mat-form-field {
+    font-size: 14px;
+    width: 80%;
+    margin-left: 100px;
+    margin-right: 0px;
+  }
