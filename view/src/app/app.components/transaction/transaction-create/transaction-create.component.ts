@@ -23,7 +23,7 @@ public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
 public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
 
 
-public maskTransf = [ /[1-9]/,/\d/,/\d/,'.',/\d/,/\d/,/\d/,'.',/\d/]
+public maskTransf = [ /[1-9]/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/]
 
 
   constructor (private service: TransactionService) {

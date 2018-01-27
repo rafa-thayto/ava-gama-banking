@@ -22,6 +22,7 @@ import { DashboardComponent } from './app.components/dashboard/dashboard.compone
 
 
 
+import { CurrencyMaskModule } from "ng2-currency-mask";
 import { SearchComponent } from './app.components/search/search.component';
 // import { MaterializeModule } from 'angular2-materialize';
 import { TransitionConfirmComponent } from './app.components/transaction/transition-confirm/transition-confirm.component';
@@ -89,6 +90,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatIconModule,
     MatTableModule,
     MatDatepickerModule
+    CurrencyMaskModule
 
   ],
 
