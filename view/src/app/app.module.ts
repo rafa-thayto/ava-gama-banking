@@ -16,7 +16,7 @@ import { TransactionViewComponent } from './app.components/transaction/transacti
 import { BalanceComponent } from './app.components/balance/balance.component';
 import { AccountComponent } from './app.components/account/account.component';
 import { LogoutComponent } from './app.components/auth/logout/logout.component';
-import { HeaderMenuComponent } from './app.components/header-menu/header-menu.component';
+import { SideMenuComponent } from './app.components/side-menu/side-menu.component';
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
 
 
@@ -53,6 +53,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatListModule} from '@angular/material/list';
+
+
 
 @NgModule({
   declarations: [
@@ -65,7 +68,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     BalanceComponent,
     AccountComponent,
     LogoutComponent,
-    HeaderMenuComponent,
+    SideMenuComponent,
     DashboardComponent,
     SearchComponent,
     TransitionConfirmComponent,
@@ -89,7 +92,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatToolbarModule,
     MatIconModule,
     MatTableModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatListModule,
     CurrencyMaskModule
 
   ],

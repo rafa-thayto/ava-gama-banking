@@ -1,5 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { HeaderMenuComponent } from './../header-menu/header-menu.component';
+import { SideMenuComponent } from './../side-menu/side-menu.component';
 import { AuthService } from '../../app.services/auth.service';
 import 'rxjs/add/operator/delay';
 
