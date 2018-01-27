@@ -1,5 +1,13 @@
-nav {
-    background-color: #ff5800;
+.toolbar-filler {
+    flex: 1 1 auto
+}
+
+.mat-drawer.mat-drawer-push, nav {
+    background-color: #ff5800!important;
+}
+
+.mat-list .mat-list-item, .mat-nav-list .mat-list-item, .mat-selection-list .mat-list-item {
+    color: rgba(255, 255, 255, 0.87)!important;
 }
 
 .brand-logo img {
@@ -14,7 +22,7 @@ nav {
 }
 
 #nav-mobile  p {
-    margin-top: -1.7rem;
+    margin-top: -0.7rem;
 }
 
 a{

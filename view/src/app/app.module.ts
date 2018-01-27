@@ -16,7 +16,7 @@ import { TransactionViewComponent } from './app.components/transaction/transacti
 import { BalanceComponent } from './app.components/balance/balance.component';
 import { AccountComponent } from './app.components/account/account.component';
 import { LogoutComponent } from './app.components/auth/logout/logout.component';
-import { HeaderMenuComponent } from './app.components/header-menu/header-menu.component';
+import { SideMenuComponent } from './app.components/side-menu/side-menu.component';
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
 
 
@@ -54,6 +54,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard';
+import { MatListModule } from '@angular/material/list';
+
+
 
 @NgModule({
   declarations: [
@@ -66,7 +69,7 @@ import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard
     BalanceComponent,
     AccountComponent,
     LogoutComponent,
-    HeaderMenuComponent,
+    SideMenuComponent,
     DashboardComponent,
     SearchComponent,
     TransitionConfirmComponent,
@@ -92,6 +95,7 @@ import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard
     MatIconModule,
     MatTableModule,
     MatDatepickerModule,
+    MatListModule,
     CurrencyMaskModule
 
   ],
