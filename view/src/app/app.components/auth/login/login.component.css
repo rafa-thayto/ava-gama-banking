@@ -30,7 +30,7 @@ img{
   left: 0;
   top: 0;
   margin-left: -15px;
-  z-index: 99999;
+  z-index: 10;
 }
 .bg{
   background-image: url(//financialservices.mazars.com/wp-content/uploads/2016/07/Business-stats-people-talking-background.jpg);
