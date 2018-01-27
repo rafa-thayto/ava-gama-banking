@@ -1,4 +1,14 @@
-<mat-grid-list cols="5" rowHeight="100px">
+<!-- <mat-grid-list cols="1" rowHeigth="10px">
+    <mat-grid-tile>
+      R${{balance}}
+      <p>Saldo Atual</p>
+    </mat-grid-tile>
+    
+</mat-grid-list> -->
+
+
+
+<mat-grid-list cols="5" rowHeight="40px">
     
   <mat-grid-tile 
       *ngFor="let tile of tiles" 
@@ -7,7 +17,7 @@
       [style.color]="tile.color"
       [style.fontsize]="tile.fontsize">
       
-    {{tile.text}}
+    {{tile.text}} 
   </mat-grid-tile>
 </mat-grid-list>
 
