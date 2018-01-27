@@ -19,7 +19,7 @@ import { LogoutComponent } from './app.components/auth/logout/logout.component';
 import { HeaderMenuComponent } from './app.components/header-menu/header-menu.component';
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
 
-
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 import { CurrencyMaskModule } from "ng2-currency-mask";
@@ -39,7 +39,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
 import { NavbarService } from './app.services/navbar.service';
 
-import { FlexLayoutModule } from '@angular/flex-layout'
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 /**
  * material components
@@ -89,7 +90,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatToolbarModule,
     MatIconModule,
     MatTableModule,
-    MatDatepickerModule
+    MatDatepickerModule,
     CurrencyMaskModule
 
   ],
