@@ -11,9 +11,13 @@ p{
 }
 
 .texto-verde{
+    
     color:green;
 }
 
 .texto-vermelho{
     color:red;
+}
+mat-grid-tile{
+    font-size: 20px;
 }

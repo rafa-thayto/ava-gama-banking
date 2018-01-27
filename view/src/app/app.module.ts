@@ -19,7 +19,7 @@ import { LogoutComponent } from './app.components/auth/logout/logout.component';
 import { HeaderMenuComponent } from './app.components/header-menu/header-menu.component';
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
 
-import {MatGridListModule} from '@angular/material/grid-list';
+
 
 
 import { CurrencyMaskModule } from "ng2-currency-mask";
@@ -54,6 +54,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatIconModule,
     MatTableModule,
     MatDatepickerModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    MatGridListModule
 
   ],
 
