@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Http, Headers } from '@angular/http'
 import { ActivatedRoute } from '@angular/router';
-import { MaterializeAction } from 'angular2-materialize';
 
 
 
@@ -30,6 +29,14 @@ export class SearchComponent implements OnInit {
   }
 
 
+public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
+
+public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
+
+
+public maskTransf = [ /[1-9]/,/\d/,/\d/,'.',/\d/,/\d/,/\d/,'.',/\d/]
+
+
   limpa(form?) {
     console.log(form)
   }
@@ -44,13 +51,13 @@ export class SearchComponent implements OnInit {
   }
 
 
-  public modalActions = new EventEmitter<string | MaterializeAction>();
+  // public modalActions = new EventEmitter<string | MaterializeAction>();
 
-  openModal() {
-    this.modalActions.emit({ action: "modal", params: ['open'] });
+  limpar() {
+    // this.modalActions.emit({ action: "modal", params: ['open'] });
   }
-  closeModal() {
-    this.modalActions.emit({ action: "modal", params: ['close'] });
+  filtrar() {
+    // this.modalActions.emit({ action: "modal", params: ['close'] });
   }
 
 }

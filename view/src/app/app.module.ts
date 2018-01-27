@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
@@ -18,8 +20,11 @@ import { HeaderMenuComponent } from './app.components/header-menu/header-menu.co
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
 
 
+
+
+import { CurrencyMaskModule } from "ng2-currency-mask";
 import { SearchComponent } from './app.components/search/search.component';
-import { MaterializeModule } from 'angular2-materialize';
+// import { MaterializeModule } from 'angular2-materialize';
 import { TransitionConfirmComponent } from './app.components/transaction/transition-confirm/transition-confirm.component';
 import { TextMaskModule } from 'angular2-text-mask';
 
@@ -32,6 +37,22 @@ import { ClientService } from './app.services/client.service';
 import { TokenInterceptor } from './app.interceptors/token.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
+import { NavbarService } from './app.services/navbar.service';
+
+import { FlexLayoutModule } from '@angular/flex-layout'
+
+/**
+ * material components
+ *
+ */
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -48,16 +69,28 @@ import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
     DashboardComponent,
     SearchComponent,
     TransitionConfirmComponent,
-    SecretkeyComponent
+    SecretkeyComponent,
+    
   ],
   imports: [
     BrowserModule,
+    FlexLayoutModule,
     routing,
     FormsModule,
     HttpModule,
     TextMaskModule,
-    MaterializeModule,
-    HttpClientModule
+    // MaterializeModule,
+    HttpClientModule,
+    MatInputModule,
+    MatCardModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatTableModule,
+    MatDatepickerModule
+    CurrencyMaskModule
 
   ],
 
@@ -69,7 +102,8 @@ import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
     AuthService,
     ClientService,
     TransactionService,
-    IsAuthenticatedGuard
+    IsAuthenticatedGuard,
+    NavbarService
   ],
 
 

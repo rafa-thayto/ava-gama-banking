@@ -1,19 +1,33 @@
-<h1>Login</h1>
-<div class="divider"></div><br><br>
-  <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <input [textMask] =" {mask: maskAgencia}" placeholder="Insira sua Agencia" id="agencia" type="text" class="validate" required>
-          <label for="Agencia">Agencia</label>
-        </div>
-        <div class="input-field col s6">
-          <input [textMask] =" {mask: maskConta}" placeholder="Insira o numero de sua Conta" id="conta" type="text" class="validate" required>
-          <label for="conta">Conta</label>
-        </div>
-        <secret-key></secret-key>
-        </div>
-        <button class="waves-effect waves-light btn send">entrar</button><br><br>
-        <label>Esqueceu a senha?</label>
-    </form>
+<img src='/assets/a3.png' width="50px" class=a3 />
+<div fxFlex=100 fxLayout=row fxLayoutAlign='center center' fxLayoutAlign.gt-sm='end stretch'>
+  <div fxFlex fxHide fxShow.gt-sm class=bg>
+    <div class=filter></div>
   </div>
+  <form fxFlex=100 fxFlex.gt-sm=400px fxLayout=column fxLayoutAlign='center stretch' fxFlexAlign=center >
+    <mat-card class=mat-elevation-z0 fxFlex=100 fxLayout=column>
+      <mat-card-header fxLayout="row" fxLayoutAlign="center center" >
+        <mat-card-title>
+          <!-- <div class=logo-row> -->
+            <img src='/assets/ava-gama-banking-laranja.png' />
+          <!-- </div> -->
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxFlex=100 fxLayout=column fxLayoutAlign='start stretch'>
+        <mat-input-container fxflex>
+          <input matInput placeholder=cpf [textMask]="{mask: maskCpf}">
+        </mat-input-container>
+        <mat-input-container fxflex>
+          <input matInput placeholder=senha type=password maxlength="6" required>
+        </mat-input-container>
+        <!-- <recaptcha class=margin-left-16 (resolved)="isHuman = true" siteKey="6LfDbDUUAAAAACGrd8UvRB1qUIxm7HP4zxVE2_O3"></recaptcha> -->
+      </mat-card-content>
+      <h3 fxFlex=100 *ngIf=error class=error color=warn>{{error}}</h3>
+      <mat-card-actions fxFlexFill align=end>
+        <!-- <a color=primary mat-button routerLink='/recuperar-senha' queryParamsHandling=merge>Esqueceu sua senha?</a> -->
+        <!-- <span fxFlex></span> -->
+        <button mat-raised-button color=primary mat-button (click)=login() fxFlex>Entrar</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  <div fxFlex=15 fxHide fxShow.gt-sm></div>
+</div>

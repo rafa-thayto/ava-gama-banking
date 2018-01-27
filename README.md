@@ -101,7 +101,7 @@ Link:
 
 ### Diagrama de Classe
 
-![diagrama](https://raw.githubusercontent.com/rafa-thayto/ava-gama-banking/dev/db/diagrama.png)
+![diagrama](https://raw.githubusercontent.com/rafa-thayto/ava-gama-banking/dev/api/db/diagrama.png)
 
 ### ODM - Mongoose
 

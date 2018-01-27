@@ -1,52 +1,50 @@
- <div class="row">
-  
-        <div>
-            <h3 class="center-align">Filtrar Lançamentos</h3>
-         </div>
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="col s12"> 
-        <div class="row">
-          <div class="input-field col s6">
-            <input id="val_ini" type="text" class="validate" name="val_ini" [(ngModel)]="pesquisa.val_ini">
-            <label for="val_ini">de</label>
-          </div>
-          <div class="input-field col s6">
-            <input id="val_fim" type="text" class="validate" name="val_fim" [(ngModel)]="pesquisa.val_fim">
-            <label for="val_fim">até</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <input  id="dt_ini" type="date" class="validate" name="dt_ini"[(ngModel)]="pesquisa.dt_ini">
-            <label for="dt_ini">de</label>
-          </div>
-          <div class="input-field col s6">
-            <input id="dt_fim" type="text" class="validate" name="dt_fim" [(ngModel)]="pesquisa.dt_fim">
-            <label for="dt_fim">até</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="ag_dest" type="text" class="validate" name="ag_dest" [(ngModel)]="pesquisa.ag_dest">
-            <label for="ag_dest">Agência de destino</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="ac_dest" type="text" class="validate" name="ac_dest" [(ngModel)]="pesquisa.ac_dest">
-            <label for="ac_dest">Conta de destino</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="name" type="text" class="validate" name="name" [(ngModel)]="pesquisa.name" >
-            <label for="name">Nome da pessoa</label>
-          </div>
-        </div>
-        <div>
-        <button (click)="limpa()"class="waves-effect waves-light btn">Limpar</button>
-        <button type="submit" class="waves-effect waves-light btn">Filtrar</button>
-      </div>
-      </form>
-    
-    </div>
+        <form>
+              <table class="table" style="width: 50%" cellspacing="0"><tr>
+                    <td>
+                      <mat-form-field class="demo-full-width">
+                          <input [textMask] =" {mask: maskTransf}" matInput placeholder="de" [textMask] =" {mask: maskTransf}" id="val_ini" type="text" class="validate" name="val_ini" [(ngModel)]="pesquisa.val_ini">
+                      </mat-form-field>
+                    </td>
+                    <td>
+                      <mat-form-field class="demo-full-width">
+                        <input [textMask] =" {mask: maskTransf}" matInput placeholder="até">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>
+                        <mat-form-field class="demo-full-width">
+                          <input matInput type="date">
+                        </mat-form-field>
+                      </td>
+                      <td>
+                        <mat-form-field class="demo-full-width">
+                          <input matInput type="date">
+                        </mat-form-field>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td>
+                          <mat-form-field class="demo-full-width">
+                            <input  matInput [textMask] =" {mask: maskAgencia}" placeholder="Agência">
+                          </mat-form-field>
+                        </td>
 
+                        <td>
+                            <mat-form-field class="demo-full-width">
+                              <input matInput [textMask] =" {mask: maskConta}" placeholder="Conta">
+                            </mat-form-field>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                            <mat-form-field style="width: 180%" class="demo-full-width">
+                              <input matInput placeholder="Pessoa" >
+                            </mat-form-field>
+                          </td>
+                      </tr>
+                    
+              </table>
+              <button mat-raised-button color="warn" (click)=limpar() >Limpar</button>
+              <button mat-raised-button color="warn" (click)=filtrar()>Filtar</button>
+            </form>
