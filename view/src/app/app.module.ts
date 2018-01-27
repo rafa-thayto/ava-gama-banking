@@ -19,7 +19,7 @@ import { LogoutComponent } from './app.components/auth/logout/logout.component';
 import { HeaderMenuComponent } from './app.components/header-menu/header-menu.component';
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
 
-
+import { CurrencyMaskModule } from "ng2-currency-mask";
 import { SearchComponent } from './app.components/search/search.component';
 // import { MaterializeModule } from 'angular2-materialize';
 import { TransitionConfirmComponent } from './app.components/transaction/transition-confirm/transition-confirm.component';
@@ -76,7 +76,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatCardModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    CurrencyMaskModule
 
   ],
 
