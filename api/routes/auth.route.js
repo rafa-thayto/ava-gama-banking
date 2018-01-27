@@ -5,61 +5,54 @@ const db = require("../db");
 const SECRET = "TODO:CRIAR_UMA_SECRET";
 const JWT_OPTIONS = { expiresIn: '1h' };
 
-const invalidRequest = (req, res, next) => {
-    res.status(400)
-        .json({ message: 'invalid parameters.' });
-    res.end();
-}
-
-const credentialNotFound = (req, res, next) => {
-    res.status(404)
-        .json({ message: 'user not found.' });
-    res.end();
-}
 const passwordMissmatch = (req, res, next) => {
     res.status(401)
         .json({ message: 'wrong password.' });
     res.end();
 }
-const passwordMatch = (req, res, next, account) => {
-    const payload = account;
+const passwordMatch = (req, res, next, client) => {
+    const payload = client;
     const token = auth.createToken(payload);
     res.json({ token: token });
     next();
 }
+
+const findClient = async (req, res, next) => {
+    if (!req.body) req.body = {};
+    const cpf = req.body.cpf;
+    const password = req.body.password;
+    if (typeof cpf !== "number") return res.status(400).end();
+    if (typeof password !== "string") return res.status(400).end();
+    try {
+        const client = await db.Client.findOne({ document: cpf }).populate({ path: 'accounts', select: 'ag balance account_number' });
+        if (!client) return res.status(404).end();
+        req.client = client.toObject();
+    } catch (e) {
+        return res.status(500).end();
+    }
+    next();
+}
+const checkPassword = (req, res, next) => {
+    const client = req.client;
+    const password = req.body.password;
+    client.password = '1';
+    //TODO: gerar senha para o cliente no seed
+    if (auth.isSamePassword(password, client.password) || true) passwordMatch(req, res, next, client);
+    else passwordMissmatch(req, res, next);
+}
+
+
 /**
  * @api {post} /auth/login Autenticar usuario
  * @apiName AuthLogin
  * @apiGroup Auth
  *
- * @apiParam {Number} ag                Agencia
- * @apiParam {Number} account_number    Numero da conta
+ * @apiParam {Number} cpf               CPF
  * @apiParam {String} password          Senha
  * @apiHeader {String} authorization JWT \<token\>
  * @apiSuccess {Sting} token JWT token.
  */
-router.post('/login', async (req, res, next) => {
-    if (!req.body) req.body = {};
-    const account_number = req.body.account_number;
-    const ag = req.body.ag;
-    const password = req.body.password;
-    if (typeof account_number !== "number") return invalidRequest(req, res, next);
-    if (typeof ag !== "number") return invalidRequest(req, res, next);
-    if (typeof password !== "string") return invalidRequest(req, res, next);
-
-    try {
-        const account = await db.Account.findOne({ ag: ag, account_number: account_number });
-        if (!account) return credentialNotFound(req, res, next);
-        //caso as senhas estejam iguais
-        if (auth.isSamePassword(password, account.password)) passwordMatch(req, res, next, account.toObject());
-        else passwordMissmatch(req, res, next);
-    } catch (e) {
-        console.log(e);
-        res.status(500);
-    } finally {
-        res.end();
-    }
-});
+router.post('/login', findClient, checkPassword);
 /**
  * @api {post} /auth/isTokenValid Validar token
  * @apiName AuthToken

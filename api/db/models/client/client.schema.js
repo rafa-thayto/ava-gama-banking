@@ -9,12 +9,19 @@ const schema = new Schema(
         document: { // cpf/cnpj
             type: Number,
             required: true
+        },
+        password:{
+            type: String,
+            required: true
         }
     }, {
         timestamps: true,
-        toJSON: { virtuals: true }
+        toJSON: { virtuals: true },
+        toObject: { virtuals: true }
     }
 );
+
+schema.virtual('accounts', { ref: 'Account', localField: '_id', foreignField: 'client' });
 
 schema.index({ name: 1 });
 schema.index({ document: 1 }, { unique: true });
