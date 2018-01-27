@@ -20,6 +20,9 @@ import { HeaderMenuComponent } from './app.components/header-menu/header-menu.co
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
 
 
+
+
+import { CurrencyMaskModule } from "ng2-currency-mask";
 import { SearchComponent } from './app.components/search/search.component';
 // import { MaterializeModule } from 'angular2-materialize';
 import { TransitionConfirmComponent } from './app.components/transaction/transition-confirm/transition-confirm.component';
@@ -45,7 +48,11 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -62,7 +69,8 @@ import { MatButtonModule } from '@angular/material/button';
     DashboardComponent,
     SearchComponent,
     TransitionConfirmComponent,
-    SecretkeyComponent
+    SecretkeyComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -76,7 +84,13 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatCardModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatTableModule,
+    MatDatepickerModule
+    CurrencyMaskModule
 
   ],
 

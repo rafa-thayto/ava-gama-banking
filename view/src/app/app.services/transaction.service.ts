@@ -11,6 +11,8 @@ import 'rxjs/add/operator/do';
 @Injectable()
 export class TransactionService {
 
+    transactions: object[] =[];
+
     constructor(private _http: Http) { }
 
     getById(id: number) {
@@ -45,6 +47,25 @@ export class TransactionService {
             });
             
     }
+
+
+     AdvancedfilterTransactions(dateStart: Date, dateEnd: Date, valueStart: number,
+                                valueEnd: number, ag: number, account_number: number,
+                                clientName: String, type: String) {
+
+            var stream = this._http.get(`http://localhost:3000/transactions/${dateStart}${dateEnd}${valueStart}${valueEnd}${ag}
+                                ${account_number}${clientName}${type}`)
+            
+            return stream.subscribe(res =>{
+                this.transactions = res.json();
+
+                console.log(this.transactions)
+            })
+        
+    } 
+
+
+
 
     private handleError(error: Response) {
         console.error(error);
