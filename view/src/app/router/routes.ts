@@ -12,7 +12,8 @@ import { AccountComponent } from '../app.components/account/account.component';
 
 import { TransactionViewComponent } from '../app.components/transaction/transaction-view/transaction-view.component';
 import { IsAuthenticatedGuard } from '../app.guards/is-authenticated.guard';
-
+import { IsNotAuthenticatedGuard } from '../app.guards/is-not-authenticated.guard';
+import { LogoutComponent } from '../app.components/auth/logout/logout.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   }, {
     path: 'login',
     component: LoginComponent
+  }, {
+    path: 'logout',
+    component: LogoutComponent,
+    canActivate: [IsAuthenticatedGuard]
   }, {
     path: 'transferencia',
     component: TransactionListComponent,

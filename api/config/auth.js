@@ -15,12 +15,13 @@ module.exports.isAuthenticated = (req, res, next) => {
     const token = getTokenFromAuthHeader(authHeader);
     try {
         const isTokenValid = jwt.verify(token, SECRET);
-        if(!isTokenValid) return res.status(403).end();
+        if (!isTokenValid) return res.status(403).end();
     } catch (e) {
         return res.status(403).end();
     }
     req.token = token;
-    req.account = getTokenPayload(token);
+    req.clientId = getTokenPayload(token).id || null;
+    if (!req.clientId) return res.status(403).end();
     next();
 }
 

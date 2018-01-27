@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './router/routes';
 import { HttpModule } from '@angular/http';
 
@@ -48,11 +48,12 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTableModule} from '@angular/material/table';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard';
 
 @NgModule({
   declarations: [
@@ -70,13 +71,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     SearchComponent,
     TransitionConfirmComponent,
     SecretkeyComponent,
-    
+
   ],
   imports: [
     BrowserModule,
     FlexLayoutModule,
     routing,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     TextMaskModule,
     // MaterializeModule,
@@ -98,12 +100,18 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
     AccountService,
     TokenInterceptor, //TODO: not working
-
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
     AuthService,
     ClientService,
     TransactionService,
+    NavbarService,
+    //guards
+    IsNotAuthenticatedGuard,
     IsAuthenticatedGuard,
-    NavbarService
   ],
 
 

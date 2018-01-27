@@ -11,7 +11,8 @@ const passwordMissmatch = (req, res, next) => {
     res.end();
 }
 const passwordMatch = (req, res, next, client) => {
-    const payload = client;
+    console.log(client)
+    const payload = { id: client._id || client.id };
     const token = auth.createToken(payload);
     res.json({ token: token });
     next();
@@ -24,7 +25,7 @@ const findClient = async (req, res, next) => {
     if (typeof cpf !== "number") return res.status(400).end();
     if (typeof password !== "string") return res.status(400).end();
     try {
-        const client = await db.Client.findOne({ document: cpf }).populate({ path: 'accounts', select: 'ag balance account_number' });
+        const client = await db.Client.findOne({ document: cpf }).select('name document password')
         if (!client) return res.status(404).end();
         req.client = client.toObject();
     } catch (e) {

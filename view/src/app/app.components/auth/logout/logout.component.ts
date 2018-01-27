@@ -1,22 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { AuthService } from '../../../app.services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logout',
-  templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css']
+  template: ''
 })
 export class LogoutComponent implements OnInit {
 
-  http: Http;
-
-  constructor(http: Http) {
-
-    this.http = http;
-
+  constructor(private router: Router, private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.authService.logout().first().subscribe(() => this.router.navigateByUrl('/login'));
   }
-
 }

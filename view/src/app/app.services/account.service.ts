@@ -18,7 +18,7 @@ export class AccountService {
 
 
     getAccount(ag: number, account_number: number) : Observable<IAccount> {
-        return this.http.get<IAccount>(`${environment.api.host}${this.endpoint}`, { headers: this.tokenService.defaultHeaders })
+        return this.http.get<IAccount>(`${environment.api.host}${this.endpoint}`)
             // .map((response: Response) => <IAccount>response.json())
             // .do(data => console.log('Dados: ' + JSON.stringify(data)))
             // .catch(this.handleError);
