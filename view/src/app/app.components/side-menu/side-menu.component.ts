@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { IClient } from '../../app.interfaces/client';
 import { IAccount } from '../../app.interfaces/account';
@@ -13,8 +14,8 @@ export class SideMenuComponent implements OnInit {
 
   public client: Observable<IClient>;
   public account: Observable<IAccount>;
-
-  constructor(private authService: AuthService, public navBarService: NavbarService) {
+  
+  constructor(private authService: AuthService, public navBarService: NavbarService, private router: Router) {
     this.account = this.authService.account;
     this.client = this.authService.client;
   }

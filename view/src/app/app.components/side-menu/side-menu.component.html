@@ -1,4 +1,5 @@
-<mat-sidenav-container fullscreen fxHide=navBarService.isHidden>
+<mat-sidenav-container fullscreen>
+  <div *ngIf="router.url != '/login'">
     <mat-sidenav #sidenav mode="push" class="app-sidenav">
       <mat-toolbar color="primary">
         <span class="toolbar-filler"></span>
@@ -39,5 +40,6 @@
               <p class="agencia-conta">Ag: {{(account | async)?.ag}} C/C: {{(account | async)?.account_number}}</p>
             </div>
     </mat-toolbar>
+  </div>
 <ng-content></ng-content>
   </mat-sidenav-container>
