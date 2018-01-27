@@ -11,7 +11,7 @@
             <div class="input-field col s12 digitos">
                <input  [textMask] =" {mask: maskAgencia}" [(ngModel)] ="agencia" name="agencia" placeholder="agencia de destino " id="agencia-destino" type="text"  class="validate" ><br>
                 <input [textMask] =" {mask: maskConta} " [(ngModel)] ="conta" name="conta"  placeholder="conta destino " id="conta-destino" type="text" class="validate" ><br>
-                <input currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="R$ valor a ser transferido " id="transferencia" type="text" class="validate"><br> 
+                <input currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="R$ valor a ser transferido " name="transferencia" type="text" class="validate" maxlength="23"><br> 
             </div>
         </div>
 
