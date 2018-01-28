@@ -4,15 +4,15 @@
       <img src='/assets/a3.png' class=a3 />
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/">
+      <a mat-list-item routerLink="/" routerLinkActive #rla0=routerLinkActive [ngClass]='{ "selected": rla0.isActive }' [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon matListIcon>account_balance</mat-icon>
         <span matLine>Minha conta</span>
       </a>
-      <a mat-list-item routerLink="/transferencias">
+      <a mat-list-item routerLink="/transferencias/nova" routerLinkActive #rla1=routerLinkActive [ngClass]='{ "selected": rla1.isActive }' [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon matListIcon>swap_horiz</mat-icon>
-        <span matLine>Transferências</span>
+        <span matLine>Nova transferência</span>
       </a>
-      <a mat-list-item routerLink="/extrato">
+      <a mat-list-item routerLink="/extrato" routerLinkActive #rla2=routerLinkActive [ngClass]='{ "selected": rla2.isActive }' [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon matListIcon>history</mat-icon>
         <span matLine>Extrato</span>
       </a>

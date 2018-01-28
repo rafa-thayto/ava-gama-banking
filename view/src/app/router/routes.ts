@@ -30,7 +30,6 @@ const routes: Routes = [
     canActivate: [IsAuthenticatedGuard]
   }, {
     path: 'transferencias',
-    pathMatch: 'full',
     children: [
       {
         path: '',
@@ -52,7 +51,7 @@ const routes: Routes = [
       }
     ]
   }, {
-    path: 'pesquisa',
+    path: 'extrato',
     component: SearchComponent,
     canActivate: [IsAuthenticatedGuard]
   }, {
