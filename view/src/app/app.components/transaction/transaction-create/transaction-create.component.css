@@ -43,13 +43,17 @@ label{
     width: 100%;
 }
 
-.tranf{
+.lblTranf{
     color:black;
     font-size: 26px;
 }
 
 i.medium {
     font-size: 35px;
+}
+
+.mat-button{
+    color: white;
 }
 
 @media(max-width:390px){

@@ -19,18 +19,8 @@ mat-card{
     width: 150px;
     margin: 0 auto;
 }
-a{
-    text-decoration: none;
-    color: inherit;
+
+.mat-button{
+    color: white;
 }
 
-.btn {
-    background: orangered;
-    color: #FFFFFF;
-  }
-
-  .box{
-     -webkit-box-shadow: 6px 6px 10px #999; 
-	   -moz-box-shadow: 6px 6px 10px #999;
-	        box-shadow: 6px 6px 10px #999;	 
-}

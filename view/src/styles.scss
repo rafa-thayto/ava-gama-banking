@@ -108,3 +108,29 @@ body{
       transform: rotate(360deg);
     }
   }
+
+// Botão laranja
+.box{
+  -webkit-box-shadow: 6px 6px 10px #999; 
+  -moz-box-shadow: 6px 6px 10px #999;
+  box-shadow: 6px 6px 10px #999;	 
+}
+
+.btn {
+  background: orangered;
+  color: #FFFFFF;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+// A3 - top
+.a3{
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin-left: -15px;
+  z-index: 10;
+}

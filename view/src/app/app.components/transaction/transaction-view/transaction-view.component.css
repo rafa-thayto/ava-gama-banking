@@ -15,19 +15,19 @@ label{
     font-size: 16px;
 }
 
-.tranf{
+.lblTranf{
     color:black;
     font-size: 26px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .saldoGreen{
     color:rgb(6, 173, 26);
-    font-size: 20px;
 }
 
 .saldoRed{
     color:rgb(255, 5, 5);
-    font-size: 20px;
 }
 
 i.medium {
