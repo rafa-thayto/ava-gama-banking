@@ -19,10 +19,10 @@ export class TransactionCreateComponent implements OnInit {
   valorTransferido: number
   
   //mascara numero da agência
-  // public maskAgencia = [/[0-9]/, /\d/, /\d/, /\d/]
+  public maskAgencia = [/[0-9]/, /\d/, /\d/, /\d/]
 
   //mascara numero da conta
-  // public maskConta = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]
+  public maskConta = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]
 
   public valorTranferido() {
     console.log(this.valorTranferido);
