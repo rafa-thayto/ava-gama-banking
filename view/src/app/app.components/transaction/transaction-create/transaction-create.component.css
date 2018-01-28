@@ -66,12 +66,10 @@ i.medium {
     font-size: 35px;
 }
 
-<<<<<<< HEAD
 .mat-button{
     color: white;
 }
 
-=======
 
 #transf{
     text-align:left;
@@ -79,7 +77,6 @@ i.medium {
 
 
 
->>>>>>> dd337de856d8a76c0394e83b1577aaf7bf782825
 @media(max-width:390px){
 
     .fundo{
