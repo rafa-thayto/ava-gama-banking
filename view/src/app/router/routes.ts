@@ -51,7 +51,7 @@ const routes: Routes = [
       }
     ]
   }, {
-    path: 'pesquisa',
+    path: 'extrato',
     component: SearchComponent,
     canActivate: [IsAuthenticatedGuard]
   }, {
