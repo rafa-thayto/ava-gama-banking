@@ -1,16 +1,16 @@
-
-
-   <div   fxFlex="20%" fxFlexFill fxLayoutGap="25px">
-      <div class="card hoverable">
-        <div class="card-content white-text">
-          <span class="card-title"><b>Transferência</b></span>
-          <p>{{transaction.name}}</p> 
-         <p> {{transaction.data | date:'dd/MM/yyyy HH:mm '}}</p>
-          <p>R${{transaction.value}}</p> 
-        </div>
-        <div class="card-action">
-          <a href="#">Detalhes</a>
-        </div>
-      </div>
-    </div>
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+    <mat-card>
+        <mat-card-title>
+          <b>Transferência</b>
+        </mat-card-title>
+        <mat-card-content>
+              <p>{{transaction.name}}</p> 
+              <p> {{transaction.data | date:'dd/MM/yyyy HH:mm '}}</p>
+              <p>R${{transaction.value}}</p> 
+        </mat-card-content>
+        <mat-card-actions layout="row" layout-align="end center">
+          <md-button>Detalhes</md-button>
+        </mat-card-actions>
+      </mat-card>
+</div>
  
