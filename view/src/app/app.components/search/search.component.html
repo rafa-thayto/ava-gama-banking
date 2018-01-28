@@ -3,46 +3,46 @@
     <tr>
       <td>
         <mat-form-field class="demo-full-width">
-          <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="de" id="val_ini" type="text"
-            class="validate" name="val_ini" [(ngModel)]="pesquisa.val_ini">
+          <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="de" type="number"
+            class="validate" name="valueStart" [(ngModel)]="valueStart">
         </mat-form-field>
       </td>
       <td>
         <mat-form-field class="demo-full-width">
-          <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="até" id="val_ini" type="text"
-            class="validate" name="val_fim" [(ngModel)]="pesquisa.val_fim">
-        </mat-form-field>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <mat-form-field class="demo-full-width">
-          <input matInput type="date">
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field class="demo-full-width">
-          <input matInput type="date">
+          <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="até"  type="number"
+            class="validate" name="valueEnd" [(ngModel)]="valueEnd">
         </mat-form-field>
       </td>
     </tr>
     <tr>
       <td>
         <mat-form-field class="demo-full-width">
-          <input matInput [textMask]=" {mask: maskAgencia}" placeholder="Agência">
+          <input matInput type="date" name="dateStart" [(ngModel)]="dateStart">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="demo-full-width">
+          <input matInput type="date" name="valueEnd" [(ngModel)]="valueEnd">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="demo-full-width">
+          <input matInput [textMask]=" {mask: maskAgencia}" placeholder="Agência" name="ag" [(ngModel)]="ag">
         </mat-form-field>
       </td>
 
       <td>
         <mat-form-field class="demo-full-width">
-          <input matInput [textMask]=" {mask: maskConta}" placeholder="Conta">
+          <input matInput [textMask]=" {mask: maskConta}" placeholder="Conta" name="account_number" [(ngModel)]="account_number">
         </mat-form-field>
       </td>
     </tr>
     <tr>
       <td>
-        <mat-form-field style="width: 180%" class="demo-full-width">
-          <input matInput placeholder="Pessoa">
+        <mat-form-field class="demo-full-width">
+          <input matInput placeholder="Pessoa" name="clienteName" [(ngModel)]="clienteName">
         </mat-form-field>
       </td>
     </tr>

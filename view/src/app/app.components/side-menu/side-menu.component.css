@@ -10,6 +10,10 @@
     color: rgba(255, 255, 255, 0.87)!important;
 }
 
+[hidden] {
+    display: none;
+ }
+
 .brand-logo img {
     margin-top: 10px;
     margin-left: 10px;

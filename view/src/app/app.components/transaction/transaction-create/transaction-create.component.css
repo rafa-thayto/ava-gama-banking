@@ -3,7 +3,11 @@
 }
 
 .nav-transaction{
-    text-align: center;
+    text-align: left;
+}
+
+.nav-transaction label{
+    margin-left: 30%;
 }
 
 .fundo{
@@ -12,6 +16,10 @@
     margin-left: 0px;
     margin-right: 0px;
     color: black;
+}
+
+.fundo i {
+    margin-left: 7%;
 }
 
 .icone{
@@ -31,10 +39,16 @@ label{
     
 }
 
+.saldo{
+margin-left: 6%;
+}
+
 .botao-continuar{
     width: 80%;
     height: 50px;
     background: #f25526;
+    color:white;
+    font-size: 1.5em;
     margin-left: 7%;
     margin-right: 1%;
 }
@@ -52,10 +66,20 @@ i.medium {
     font-size: 35px;
 }
 
+<<<<<<< HEAD
 .mat-button{
     color: white;
 }
 
+=======
+
+#transf{
+    text-align:left;
+}
+
+
+
+>>>>>>> dd337de856d8a76c0394e83b1577aaf7bf782825
 @media(max-width:390px){
 
     .fundo{
@@ -74,7 +98,29 @@ i.medium {
 
 .mat-form-field {
     font-size: 14px;
-    width: 80%;
+    width:80%;
     margin-left: 100px;
     margin-right: 0px;
+  }
+
+
+  @media(max-width:600px){
+
+        .mat-form-field{
+            width:90%;
+            margin-left: 1%;
+            margin-right: 1%;
+        }
+  }
+  
+  
+  @media(max-width:460px){
+
+    .nav-transaction label{
+        margin-left: 10%;
+        font-size: 1.5em;
+    }
+
+  
+
   }
