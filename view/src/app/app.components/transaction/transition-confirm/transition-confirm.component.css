@@ -1,4 +1,28 @@
-h4{
+.btn{
+    background-color: orangered;
+    color: #FFFFFF;
+    margin-left: 30px;
+}
+.box{
+    -webkit-box-shadow: 6px 6px 10px #999; 
+      -moz-box-shadow: 6px 6px 10px #999;
+           box-shadow: 6px 6px 10px #999;	 
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+.red{
+    color:red;
+}
+.green{
+    color:green;
+}
+h3{
+    margin-left: 30px;
+}
+
+ /* h4{
     float:right;
     text-align: center;
 }
@@ -15,18 +39,4 @@ label{
     margin-top: 5px;
     width: 100%;
     text-align: center
-}
-
-.btn-confirmar{
-    /* color: #FFF; */
-}
-
-button{
-    color: #000000;
-}
-
-/* .box{
-     -webkit-box-shadow: 6px 6px 10px #999; 
-	   -moz-box-shadow: 6px 6px 10px #999;
-	        box-shadow: 6px 6px 10px #999;	 
 } */
