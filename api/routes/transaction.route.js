@@ -43,16 +43,33 @@ router.get(
     '/',
     auth.isAuthenticated,
     auth.isAuthorized,
+    //TODO: apenas possui autorização para pegar transacoes com sua conta de origem ou destino.
     async (req, res, next) => {
+        const ag = req.query.ag;
+        const account_number = req.query.account_number;
+        if (!ag) return res.status(400).end();
+        if (!account_number) return res.status(400).end();
+        const account = await db.Account.findOne({ ag, account_number }).lean();
+        if (!account) return res.status(404).end();
+        let query = db.Transaction.find({ $or: [{ from: account._id }, { to: account._id }] });
+        if (req.query.dateStart)
+            query = query.where('date').gt(req.query.dateStart)
+        if (req.query.dateEnd)
+            query = query.where('date').lt(req.query.dateEnd)
+        if (req.query.valueStart)
+            query = query.where('value').gt(req.query.valueStart)
+        if (req.query.valueEnd)
+            query = query.where('value').gt(req.query.valueEnd)
         try {
-            const transaction = await db.Transaction
-                .findById(req.params.transactionId)
+            let transactions = await query
                 .populate(populateFromOpt)
                 .populate(populateToOpt)
                 .select('-createdAt -updatedAt')
                 .lean();
-            if (!transaction) return res.status(404)
-            res.json(transaction)
+            if (!transactions) return res.status(404);
+            if (req.query.clientName)
+                transactions = transactions.filter(transaction => [transaction.from.client.name, transaction.to.client.name].indexOf(req.query.clientName) > -1); //TODO: regex
+            res.json(transactions)
         } catch (e) {
             res.status(500)
             res.send(`${e}`)
@@ -148,11 +165,11 @@ const createTransaction = async (req, res, next) => {
     try {
         await transaction.save();
         const response = await db.Transaction
-                .findById(transaction._id)
-                .populate(populateFromOpt)
-                .populate(populateToOpt)
-                .select('-createdAt -updatedAt')
-                .lean();
+            .findById(transaction._id)
+            .populate(populateFromOpt)
+            .populate(populateToOpt)
+            .select('-createdAt -updatedAt')
+            .lean();
         res.status(200).json(response);
     } catch (e) {
         res.status(500)
