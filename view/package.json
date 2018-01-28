@@ -26,6 +26,7 @@
     "@angular/router": "^5.0.0",
     "angular2-text-mask": "^8.0.4",
     "core-js": "^2.4.1",
+    "materialize-css": "^0.100.2",
     "ng2-currency-mask": "^4.4.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
