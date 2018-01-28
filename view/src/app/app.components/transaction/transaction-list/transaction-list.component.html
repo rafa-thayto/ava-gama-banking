@@ -2,7 +2,7 @@
  
 
 <!-- class="col s12 m6" -->
-    <div *ngFor="let transaction of transactions"  fxFlex.xs="100"  fxFlex.md="50">
+    <div *ngFor="let transaction of transactions" class="container" fxFlex.xs="100" fxFlexFill  fxFlex.gt-sm="25">
             <app-transaction-card [transaction]="transaction"></app-transaction-card>
     </div> 
 

@@ -58,3 +58,7 @@ a{
     background-color: transparent !important;
     color: #333;
 }
+
+.selected{
+    background: rgba(0, 0, 0, 0.1) !important;
+}

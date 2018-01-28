@@ -1,16 +1,18 @@
-<div fxLayout="row" fxLayoutAlign="space-evenly center">
+
     <mat-card>
+        <mat-card-header>
+            <img mat-card-avatar src="{{image}}" class="example-header-image">
         <mat-card-title>
           <b>Transferência</b>
         </mat-card-title>
-        <mat-card-content>
-              <p>{{transaction.name}}</p> 
-              <p> {{transaction.data | date:'dd/MM/yyyy HH:mm '}}</p>
-              <p>R${{transaction.value}}</p> 
+        <mat-card-subtitle>{{transaction.data | date:'dd/MM/yyyy'}}</mat-card-subtitle>
+      </mat-card-header>
+        <mat-card-content >
+              <p fxLayoutAlign="end">{{transaction.name}} </p>
+              <p fxLayoutAlign="end" [ngClass]="(transaction.type == 'credito')?'green':'red'">R${{transaction.value}}</p>
         </mat-card-content>
-        <mat-card-actions layout="row" layout-align="end center">
-          <button mat-button>Detalhes</button>
+        <mat-card-actions align="end">
+          <button mat-button >Detalhes</button>
         </mat-card-actions>
       </mat-card>
-</div>
- 
+

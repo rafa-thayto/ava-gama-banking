@@ -1,9 +1,26 @@
 
 
-.card {
-    background-color: #FFFFFF;
+
+
+mat-card {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
 }
 
-span{
-    color: #000000;
+mat-card-title {
+    font-size: 1.0rem;
 }
+
+mat-card-actions {
+    border-top: outset;
+}
+
+mat-card-actions button:hover {
+    background-color: #ff5722;
+    color: white;
+}
+
+.example-header-image {
+    background-size: cover;
+  }

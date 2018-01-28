@@ -1,6 +1,29 @@
-<balance></balance>
-<!-- <div class="row">
-  <div fxShow.gt-xs fxShow.xs>
-    <transaction-list></transaction-list>
+<div fxLayout=column>
+  <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap=1em fxFlex=150px>
+    <div fxLayout=row fxLayoutAlign="space-around center">
+      <div fxLayout="column" fxLayoutAlign="center center" fxHide fxShow.gt-sm>
+        <h2 class=debito>R$ {{1000 | number : '1.2-2'}}</h2>
+        <small>débito (últimos 30 dias)</small>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <h1 *ngIf="!(authService.account | async)">-</h1>
+        <h1 *ngIf="(authService.account | async)">R$ {{(authService.account | async).balance | number : '1.2-2'}}</h1>
+        <small>saldo atual</small>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center" fxHide fxShow.gt-sm>
+        <h2 class=credito>R$ {{1000 | number : '1.2-2'}}</h2>
+        <small>crédito (últimos 30 dias)</small>
+      </div>
+    </div>
   </div>
-</div> -->
+  <mat-nav-list>
+    <h3 mat-subheader>Ultimas 10 transações</h3>
+    <a mat-list-item *ngFor="let note of [0,1,2,3,4,5,6,7,8,9,10]">
+      <mat-icon mat-list-icon>arrow_upward</mat-icon>
+      <h4 mat-line>Transferência</h4>
+      <p mat-line>Fulano da Silva 1</p>
+      <p mat-line> 01/02/2018</p>
+      <div fxFlex=100px> R$ 200,00 </div>
+    </a>
+  </mat-nav-list>
+</div>
