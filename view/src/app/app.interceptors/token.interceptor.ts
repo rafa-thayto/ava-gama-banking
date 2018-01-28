@@ -6,20 +6,28 @@ import 'rxjs/add/observable/of';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
+  private _token: string;
 
   public get token(): string {
-    return localStorage.getItem('jwt');
+    if (!this._token) this._token = localStorage.getItem('jwt');
+    return this._token;
   }
+
   public set token(token: string) {
-    if (!token) localStorage.removeItem('jwt')
-    else localStorage.setItem('jwt', token);
+    if (!token) {
+      this._token = null;
+      localStorage.removeItem('jwt');
+    } else {
+      this._token = token;
+      localStorage.setItem('jwt', token);
+    }
   }
 
   constructor(private router: Router) { }
 
   private handleAuthError(err: HttpErrorResponse): Observable<any> {
-    if (err.status === 401 || err.status === 403) {
-      this.router.navigateByUrl(`/logout`);
+    if ([401, 403].indexOf(err.status) > -1) {
+      this.router.navigateByUrl('/logout');
       return Observable.of(err.message);
     }
     return Observable.throw(err);

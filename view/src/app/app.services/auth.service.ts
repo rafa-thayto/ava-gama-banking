@@ -66,16 +66,23 @@ export class AuthService {
     this.initToken();
   }
 
-  public login = (cpf: number, password: string): Observable<boolean> =>
-    this.http
+  public login(cpf: number, password: string): Observable<boolean> {
+    if (typeof cpf !== 'number') return Observable.throw('invalid cpf');
+    if (typeof password !== 'string') return Observable.throw('invalid password');
+    return this.http
       .post<IToken>(`${environment.api.host}${this.endpoint}/login`, { cpf, password })
       .do(res => this.token.next(res.token))
       .map(() => true);
+  }
 
-  public logout = (): Observable<boolean> => Observable.from([true]).do(() => this.token.next(null)).mapTo(true)
+  public logout(): Observable<boolean> {
+    return Observable.from([true]).do(() => this.token.next(null)).mapTo(true);
+  }
 
-  public isAuthenticated = (): Observable<boolean> =>
-    this.http
+  public isAuthenticated(): Observable<boolean> {
+    return this.http
       .get(`${environment.api.host}${this.endpoint}/isTokenValid`)
       .map(() => true);
+  }
+
 }

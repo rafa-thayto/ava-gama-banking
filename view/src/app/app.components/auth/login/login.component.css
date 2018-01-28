@@ -8,7 +8,7 @@ img{
 }
 
 .bg{
-  background-image: url(//financialservices.mazars.com/wp-content/uploads/2016/07/Business-stats-people-talking-background.jpg);
+  background-image: url(/assets/bg-login.jpg);
   background-size: cover;
   position: relative;
 }

@@ -104,7 +104,7 @@ import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard
   providers: [
 
     AccountService,
-    TokenInterceptor, //TODO: not working
+    TokenInterceptor,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

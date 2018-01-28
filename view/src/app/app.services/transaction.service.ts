@@ -7,6 +7,11 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 
+interface IRequest{
+    query: object;
+    limit: number;
+    skip: number;
+}
 
 @Injectable()
 export class TransactionService {
