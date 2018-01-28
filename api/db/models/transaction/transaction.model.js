@@ -12,49 +12,43 @@ function beforeSave(next) {
     const Account = model.model("Account");
 
     Account.findById(fromAccount)
-        .where("balance").gt(transactionValue)
         .then(account => {
             if (!account) {
                 this.status = "abortado";
+                this.msg = "Conta não localizada.";
+                next();
+            } else if(account.balance < transactionValue) {
+                this.status = "abortado";
                 this.msg = "Saldo insuficiente.";
+                next();
             } else {
                 this.status = "processando";
+                account.balance -= transactionValue;
+                account.save().then(() => next());
             }
-            next();
         })
         .catch(e => {
             this.msg = "Erro durante processamento.";
             next();
         })
-
-    //verificar se a conta FR0M possui saldo suficiente
-    //se nao possuir throw new Error("saldo insuficiente")
-    //atualizar status
 }
 
 function afterSave(doc, next) {
     const Account = model.model("Account");
     if (this.status != "processando") return next();
-
-    const fromAccount = this.from;
     const toAccount = this.to;
     const transactionValue = this.value;
-    let promises = [Account.findById(fromAccount), Account.findById(toAccount)];
-    Promise.all(promises)
-        .then(results => ({ from: results[0], to: results[1] }))
-        .then(accounts => {
-            accounts.from.balance -= transactionValue;
-            accounts.to.balance += transactionValue;
-            promises = [accounts.from.save(), accounts.to.save()];
-            return Promise.all(promises);
+    Account.findById(toAccount)
+        .then(account => {
+            account.balance += transactionValue;
+            return account.save();
         })
-        .then(results => model.updateOne({ _id: this._id }, { status: "completado" }))
+        .then(() => model.updateOne({ _id: this._id }, { status: "completado" }))
         .then(() => next())
         .catch(e => {
             model.updateOne({ _id: this._id }, { status: "abortado", msg: "Erro durante o processamento." })
                 .then(() => next());
         })
-
 }
 
 schema.pre('save', beforeSave)
