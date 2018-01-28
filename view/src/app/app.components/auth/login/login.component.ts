@@ -27,7 +27,7 @@ export class LoginComponent implements OnDestroy {
 
   setFormDefaultValue() {
     this.cpfControl.setValue("00000000001");
-    this.passwordControl.setValue("123456");
+    this.passwordControl.setValue("000001");
   }
 
   createCpfControl() {

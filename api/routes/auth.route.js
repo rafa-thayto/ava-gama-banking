@@ -36,9 +36,7 @@ const findClient = async (req, res, next) => {
 const checkPassword = (req, res, next) => {
     const client = req.client;
     const password = req.body.password;
-    client.password = '1';
-    //TODO: gerar senha para o cliente no seed
-    if (auth.isSamePassword(password, client.password) || true) passwordMatch(req, res, next, client);
+    if (auth.isSamePassword(password, client.password)) passwordMatch(req, res, next, client);
     else passwordMissmatch(req, res, next);
 }
 

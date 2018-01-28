@@ -1,12 +1,22 @@
 const db = require("../");
-const maxClients = 10000;
+const maxClients = 50;
+const auth = require("../../config/auth");
 const names = ["pedro", "bruno", "rafael", "anselmo", "geovana", "jennfer", "marcos", "paulo", "ricardo"];
 const Client = db.Client;
+
+//https://gist.github.com/endel/321925f6cafa25bbfbde
+Number.prototype.pad = function(size) {
+    var s = String(this);
+    while (s.length < (size || 2)) {s = "0" + s;}
+    return s;
+}
 
 const getCurrentName = index => `${names[index % names.length]} de ${index}`;
 
 const createNewClient = index => {
-    return { name: getCurrentName(index), document: index };
+    console.log(index)
+    const password = auth.strToHash(index.pad(6));
+    return { name: getCurrentName(index), document: index, password };
 }
 
 const removeAllClients = async () => {
