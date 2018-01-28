@@ -11,25 +11,25 @@ import 'rxjs/add/operator/do';
 @Injectable()
 export class TransactionService {
 
-    transactions: object[] =[];
+    transactions: object[] = [];
 
     constructor(private _http: Http) { }
 
     getById(id: number) {
 
-         return this._http.get(`http://localhost:3000/transactions/${id}`)
-             .map((response: Response) => <ITransaction>response.json())
-             .do(data => console.log('Dados: ' + JSON.stringify(data)))
-             .catch(this.handleError);
+        return this._http.get(`http://localhost:3000/transactions/${id}`)
+            .map((response: Response) => <ITransaction>response.json())
+            .do(data => console.log('Dados: ' + JSON.stringify(data)))
+            .catch(this.handleError);
 
-     }
+    }
 
     filterTransactions(id: number) {
         return this._http.get(`http://localhost:3000/transactions/${id}`)
             .map((response: Response) => <ITransaction>response.json())
             .do(data => console.log('Dados: ' + JSON.stringify(data)))
             .catch(this.handleError);
-    } 
+    }
 
     performTransaction(transaction: ITransaction) {
 
@@ -45,24 +45,25 @@ export class TransactionService {
             }, erro => {
                 console.log(erro);
             });
-            
+
     }
 
 
-     AdvancedfilterTransactions(dateStart: Date, dateEnd: Date, valueStart: number,
-                                valueEnd: number, ag: number, account_number: number,
-                                clientName: String, type: String) {
+    AdvancedfilterTransactions(dateStart: Date, dateEnd: Date, valueStart: number,
+        valueEnd: number, ag: number, account_number: number,
+        clientName: String, type: String) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
 
-            var stream = this._http.get(`http://localhost:3000/transactions/${dateStart}${dateEnd}${valueStart}${valueEnd}${ag}
-                                ${account_number}${clientName}${type}`)
-            
-            return stream.subscribe(res =>{
-                this.transactions = res.json();
+        var stream = this._http.get(`http://localhost:3000/transactions/${dateStart}${dateEnd}
+                                ${valueStart}${valueEnd}${ag}${account_number}${clientName}${type}`
+                                , { headers: headers })
 
-                console.log(this.transactions)
-            })
-        
-    } 
+        return stream.map((response: Response) => <ITransaction>response.json())
+            .do(data => console.log('Dados: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+
+    }
 
 
 
