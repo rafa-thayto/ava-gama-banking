@@ -109,15 +109,27 @@ router.get(
     }
 );
 
-//TODO: validar senha
 const checkPassword = async (req, res, next) => {
     const isValidPassword = true;
-    if (!isValidPassword) return res.status(403).end();
+    const password = req.body.password;
+    if (!password) return res.status(400).end();
+    const fromAccount = req.fromAccount;
+    if (!auth.isSamePassword(req.body.password, fromAccount.password)) return res.status(403).end();
+    next();
+}
+const getSourceAccount = async (req, res, next) => {
+    const fromAccount = req.body.from;
+    if (!fromAccount) return res.status(400).end();
+    if (!fromAccount.ag) return res.status(400).end();
+    if (!fromAccount.account_number) return res.status(400).end();
+    const account = await Account.findOne(fromAccount).lean();
+    if (!account) return res.status(404).end();
+    req.fromAccountId = account._id;
+    req.fromAccount = account;
     next();
 }
 const getDestinyAccount = async (req, res, next) => {
-    //TODO: get source account
-    const toAccount = { ag: req.body.ag, account_number: req.body.account_number };
+    const toAccount = req.body.to;
     if (!toAccount) return res.status(400).end();
     if (!toAccount.ag) return res.status(400).end();
     if (!toAccount.account_number) return res.status(400).end();
@@ -127,7 +139,7 @@ const getDestinyAccount = async (req, res, next) => {
     next();
 }
 const createTransaction = async (req, res, next) => {
-    const fromAccountId = req.account._id;
+    const fromAccountId = req.fromAccountId;
     const toAccountId = req.toAccountId;
     const newTransaction = { value: req.body.value, to: toAccountId, from: fromAccountId };
     const transaction = new Transaction(newTransaction);
@@ -135,11 +147,13 @@ const createTransaction = async (req, res, next) => {
     if (isInvalidTransaction) return res.status(400).end();
     try {
         await transaction.save();
-        // await transaction.populate(populateFromOpt).populate(populateToOpt)
-                                    // .select('-createdAt -updatedAt')
-                                    // .lean()
-        //TODO: retornar obj com transação criada conforme docs
-        res.status(200).json(transaction);
+        const response = await db.Transaction
+                .findById(transaction._id)
+                .populate(populateFromOpt)
+                .populate(populateToOpt)
+                .select('-createdAt -updatedAt')
+                .lean();
+        res.status(200).json(response);
     } catch (e) {
         res.status(500)
         res.send(`${e}`)
@@ -155,10 +169,16 @@ const createTransaction = async (req, res, next) => {
  *
  * @apiHeader {String} authorization JWT \<token\>
  *
+ * @apiParam {Object} from dados da origem da transação
+ * @apiParam {Number} from.ag agencia de origem
+ * @apiParam {Number} from.account_number conta de origem
+ * @apiParam {Object} to dados do destino da transação
+ * @apiParam {Number} to.ag agencia de destino
+ * @apiParam {Number} to.account_number conta de destino
  * @apiParam {Number} ag agencia de destino
  * @apiParam {Number} account_number conta de destino
  * @apiParam {String} value valor da transacao
- * @apiParam {String} password senha de confirmação
+ * @apiParam {String} password senha de confirmação (senha da conta)
  *
  * @apiSuccess {Object} from dados da origem da transação
  * @apiSuccess {Number} from.ag agencia de origem
@@ -176,6 +196,6 @@ const createTransaction = async (req, res, next) => {
  * @apiError TransactionBadRequest parametros invalidos
  * @apiError TransactionNotAuthorized senha invalida
  */
-router.post('/', auth.isAuthenticated, auth.isAuthorized, checkPassword, getDestinyAccount, createTransaction);
+router.post('/', auth.isAuthenticated, auth.isAuthorized, getSourceAccount, checkPassword, getDestinyAccount, createTransaction);
 
 module.exports = router
