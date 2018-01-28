@@ -39,7 +39,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
 import { NavbarService } from './app.services/navbar.service';
 
-import { FlexLayoutModule } from '@angular/flex-layout'
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 /**
  * material components
@@ -55,6 +56,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard';
 import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material';
 
 
 
@@ -95,8 +97,9 @@ import { MatListModule } from '@angular/material/list';
     MatIconModule,
     MatTableModule,
     MatDatepickerModule,
-    MatListModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    MatGridListModule,
+    MatListModule
 
   ],
 
