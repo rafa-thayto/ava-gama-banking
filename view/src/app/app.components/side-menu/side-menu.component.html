@@ -1,45 +1,41 @@
-<mat-sidenav-container fullscreen>
-  
-    <mat-sidenav [hidden]="router.url == '/login'" #sidenav mode="push" class="app-sidenav">
-      <mat-toolbar color="primary">
-        <span class="toolbar-filler"></span>
-        <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button" [hidden]="!sidenav.opened">
-          <mat-icon aria-label="Menu" class="material-icons">close</mat-icon>
-        </button>
-      </mat-toolbar>
-      <mat-nav-list>
-        <a mat-list-item class="sidenav-link" *ngIf="router.url != '/transferencia/novo'" [routerLink]="['/transferencia/novo']" (click)="sidenav.toggle()">
-          <mat-icon mat-list-icon>add_box</mat-icon>
-          <span class="title" mat-line>Nova Transferência</span>
-        </a>
-        <a mat-list-item class="sidenav-link" *ngIf="router.url != '/pesquisa'" [routerLink]="['/pesquisa']" (click)="sidenav.toggle()">
-          <mat-icon mat-list-icon>account_balance</mat-icon>
-          <span class="title" mat-line>Extrato</span>
-        </a>
-        <a mat-list-item class="sidenav-link" [routerLink]="['']" (click)="sidenav.toggle()">
-          <mat-icon mat-list-icon></mat-icon>
-          <span class="title" mat-line>Sair</span>
-        </a>
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-toolbar [hidden]="router.url == '/login'" id="appToolbar" color="primary">
-      <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button" [hidden]="sidenav.opened">
-                  <mat-icon aria-label="Menu" class="material-icons">menu</mat-icon>
-          </button>
-      <h1 class="component-title">
-              <a routerLink='dashboard' class="brand-logo valign-wrapper">
-                      <img src="../../../assets/ava-gama-banking-logo-branco.png" class="imagem-logo">
-                    </a>
-      </h1>
-      <span class="toolbar-filler"></span>
-            <div class="right" fxShow.gt-xs='true' fxShow.xs='false'>  
-              <i class="material-icons icon-pessoa">person</i>
-            </div>
-            <div id="nav-mobile" class="right" fxShow.gt-xs='true'  fxShow.xs='false'>
-              <h5 class="usuario">Olá, {{(client | async)?.name}}</h5>
-              <p class="agencia-conta">Ag: {{(account | async)?.ag}} C/C: {{(account | async)?.account_number}}</p>
-            </div>
+<mat-sidenav-container fxFlexFill>
+  <mat-sidenav [hidden]="router.url == '/login'" #sidenav [mode]=sideMenuMode class="app-sidenav" [(opened)]=sideMenuOpen class=mat-elevation-z2>
+    <mat-toolbar color="primary">
+      <img src='/assets/a3.png' class=a3 />
     </mat-toolbar>
-  
-<ng-content></ng-content>
-  </mat-sidenav-container>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">
+        <mat-icon matListIcon>account_balance</mat-icon>
+        <span matLine>Minha conta</span>
+      </a>
+      <a mat-list-item routerLink="/transferencias">
+        <mat-icon matListIcon>swap_horiz</mat-icon>
+        <span matLine>Transferências</span>
+      </a>
+      <a mat-list-item routerLink="/extrato">
+        <mat-icon matListIcon>history</mat-icon>
+        <span matLine>Extrato</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-toolbar [color]=toolbarColor fxLayout="row" fxLayoutAlign="start center" [fxHide]=navBarService.isHidden>
+    <div fxFlex fxHide fxShow.gt-sm></div>
+    <button mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
+      <mat-icon aria-label="Menu" class="material-icons">menu</mat-icon>
+    </button>
+    <img src='/assets/ava-gama-banking-logo-branco.png' fxFlex=100px fxHide.gt-sm />
+    <img src='/assets/ava-gama-banking-laranja.png' fxFlex=150px fxHide fxShow.gt-sm />
+    <div fxFlex fxLayout="row" fxLayoutAlign="end center">
+      <div fxLayout=column class=profile>
+        <small>{{(client | async)?.name}}</small>
+        <small>
+          ag: {{((account | async)?.ag) | number : '3.0-0'}} c/c: {{((account | async)?.account_number) | number : '3.0-0'}}
+        </small>
+      </div>
+      <button mat-icon-button routerLink='/logout'>
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  <ng-content></ng-content>
+</mat-sidenav-container>

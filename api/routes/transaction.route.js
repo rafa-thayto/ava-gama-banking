@@ -116,6 +116,7 @@ const checkPassword = async (req, res, next) => {
     next();
 }
 const getDestinyAccount = async (req, res, next) => {
+    //TODO: get source account
     const toAccount = { ag: req.body.ag, account_number: req.body.account_number };
     if (!toAccount) return res.status(400).end();
     if (!toAccount.ag) return res.status(400).end();

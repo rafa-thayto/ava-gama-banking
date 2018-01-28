@@ -1,20 +1,9 @@
-h3{
-    text-align: center;
+h1{
+    margin-bottom: 0.25em;
 }
-
-p{
-    text-align: center;
+.debito{
+    color: red;
 }
-
-.saldo{
-    margin-top: 70px;
-}
-
-.texto-verde{
-    
-    color:green;
-}
-
-.texto-vermelho{
-    color:red;
+.credito{
+    color: green;
 }

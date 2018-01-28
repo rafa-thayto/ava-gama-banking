@@ -1,14 +1,16 @@
-.toolbar-filler {
+/* .toolbar-filler {
     flex: 1 1 auto
-}
+} */
 
-.mat-drawer.mat-drawer-push, nav {
+.mat-drawer {
     background-color: #ff5800!important;
 }
-
 .mat-list .mat-list-item, .mat-nav-list .mat-list-item, .mat-selection-list .mat-list-item {
     color: rgba(255, 255, 255, 0.87)!important;
 }
+
+/*
+
 
 [hidden] {
     display: none;
@@ -17,7 +19,6 @@
 .brand-logo img {
     margin-top: 10px;
     margin-left: 10px;
-    /* width: 8rem; */
     height: 3rem;
 }
 
@@ -45,4 +46,13 @@ a{
     padding: 6px;
     margin-top: 0.2rem;
     font-size: 2.8rem;
+} */
+
+*[color=transparent]{
+    background-color: transparent !important;
+}
+.profile{
+    font-size: 0.8em;
+    text-align: right;
+    margin-right: 15px;
 }

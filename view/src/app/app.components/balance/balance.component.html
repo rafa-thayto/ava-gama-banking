@@ -1,34 +1,15 @@
-<!-- <mat-grid-list cols="1" rowHeigth="10px">
-    <mat-grid-tile>
-      R${{balance}}
-      <p>Saldo Atual</p>
-    </mat-grid-tile>
-    
-</mat-grid-list> -->
-
-
-
-<mat-grid-list cols="5" rowHeight="40px">
-    
-  <mat-grid-tile 
-      *ngFor="let tile of tiles" 
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [style.color]="tile.color"
-      [style.fontsize]="tile.fontsize">
-      
-    {{tile.text}} 
-  </mat-grid-tile>
-</mat-grid-list>
-
-
-<!-- <div class="col s12 m6 saldo">
-  <h3>R${{balance}}</h3>
-  <p>Saldo Atual</p>
-  <br>
-  <h3 class="texto-verde">R${{credits}}</h3>
-  <p>Créditos (Últimos 30 dias)</p>
-  <br>
-  <h3 class="texto-vermelho">R${{debits}}</h3>
-  <p>Débitos (Últimos 30 dias)</p>
-</div> -->
+<div fxFlexFill fxLayout="column" fxLayoutAlign="space-around center">
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <h1 *ngIf="!(authService.account | async)">-</h1>
+    <h1 *ngIf="(authService.account | async)">R$ {{(authService.account | async).balance | number : '1.2-2'}}</h1>
+    <small>saldo atual</small>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <h1 class=credito>R$ {{1000 | number : '1.2-2'}}</h1>
+    <small>crédito (últimos 30 dias)</small>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <h1 class=debito>R$ {{1000 | number : '1.2-2'}}</h1>
+    <small>débito (últimos 30 dias)</small>
+  </div>
+</div>

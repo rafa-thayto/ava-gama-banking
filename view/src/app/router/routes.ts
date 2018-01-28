@@ -18,6 +18,7 @@ import { LogoutComponent } from '../app.components/auth/logout/logout.component'
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: DashboardComponent,
     canActivate: [IsAuthenticatedGuard]
   }, {
@@ -28,13 +29,27 @@ const routes: Routes = [
     component: LogoutComponent,
     canActivate: [IsAuthenticatedGuard]
   }, {
-    path: 'transferencia',
-    component: TransactionListComponent,
-    canActivate: [IsAuthenticatedGuard]
-  }, {
-    path: 'transferencia/novo/confirmacao',
-    component: TransitionConfirmComponent,
-    canActivate: [IsAuthenticatedGuard]
+    path: 'transferencias',
+    pathMatch: 'full',
+    children: [
+      {
+        path: '',
+        component: TransactionListComponent,
+        canActivate: [IsAuthenticatedGuard]
+      }, {
+        path: 'nova',
+        component: TransactionCreateComponent,
+        canActivate: [IsAuthenticatedGuard]
+      }, {
+        path: 'confirmar',
+        component: TransitionConfirmComponent,
+        canActivate: [IsAuthenticatedGuard]
+      }, {
+        path: ':id',
+        component: TransactionViewComponent,
+        canActivate: [IsAuthenticatedGuard]
+      }
+    ]
   }, {
     path: 'pesquisa',
     component: SearchComponent,
@@ -42,22 +57,6 @@ const routes: Routes = [
   }, {
     path: 'conta',
     component: AccountComponent,
-    canActivate: [IsAuthenticatedGuard]
-  }, {
-    path: 'transferencia/novo',
-    component: TransactionCreateComponent,
-    canActivate: [IsAuthenticatedGuard]
-  }, {
-    path: 'transferencia/visualizar/:idTransf',
-    component: TransactionViewComponent,
-    canActivate: [IsAuthenticatedGuard]
-  },{
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [IsAuthenticatedGuard]
-  },{
-    path: 'confirmacao',
-    component: TransitionConfirmComponent,
     canActivate: [IsAuthenticatedGuard]
   }, {
     path: "**",

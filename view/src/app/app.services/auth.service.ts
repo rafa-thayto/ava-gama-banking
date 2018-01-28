@@ -31,11 +31,15 @@ export class AuthService {
   private onTokenChange(token: string) {
     this._token = token;
     this.tokenService.token = token;
-    if (typeof token !== 'string') return;
-    this.clientService.getClientInfo().first().subscribe(client => {
-      this.client.next(client);
-      this.account.next(client.accounts[0]);
-    });
+    if (typeof token !== 'string') {
+      this.client.next(null);
+      this.account.next(null);
+    } else {
+      this.clientService.getClientInfo().first().subscribe(client => {
+        this.client.next(client);
+        this.account.next(client.accounts[0]);
+      });
+    }
   }
 
   private initListeners() {
@@ -55,7 +59,7 @@ export class AuthService {
     this.client = new ReplaySubject(1);
     this.token = new ReplaySubject(1);
     this.isLogged = this.token.map(token => token ? true : false);
-    this.isLogged.subscribe(isLogged => console.log("isLogged ? ",isLogged))
+    this.isLogged.subscribe(isLogged => console.log("isLogged ? ", isLogged))
     this.initListeners();
     this.initToken();
   }
