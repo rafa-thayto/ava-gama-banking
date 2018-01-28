@@ -1,6 +1,12 @@
-<div class="row">
+
   <balance></balance>
+
   <div fxShow.gt-xs='true' fxShow.xs='false'>
-    <transaction-list></transaction-list>
+    <div class="button-row">
+      <button routerLink="/transferencia/novo" class="box btn" mat-button>Nova Transferência</button>
+      <button routerLink="/pesquisa" class="box btn" mat-button>Extrato</button>
+    </div>
+    <div fxLayout="row">
+      <transaction-list></transaction-list>
+    </div>
   </div>
-</div>

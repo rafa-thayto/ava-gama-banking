@@ -6,6 +6,11 @@
     background-color: #ff5800!important;
 }
 
+.mat-toolbar.mat-primary {
+    background-color: #ff5800!important;
+    color: white;
+}
+
 .mat-list .mat-list-item, .mat-nav-list .mat-list-item, .mat-selection-list .mat-list-item {
     color: rgba(255, 255, 255, 0.87)!important;
 }

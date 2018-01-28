@@ -7,52 +7,6 @@
 
 <!--main-->
 <main>
-<<<<<<< HEAD
-
-    <!-- <input  matInput [textMask] =" {mask: maskAgencia}" [(ngModel)] ="agencia" name="Agência" placeholder="agencia de destino " id="agencia-destino" type="text"  class="validate" ><br>
-                <input matInput [textMask] =" {mask: maskConta} " [(ngModel)] ="conta" name="Conta"  placeholder="conta destino " id="conta-destino" type="text" class="validate" ><br>
-                <input matInput currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="R$ valor a ser transferido " name="transferencia" type="text" class="validate" maxlength="23"><br> 
-                <label>para:</label>
-                <label>saldo atual:</label>      
-                <button routerLink='confirmacao' class="waves-effect waves-light btn botao-continuar" id="btn-continuar" >continuar</button> -->
-
-    <form>
-        <mat-form-field class="demo-full-width">
-            <input matInput [textMask]=" {mask: maskAgencia}" [(ngModel)]="agencia" name="Agência" placeholder="agencia de destino "
-                id="agencia-destino" type="text" class="validate">
-        </mat-form-field>
-        <br>
-        <mat-form-field class="demo-full-width">
-            <input matInput [textMask]=" {mask: maskConta} " [(ngModel)]="conta" name="Conta" placeholder="conta destino " id="conta-destino"
-                type="text" class="validate">
-        </mat-form-field>
-        <br>
-
-        <mat-form-field class="demo-full-width">
-            <input matInput currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="R$ valor a ser transferido "
-                name="transferencia" type="text" class="validate" maxlength="23">
-        </mat-form-field>
-        <br>
-
-        <br>
-        <mat-form-field class="demo-full-width">
-            <label>De:</label>
-        </mat-form-field>
-
-        <br>
-        <mat-form-field class="demo-full-width">
-            <label>Para:</label>
-        </mat-form-field>
-
-        <br>
-        <mat-form-field class="demo-full-width">
-            <label>saldo atual:</label>
-        </mat-form-field>
-        <br>
-        
-        <button routerLink='confirmacão' class="btn box mat-button" id="btn-continuar">continuar</button>
-    </form>
-=======
     <form class="formulario">
             <mat-form-field class="demo-full-width">    
                  <input  matInput [textMask] =" {mask: maskAgencia}" [(ngModel)] ="agencia" name="Agência" placeholder="agencia de destino " id="agencia-destino" type="text"  class="validate" ><br>   
@@ -74,6 +28,5 @@
                 <button mat-button color="warn" routerLink='confirmacao' class="waves-effect waves-light btn botao-continuar" id="btn-continuar" >continuar</button>
             </div>    
   </form>
->>>>>>> dd337de856d8a76c0394e83b1577aaf7bf782825
 
 </main>
