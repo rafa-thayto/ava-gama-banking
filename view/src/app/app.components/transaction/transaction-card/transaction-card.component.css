@@ -1,9 +1,11 @@
 
 
-.card {
-    background-color: #FFFFFF;
+
+
+mat-card {
+    margin-left: 20px;
 }
 
-span{
-    color: #000000;
+mat-card-title {
+    font-size: 1.0rem;
 }

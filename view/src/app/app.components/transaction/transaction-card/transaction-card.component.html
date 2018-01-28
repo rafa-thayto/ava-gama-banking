@@ -1,16 +1,16 @@
 
 
-   <div   fxFlex="20%" fxFlexFill fxLayoutGap="25px">
-      <div class="card hoverable">
-        <div class="card-content white-text">
-          <span class="card-title"><b>Transferência</b></span>
-          <p>{{transaction.name}}</p> 
-         <p> {{transaction.data | date:'dd/MM/yyyy HH:mm '}}</p>
-          <p>R${{transaction.value}}</p> 
-        </div>
-        <div class="card-action">
-          <a href="#">Detalhes</a>
-        </div>
-      </div>
+
+
+   <div fxFlex="90%">
+      <mat-card>
+          <mat-card-title ><strong>Transferência</strong></mat-card-title>
+          <mat-card-content>{{transaction.name}} <span fxLayoutAlign="end">{{transaction.data | date:'dd/MM/yyyy'}}</span>
+          
+             <p>R${{transaction.value}}</p> </mat-card-content>
+             <hr>
+             <mat-card-actions align="end">
+                <button mat-button>Detalhes</button>
+              </mat-card-actions>
+      </mat-card>
     </div>
- 
