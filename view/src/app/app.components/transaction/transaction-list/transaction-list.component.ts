@@ -14,14 +14,28 @@ export class TransactionListComponent implements OnInit {
   transactions  = []
 
   transaction1 = {
-    name : "João",
+    name : "João das Neves",
     value : 12000,
-    data : new Date()
+    data : new Date(),
+    type: 'credito'
   }
   transaction2 = {
-    name : "Maria",
+    name : "Maria Fernanda",
     value : 15400,
-    data : new Date()
+    data : new Date(),
+    type: 'debito'
+  }
+  transaction3 = {
+    name : "Freddie Mercury",
+    value : 999340,
+    data : new Date(),
+    type: 'credito'
+  }
+  transaction4 = {
+    name : "Jon Bon Jovi",
+    value : 19475400,
+    data : new Date(),
+    type: 'credito'
   }
   
 
@@ -30,6 +44,8 @@ export class TransactionListComponent implements OnInit {
   constructor(private servico: TransactionService) {
   this.transactions.push(this.transaction1)
   this.transactions.push(this.transaction2)
+  this.transactions.push(this.transaction3)
+  this.transactions.push(this.transaction4)
 
 
 
