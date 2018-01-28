@@ -3,22 +3,29 @@
     <a routerLink='/dashboard' class="fundo"> <i class="medium material-icons icone">close</i></a>
     <label class="tranf">Nova Transferência </label>
 </div>
+<br>
 
 <!--main-->
 <main>
-    <form>
-            <div>    
-                 <input  matInput [textMask] =" {mask: maskAgencia}" [(ngModel)] ="agencia" name="Agência" placeholder="agencia de destino " id="agencia-destino" type="text"  class="validate" ><br>
-                <input matInput [textMask] =" {mask: maskConta} " [(ngModel)] ="conta" name="Conta"  placeholder="conta destino " id="conta-destino" type="text" class="validate" ><br>
-                <input matInput currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="R$ valor a ser transferido " name="transferencia" type="text" class="validate" maxlength="23"><br> 
-            </div>   
-             
-            <div>
+    <form class="formulario">
+            <mat-form-field class="demo-full-width">    
+                 <input  matInput [textMask] =" {mask: maskAgencia}" [(ngModel)] ="agencia" name="Agência" placeholder="agencia de destino " id="agencia-destino" type="text"  class="validate" ><br>   
+            </mat-form-field> 
+            
+            <mat-form-field class="demo-full-width">
+                 <input matInput [textMask] =" {mask: maskConta} " [(ngModel)] ="conta" name="Conta"  placeholder="conta destino " id="conta-destino" type="text" class="validate" ><br>
+             </mat-form-field>
+
+            <mat-form-field class="demo-full-width">
+                 <input matInput currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="R$ valor a ser transferido " id="transf" name="transferencia" type="text" class="validate" maxlength="23"><br> 
+            </mat-form-field>    
+             <br>
+            <div class="saldo">
                 <label>saldo atual: R$0,00</label>   
             </div>
             <br>
             <div>
-                <button routerLink='confirmacao' class="waves-effect waves-light btn botao-continuar" id="btn-continuar" >continuar</button>
+                <button mat-button color="warn" routerLink='confirmacao' class="waves-effect waves-light btn botao-continuar" id="btn-continuar" >continuar</button>
             </div>    
   </form>
 
