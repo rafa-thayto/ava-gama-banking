@@ -11,7 +11,7 @@ import { ObservableMedia, MediaChange } from '@angular/flex-layout';
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.css']
 })
-export class SideMenuComponent implements OnInit {
+export class SideMenuComponent {
 
   public client: Observable<IClient>;
   public account: Observable<IAccount>;
@@ -23,7 +23,7 @@ export class SideMenuComponent implements OnInit {
     const alias = media.mqAlias;
     const isSmall = ['xs', 'sm'].indexOf(alias) > -1;
     if (isSmall) {
-      this.sideMenuMode = 'push'
+      this.sideMenuMode = 'over'
       this.toolbarColor = 'primary';
       this.sideMenuOpen = false;
     } else {
@@ -31,16 +31,12 @@ export class SideMenuComponent implements OnInit {
       this.toolbarColor = 'transparent';
       this.sideMenuOpen = true;
     }
-    if(this.navBarService.isHidden) this.sideMenuOpen = false;
   }
 
   constructor(private authService: AuthService, public navBarService: NavbarService, private router: Router, public media: ObservableMedia) {
     this.account = this.authService.account;
     this.client = this.authService.client;
     this.media.asObservable().subscribe(this.onMediaChange.bind(this));
-  }
-
-  ngOnInit() {
   }
 
 }

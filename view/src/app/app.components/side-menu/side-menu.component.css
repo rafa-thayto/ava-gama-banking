@@ -48,11 +48,13 @@ a{
     font-size: 2.8rem;
 } */
 
-*[color=transparent]{
-    background-color: transparent !important;
-}
 .profile{
     font-size: 0.8em;
     text-align: right;
     margin-right: 15px;
+}
+
+.toobar-transparent{
+    background-color: transparent !important;
+    color: #333;
 }

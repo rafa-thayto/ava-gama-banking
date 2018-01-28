@@ -1,5 +1,5 @@
 <mat-sidenav-container fxFlexFill>
-  <mat-sidenav [hidden]="router.url == '/login'" #sidenav [mode]=sideMenuMode class="app-sidenav" [(opened)]=sideMenuOpen class=mat-elevation-z2>
+  <mat-sidenav #sidenav [mode]=sideMenuMode [(opened)]="sideMenuOpen &&  navBarService.isVisible" class=mat-elevation-z2>
     <mat-toolbar color="primary">
       <img src='/assets/a3.png' class=a3 />
     </mat-toolbar>
@@ -18,7 +18,7 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-toolbar [color]=toolbarColor fxLayout="row" fxLayoutAlign="start center" [fxHide]=navBarService.isHidden>
+  <mat-toolbar color=primary ngClass.gt-sm='toobar-transparent' fxLayout=row fxLayoutAlign="start center" [fxHide]=navBarService.isHidden>
     <div fxFlex fxHide fxShow.gt-sm></div>
     <button mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
       <mat-icon aria-label="Menu" class="material-icons">menu</mat-icon>
@@ -26,12 +26,20 @@
     <img src='/assets/ava-gama-banking-logo-branco.png' fxFlex=100px fxHide.gt-sm />
     <img src='/assets/ava-gama-banking-laranja.png' fxFlex=150px fxHide fxShow.gt-sm />
     <div fxFlex fxLayout="row" fxLayoutAlign="end center">
+      <mat-menu #accountsMenu="matMenu" yPosition="below">
+        <button mat-menu-item *ngFor='let account of authService.accounts | async' (click)=authService.account.next(account)>
+          ag: {{account.ag | number : '3.0-0'}} c/c: {{account.account_number | number : '3.0-0'}}
+        </button>
+      </mat-menu>
       <div fxLayout=column class=profile>
         <small>{{(client | async)?.name}}</small>
         <small>
           ag: {{((account | async)?.ag) | number : '3.0-0'}} c/c: {{((account | async)?.account_number) | number : '3.0-0'}}
         </small>
       </div>
+      <button mat-icon-button [matMenuTriggerFor]="accountsMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
       <button mat-icon-button routerLink='/logout'>
         <mat-icon>exit_to_app</mat-icon>
       </button>

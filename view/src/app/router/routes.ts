@@ -34,6 +34,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        pathMatch: 'full',
         component: TransactionListComponent,
         canActivate: [IsAuthenticatedGuard]
       }, {

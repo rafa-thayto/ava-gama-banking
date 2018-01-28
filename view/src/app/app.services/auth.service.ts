@@ -26,6 +26,7 @@ export class AuthService {
   public token: ReplaySubject<string>;
   public isLogged: Observable<boolean>;
   public account: ReplaySubject<IAccount>;
+  public accounts: Observable<IAccount[]>;
   public client: ReplaySubject<IClient>;
 
   private onTokenChange(token: string) {
@@ -58,6 +59,7 @@ export class AuthService {
     this.account = new ReplaySubject(1);
     this.client = new ReplaySubject(1);
     this.token = new ReplaySubject(1);
+    this.accounts = this.client.map(client => client ? client.accounts : null);
     this.isLogged = this.token.map(token => token ? true : false);
     this.isLogged.subscribe(isLogged => console.log("isLogged ? ", isLogged))
     this.initListeners();
