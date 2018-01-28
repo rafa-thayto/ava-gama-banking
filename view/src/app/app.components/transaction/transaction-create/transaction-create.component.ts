@@ -1,7 +1,7 @@
-import { ITransaction } from './../../../app.interfaces/transaction';
-import { TransactionService } from './../../../app.services/transaction.service';
 import { Component, OnInit, Input, transition } from '@angular/core';
-import { AccountComponent } from '../../account/account.component'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TransactionService } from './../../../app.services/transaction.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-transaction-create',
@@ -10,43 +10,43 @@ import { AccountComponent } from '../../account/account.component'
 })
 export class TransactionCreateComponent implements OnInit {
 
+  private firstFormGroup: FormGroup
+  private secondFormGroup: FormGroup
+  private isLinear = true
 
-//iniciando as variaveis
-public agencia = ''
-public conta = ''
+  agencia: number
+  conta: number
+  valorTransferido: number
+  
+  //mascara numero da agência
+  // public maskAgencia = [/[0-9]/, /\d/, /\d/, /\d/]
 
-//mascara numero da agência
-public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
+  //mascara numero da conta
+  // public maskConta = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]
 
-//mascara numero da conta
-public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
+  public valorTranferido() {
+    console.log(this.valorTranferido);
+  }
 
-
-  constructor (private service: TransactionService) {
+  constructor(private service: TransactionService, private fb: FormBuilder) {
   }
 
   public performTransaction(transaction) {
-     this.service.performTransaction(transaction)
+    this.service.performTransaction(transaction)
     //  .subscribe( () => console.log(`Efetuou: ${transaction}`)),
     //    erro => console.log(erro)
   }
 
+  ngOnInit() {
+    this.firstFormGroup = this.fb.group({
+      'agencia': ['' , Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(4)])],
+      'conta': ['' , Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(6)])],
+      'valorTransferido': ['' , Validators.compose([Validators.required, Validators.maxLength(13)])]
 
-  opcoesSelect: Array<any>;
-
-    ngOnInit() {
-        this.opcoesSelect = [
-          {
-            valor : 1,
-            descricao: 'Próprio favorecido'
-          },
-          {
-            valor : 2,
-            descricao: 'Outra conta'
-          },
-        ];
-    }
-
-
+    });
+    this.secondFormGroup = this.fb.group({
+      secondCtrl: ['', Validators.required]
+    });
+  }
 
 }
