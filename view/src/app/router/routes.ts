@@ -30,7 +30,6 @@ const routes: Routes = [
     canActivate: [IsAuthenticatedGuard]
   }, {
     path: 'transferencias',
-    pathMatch: 'full',
     children: [
       {
         path: '',
