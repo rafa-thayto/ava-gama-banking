@@ -8,5 +8,6 @@ export interface ITransaction {
     date: Date,
     value: number,
     status: TransactionStatus,
-    msg: string
+    msg: string,
+    isCredit: boolean
 }

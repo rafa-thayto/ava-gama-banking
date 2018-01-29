@@ -44,15 +44,7 @@ export class TransactionService {
 
 
 
-
-    getById(id: number) {
-
-        return this._http.get(`http://localhost:3000/transactions/${id}`)
-            .map((response: Response) => <ITransaction>response.json())
-            .do(data => console.log('Dados: ' + JSON.stringify(data)))
-            .catch(this.handleError);
-
-    }
+    getById = (id: number) => this.http.get<ITransaction>(`${environment.api.host}${this.endpoint}/${id}`);
 
     filterTransactions(id: number) {
         return this._http.get(`http://localhost:3000/transactions/${id}`)
