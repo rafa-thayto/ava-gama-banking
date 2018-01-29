@@ -57,6 +57,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -99,7 +101,8 @@ import { MatGridListModule } from '@angular/material';
     MatDatepickerModule,
     CurrencyMaskModule,
     MatGridListModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule,
 
   ],
 

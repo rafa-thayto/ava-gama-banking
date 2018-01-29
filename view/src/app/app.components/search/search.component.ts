@@ -6,7 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { TransactionService } from '../../app.services/transaction.service';
 import { NavbarService } from '../../app.services/navbar.service';
-
+import {MatSelectModule} from '@angular/material/select';
+import { TransactionCardComponent } from '../transaction/transaction-card/transaction-card.component'
 
 @Component({
   selector: 'app-search',
@@ -15,15 +16,16 @@ import { NavbarService } from '../../app.services/navbar.service';
 })
 export class SearchComponent implements OnInit {
 
-  dateStart = new Date();
-  dateEnd = new Date();
-  valueStart: number = 11;
+  dateStart = '';
+  dateEnd = '';
+  valueStart: number;
   valueEnd: number;
   ag: number;
   account_number: number;
   clienteName: String;
   typeAccount: String;
   error: String;
+
 
   constructor(private advancedfilterTransactions: TransactionService, public navbarService: NavbarService, private router: Router) {
 
@@ -33,17 +35,38 @@ export class SearchComponent implements OnInit {
 public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
 public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
 public maskTransf = [ /[1-9]/,/\d/,/\d/,'.',/\d/,/\d/,/\d/,'.',/\d/]
+public MaskDate = [ /[0-9]/,/\d/,'/',/\d/,/\d/,'/',/\d/,/\d/,/\d/,/\d/]
 
   ngOnInit() {
+
   }
 
   limpar() {
 
-    console.log(this.dateEnd, this.account_number,this.clienteName)
+  this.dateStart = '';
+  this.dateEnd = '';
+  this.valueStart = 0;
+  this.valueEnd = 0;
+  this.ag = 0;
+  this.account_number = 0;
+  this.clienteName = '';
+  this.typeAccount = '';
+  this.error ='';
   }
   filtrar() {
+
+    //parse String to Date
+    var auxDate = this.dateStart.split('/');
+    var stringFormatada = auxDate[0] + '-' + auxDate[1] + '-' + auxDate[2];
+    var dateStart = new Date(stringFormatada);
+
+    var auxDate = this.dateEnd.split('/');
+    var stringFormatada = auxDate[0] + '-' + auxDate[1] + '-' + auxDate[2];
+    var dateEnd = new Date(stringFormatada);
+
     this.error = ''
-    this.advancedfilterTransactions.AdvancedfilterTransactions(this.dateStart,this.dateEnd,this.valueStart,this.valueEnd,this.ag,this.account_number,this.clienteName,this.typeAccount)
+    this.advancedfilterTransactions.advancedfilterTransactions(dateStart,dateEnd,this.valueStart,this.valueEnd,this.ag,this.account_number,this.clienteName,this.typeAccount)
+    console.log(this.advancedfilterTransactions)
   }
 
 }

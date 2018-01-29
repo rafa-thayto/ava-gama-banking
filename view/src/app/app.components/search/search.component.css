@@ -1,20 +1,14 @@
-.ng-container {
-    display: flex;
-    flex-direction: column;
-    min-width: 100px;
-  }
-  
-  .example-header {
-    min-height: 64px;
-    padding: 8px 24px 0;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 80%;
-  }
-  
-  .mat-table {
-    overflow: auto;
-    max-height: 500px;
-  }
+.demo-full-width{
+  width: 200px;
+  display: flex;
+}
+
+.sideNav{
+  width: 200px;
+  background:white;
+  height: 595px;
+  box-shadow: 5px 3px 20px #ff5722;
+  display: column;;
+}
+
+

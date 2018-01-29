@@ -49,7 +49,7 @@ export class TransactionService {
     }
 
 
-    AdvancedfilterTransactions(dateStart: Date, dateEnd: Date, valueStart: number,
+    advancedfilterTransactions(dateStart: Date, dateEnd: Date, valueStart: number,
         valueEnd: number, ag: number, account_number: number,
         clientName: String, type: String) {
         let headers = new Headers();
