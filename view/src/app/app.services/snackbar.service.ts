@@ -1,13 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {MatSnackBar} from '@angular/material';
 
-@Component({
-  selector: 'app-snackbar',
-  templateUrl: './snackbar.component.html',
-  styleUrls: ['./snackbar.component.css']
-})
-export class SnackbarComponent implements OnInit {
-
+@Injectable()
+export class SnackbarService {
+  
   constructor(public snackBar: MatSnackBar) {}
 
   saldoInsuficiente() {
@@ -17,8 +13,4 @@ export class SnackbarComponent implements OnInit {
       verticalPosition: 'top'
     });
   }
-
-  ngOnInit() {
-  }
-
 }
