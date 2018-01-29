@@ -57,6 +57,7 @@ import { AuthService } from './app.services/auth.service';
 import { ClientService } from './app.services/client.service';
 import { NavbarService } from './app.services/navbar.service';
 import { TransactionService } from './app.services/transaction.service';
+import { SnackbarService } from './app.services/snackbar.service';
 /* ~ END SERVICES ~ */
 
 /* ~ INTERCEPTORS ~ */
@@ -71,8 +72,6 @@ import { MatGridListModule } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion';
 
-
-import { SnackbarComponent } from './app.components/snackbar/snackbar.component';
 /* ~ END GUARDS ~ */
 
 @NgModule({
@@ -90,8 +89,7 @@ import { SnackbarComponent } from './app.components/snackbar/snackbar.component'
     DashboardComponent,
     SearchComponent,
     TransitionConfirmComponent,
-    SecretkeyComponent,
-    SnackbarComponent,
+    SecretkeyComponent
 
   ],
   imports: [
@@ -128,6 +126,7 @@ import { SnackbarComponent } from './app.components/snackbar/snackbar.component'
     TransactionService,
     NavbarService,
     MatSnackBarModule,
+    SnackbarService,
     //guards
     IsNotAuthenticatedGuard,
     IsAuthenticatedGuard,
