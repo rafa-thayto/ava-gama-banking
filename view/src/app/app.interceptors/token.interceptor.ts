@@ -6,19 +6,21 @@ import 'rxjs/add/observable/of';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  private _token: string;
+  // private _token: string;
 
   public get token(): string {
-    if (!this._token) this._token = localStorage.getItem('jwt');
-    return this._token;
+    //FIXIT: localstorage pois é instanciado dois providers, gerando _token com dois valores diferentes.
+    // if (!this._token) this._token = localStorage.getItem('jwt');
+    // return this._token;
+    return localStorage.getItem('jwt');;
   }
 
   public set token(token: string) {
     if (!token) {
-      this._token = null;
+      // this._token = null;
       localStorage.removeItem('jwt');
     } else {
-      this._token = token;
+      // this._token = token;
       localStorage.setItem('jwt', token);
     }
   }
