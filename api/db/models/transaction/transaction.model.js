@@ -13,27 +13,20 @@ async function beforeSave(next) {
     const Account = model.model("Account");
 
     try {
-        const res = await Promise.all([Account.findById(fromAccount), Account.findById(toAccount)]);
-        const accounts = { from: res[0], to: res[1] };
-        if (!accounts.from) {
-            this.status = "abortado";
-            this.msg = "Conta não localizada.";
-            next();
-        } else if (accounts.from.balance < transactionValue) {
+        const res = await Account.collection.updateOne({ '_id': fromAccount, balance: { $gt: transactionValue } }, { $inc: { balance: -transactionValue } });
+        if (res.result.ok === 0) throw new Error('i/o error');
+        if (res.result.nModified === 0) {
             this.status = "abortado";
             this.msg = "Saldo insuficiente.";
-            next();
         } else {
+            await Account.collection.updateOne({ '_id': toAccount }, { $inc: { balance: transactionValue } });
             this.status = "completado";
-            await Account.collection.update({ '_id': fromAccount }, { $inc: { balance: -transactionValue } });
-            await Account.collection.update({ '_id': toAccount }, { $inc: { balance: transactionValue } });
-            next();
         }
     } catch (e) {
         this.status = "erro";
         this.msg = "Erro durante processamento.";
-        next();
     }
+    next();
 }
 
 schema.pre('save', beforeSave);
