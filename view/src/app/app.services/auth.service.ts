@@ -78,6 +78,10 @@ export class AuthService {
     return Observable.from([true]).do(() => this.token.next(null)).mapTo(true);
   }
 
+  public refreshBalance(): void {
+    this.token.next(this._token);
+  }
+
   public isAuthenticated(): Observable<boolean> {
     return this.http
       .get(`${environment.api.host}${this.endpoint}/isTokenValid`)

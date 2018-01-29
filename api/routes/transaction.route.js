@@ -58,7 +58,7 @@ const buildQuery = (req, res, next) => {
     if (req.query.valueEnd) query = query.where('value').gt(req.query.valueEnd);
     if (req.query.limit) query = query.limit(parseInt(req.query.limit));
     if (req.query.skip) query = query.skip(parseInt(req.query.skip));
-    query = query.sort({ date: 1 }).populate(populateFromOpt).populate(populateToOpt).select('-createdAt -updatedAt');
+    query = query.sort({ date: -1 }).populate(populateFromOpt).populate(populateToOpt).select('-createdAt -updatedAt');
     req.mongoQuery = query;
     next();
 }
@@ -174,7 +174,7 @@ const getSourceAccount = async (req, res, next) => {
     if (!fromAccount) return res.status(400).end();
     if (!fromAccount.ag) return res.status(400).end();
     if (!fromAccount.account_number) return res.status(400).end();
-    const account = await Account.findOne(fromAccount).lean();
+    const account = await Account.findOne({ ag: fromAccount.ag, account_number: fromAccount.account_number }).lean();
     if (!account) return res.status(404).end();
     if (account.client.toString() !== req.clientId.toString()) return res.status(403).end();
     req.fromAccountId = account._id;
@@ -182,14 +182,17 @@ const getSourceAccount = async (req, res, next) => {
     next();
 }
 const getDestinyAccount = async (req, res, next) => {
+    console.log("AAAAAAAAAAAA");
     const toAccount = req.body.to;
     if (!toAccount) return res.status(400).end();
     if (!toAccount.ag) return res.status(400).end();
     if (!toAccount.account_number) return res.status(400).end();
-    const account = await Account.findOne(toAccount).lean();
+    const account = await Account.findOne({ ag: toAccount.ag, account_number: toAccount.account_number }).lean();
     if (!account) return res.status(404).end();
     req.toAccountId = account._id;
     if (req.fromAccountId === req.toAccountId) return res.status(400).end();
+    console.log("BBBBBBBBBBBBBB");
+
     next();
 }
 const createTransaction = async (req, res, next) => {

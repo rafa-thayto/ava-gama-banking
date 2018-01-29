@@ -1,4 +1,4 @@
-.container {
+/* .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -26,4 +26,9 @@
         width: 30%;
         margin: 10px 10%;
     }
+} */
+
+
+mat-horizontal-stepper{
+    background-color: transparent;
 }

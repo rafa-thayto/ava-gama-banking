@@ -8,9 +8,9 @@ import { environment } from '../../environments/environment';
 export class ClientService {
 
   private getQueryParams(agency: number, account: number): HttpParams {
-    const params = new HttpParams();
-    params.append('agency', agency.toString());
-    params.append('account_number', account.toString());
+    let params = new HttpParams();
+    params = params.append('ag', agency.toString());
+    params = params.append('account_number', account.toString());
     return params;
   }
 
