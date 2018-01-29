@@ -23,7 +23,7 @@
   <!-- //TODO: se a lista estiver vazia?-->
   <mat-nav-list [fxHide]=loading>
     <h3 mat-subheader>Ultimas 10 transações</h3>
-    <a mat-list-item *ngFor="let transaction of lastTransactions" [routerLink]='["transacoes",transaction._id]'>
+    <a mat-list-item *ngFor="let transaction of lastTransactions" [routerLink]='["/","transferencias",transaction._id]'>
       <mat-icon mat-list-icon *ngIf=!transaction.isCredit class=debito>arrow_downward</mat-icon>
       <mat-icon mat-list-icon *ngIf=transaction.isCredit class=credito>arrow_upward</mat-icon>
       <h4 mat-line>{{transaction.isCredit ? transaction?.from?.client?.name : transaction?.to?.client?.name}}</h4>
