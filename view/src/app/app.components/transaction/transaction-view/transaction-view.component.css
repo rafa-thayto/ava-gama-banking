@@ -38,3 +38,7 @@ i.medium {
     background: rgb(255, 255, 255);
     text-align: center;
 }
+
+mat-grid-tile {
+    font-size: 1rem;
+}
