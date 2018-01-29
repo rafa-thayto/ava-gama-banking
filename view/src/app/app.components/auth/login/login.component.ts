@@ -13,6 +13,7 @@ import 'rxjs/add/operator/filter';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnDestroy {
+  load: boolean;
   public error: string;
   public form: FormGroup;
   public passwordControl: FormControl;
@@ -56,15 +57,20 @@ export class LoginComponent implements OnDestroy {
   login() {
     this.error = ''
     if (!this.form.valid) return
+    this.load = true
     let data = this.form.value;
     if (typeof data.cpf === 'string')
       data.cpf = parseInt(data.cpf.replace(/[^0-9]/g, ''));
     const onLoginSuccess = () => {
       this.authService.account.filter(account => !!account).first().subscribe(() => this.router.navigateByUrl('/'));
+    };    
+    const onComplete = () => this.load = false
+    const onLoginError = (error: any) => {
+      this.error = 'usuário e/ou senha inválidos'
+      onComplete()
     };
-    const onLoginError = (error: any) => this.error = 'usuário e/ou senha inválidos';
     //TODO: add loading
-    this.authService.login(data.cpf, data.password).first().subscribe(onLoginSuccess, onLoginError);
+    this.authService.login(data.cpf, data.password).delay(1000).first().subscribe(onLoginSuccess, onLoginError, onComplete);
   }
 
   ngOnDestroy() {

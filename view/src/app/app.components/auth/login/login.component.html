@@ -23,8 +23,12 @@
       <mat-card-actions fxFlexFill align=end>
         <button mat-raised-button color=primary mat-button (click)=login() fxFlex style="height: 45px;" [disabled]='!(form.valid)'>entrar</button>
       </mat-card-actions>
-      <h3 fxFlex=100 class=error color=warn>{{error}}</h3>
+      <h3 fxFlex=100 class=error color=warn>{{error}}</h3> 
+      <div class="load" fxFlex=100 fxLayout="column">
+        <mat-spinner fxHide [fxShow]="load" fxFlexAlign="center" diameter="30"></mat-spinner>
+      </div> 
     </mat-card>
   </form>
+
   <div fxFlex=7.5 fxHide fxShow.gt-sm></div>
 </div>
