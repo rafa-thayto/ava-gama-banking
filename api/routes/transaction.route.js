@@ -5,8 +5,8 @@ const db = require('../db');
 const Account = db.Account;
 const Transaction = db.Transaction;
 const populateClientOpt = { path: 'client', select: 'name' };
-const populateFromOpt = { path: 'from', select: 'ag account_number -_id', populate: populateClientOpt };
-const populateToOpt = { path: 'to', select: 'ag account_number -_id', populate: populateClientOpt };
+const populateFromOpt = { path: 'from', select: 'ag account_number', populate: populateClientOpt };
+const populateToOpt = { path: 'to', select: 'ag account_number', populate: populateClientOpt };
 /**
  * @api {get} /transactions/ Obter lista de transações
  * @apiName TransactionsGet
@@ -67,9 +67,12 @@ const runQuery = async (req, res, next) => {
         let transactions = await req.mongoQuery.lean();
         if (!transactions || transactions.length === 0) return res.status(404).end();
         db.Log.info('transaction.read', req.token, req.sourceIp, transactions);
+        transaction = transactions.map(transaction => {
+            transaction.isCredit = transaction.to._id.toString() === req.accountId.toString();
+            return transaction;
+        })
         res.json(transactions).end();
     } catch (e) {
-        console.log(e);
         res.status(500).end()
     }
     next();
