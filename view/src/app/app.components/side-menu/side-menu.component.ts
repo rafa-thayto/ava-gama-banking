@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  ViewChild, ElementRef } from '@angular/core';
 import { IClient } from '../../app.interfaces/client';
 import { IAccount } from '../../app.interfaces/account';
 import { AuthService } from '../../app.services/auth.service';
@@ -38,5 +38,15 @@ export class SideMenuComponent {
     this.client = this.authService.client;
     this.media.asObservable().subscribe(this.onMediaChange.bind(this));
   }
+
+  @ViewChild('sidenav') sidenav
+
+  fechar() {
+    if (window.innerWidth <= 960) { 
+      this.sidenav.toggle()
+    }
+  }
+  
+
 
 }
