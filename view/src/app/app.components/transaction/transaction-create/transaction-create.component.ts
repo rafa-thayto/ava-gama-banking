@@ -4,66 +4,48 @@ import { TransactionService } from './../../../app.services/transaction.service'
 import { Observable } from 'rxjs/Observable';
 import { ITransaction } from '../../../app.interfaces/transaction';
 import { ClientService } from '../../../app.services/client.service';
+import { AuthService } from '../../../app.services/auth.service';
 
 @Component({
   selector: 'app-transaction-create',
   templateUrl: './transaction-create.component.html',
   styleUrls: ['./transaction-create.component.css']
 })
-export class TransactionCreateComponent implements OnInit {
-  private senhaControl: FormControl
-  private valorTransferido: FormControl
-  private contaControl: FormControl
-  private agenciaControl: FormControl
-  private senha: '';
-  public transaction: Partial<ITransaction>
-  public data: {
-    ag: '',
-    account_number: '',
-    value: ''
-  }
+export class TransactionCreateComponent {
+  public senhaControl: FormControl;
+  public valorTransferido: FormControl;
+  public contaControl: FormControl;
+  public agenciaControl: FormControl;
+  public loading: boolean = false;
+  public transaction: Partial<ITransaction>;
 
-  // Material Steps
   public firstFormGroup: FormGroup
   public secondFormGroup: FormGroup
   public isLinear = true
 
-  // Masks
-  // public maskAgencia = [/[0-9]/, /\d/, /\d/, /\d/]
-  // public maskConta = [/[0-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]
-
-  constructor(private service: TransactionService, private fb: FormBuilder, private clientService: ClientService) {
+  constructor(private transactionService: TransactionService, private fb: FormBuilder, private clientService: ClientService, private authService: AuthService) {
     this.createControls()
     this.createForm()
-  }
-
-  public performTransaction(transaction) {
-    this.service.performTransaction(transaction)
-    //  .subscribe( () => console.log(`Efetuou: ${transaction}`)),
-    //    erro => console.log(erro)
   }
 
   createAgenciaControl() {
     const syncValidators = [];
     syncValidators.push(Validators.required);
-    //TODO: validators is CPF
-    this.agenciaControl = new FormControl('', syncValidators);
+    this.agenciaControl = new FormControl('1', syncValidators);
   }
 
   createContaControl() {
     const syncValidators = [];
     syncValidators.push(Validators.required);
-    //TODO: validators is CPF
-    this.contaControl = new FormControl('', syncValidators);
+    this.contaControl = new FormControl('37', syncValidators);
   }
 
   createValorTransferidoControl() {
     const syncValidators = [];
     syncValidators.push(Validators.required);
-    //TODO: validators is CPF
-    this.valorTransferido = new FormControl('', syncValidators);
+    this.valorTransferido = new FormControl('10', syncValidators);
   }
-  
+
   createSenhaControl() {
     const syncValidators = [];
     syncValidators.push(Validators.required);
@@ -80,34 +62,58 @@ export class TransactionCreateComponent implements OnInit {
   }
 
   createForm() {
-    const controls = { 
-        ag: this.agenciaControl,
-        account_number: this.contaControl, 
-        value: this.valorTransferido
-      }
-    
-    this.firstFormGroup = new FormGroup(controls);
-    this.secondFormGroup = new FormGroup({password: this.senhaControl});
-  }
-  
-  save() {
-    // this.error = ''
-    if (!this.firstFormGroup.valid) return
-    this.data = this.firstFormGroup.value;
-    this.transaction = {
-      from: {
-        ag: 1,
-        account_number: 1
-      },
-      to: {
-        ag: 1,
-        account_number: 2
-      },
-      value: 1,
-      password: ''
+    const controls = {
+      ag: this.agenciaControl,
+      account_number: this.contaControl,
+      value: this.valorTransferido
     }
+
+    this.firstFormGroup = new FormGroup(controls);
+    this.secondFormGroup = new FormGroup({ password: this.senhaControl });
+  }
+
+  save() {
+    this.transaction = null;
+    if (!this.firstFormGroup.valid) return
+    this.loading = true;
+    const formValue = this.firstFormGroup.value;
+    this.transaction = {
+      to: {
+        ag: parseInt(formValue.ag),
+        account_number: parseInt(formValue.account_number)
+      },
+      value: parseInt(formValue.value)
+    };
+
+    const fromClientInfo = this.authService.client.first();
+    const fromAccountInfo = this.authService.account.first();
+    const toClientInfo = this.clientService.getClientInfo(this.transaction.to.ag, this.transaction.to.account_number).first();;
+    Observable.combineLatest(fromClientInfo, fromAccountInfo, toClientInfo)
+      .map(data => ({ fromClient: data[0], fromAccount: data[1], toClient: data[2] }))
+      .delay(1000)
+      .subscribe(data => {
+        this.transaction.to.client = data.toClient;
+        console.log(data.fromAccount)
+        this.transaction.from = data.fromAccount;
+        this.transaction.from.client = { name: data.fromClient.name };
+        this.loading = false;
+      })
+
+
+    // this.transaction = {
+    //   from: {
+    //     ag: 1,
+    //     account_number: 1
+    //   },
+    //   to: {
+    //     ag: 1,
+    //     account_number: 2
+    //   },
+    //   value: 1,
+    //   password: ''
+    // }
     // if (typeof this.data.ag === 'string')
-      // this.data.ag = parseInt(this.data.ag.replace(/[^0-9]/g, ''))
+    // this.data.ag = parseInt(this.data.ag.replace(/[^0-9]/g, ''))
     // if (typeof data.cpf === 'string')
     //   data.cpf = parseInt(data.cpf.replace(/[^0-9]/g, ''));
     // const onSubmitSuccess = () => {
@@ -117,21 +123,20 @@ export class TransactionCreateComponent implements OnInit {
     //TODO: add loading
     // this.authService.Submit(data.cpf, data.password).first().subscribe(onSubmitSuccess, onSubmitError);
 
-      // this.clientService.getClientInfo(this.data.ag, this.data.account_number)
+    // this.clientService.getClientInfo(this.data.ag, this.data.account_number)
     // console.log(this.data);
   }
 
   createTransaction() {
-    this.data.account_number
-    this.data.ag
-    this.data.value
-  }
-
-  ngOnDestroy() {
-    // this.navbarService.show();
-  }
-
-  ngOnInit() {
+    const onSuccess = trasaction => { console.log(trasaction) }
+    const onError = error => { console.log(error) }
+    const onComplete = () => { }
+    console.log(this.transaction)
+    this.transaction.password = this.senhaControl.value;
+    this.transactionService.createTransaction(this.transaction).subscribe(onSuccess, onError, onComplete)
+    // this.data.account_number
+    // this.data.ag
+    // this.data.value
   }
 
 }

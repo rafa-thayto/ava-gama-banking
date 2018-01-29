@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/observable/throw';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
@@ -19,7 +20,6 @@ interface IRequest {
     limit?: number;
     skip?: number;
 }
-
 @Injectable()
 export class TransactionService {
 
@@ -42,9 +42,11 @@ export class TransactionService {
         return this.http.get<ITransaction[]>(`${environment.api.host}${this.endpoint}`, { params })
     }
 
-
-
     getById = (id: number) => this.http.get<ITransaction>(`${environment.api.host}${this.endpoint}/${id}`);
+
+    createTransaction(request: Partial<ITransaction>): Observable<ITransaction> {
+        return this.http.post<ITransaction>(`${environment.api.host}${this.endpoint}`, request)
+    }
 
     filterTransactions(id: number) {
         return this._http.get(`http://localhost:3000/transactions/${id}`)
@@ -86,11 +88,6 @@ export class TransactionService {
             .catch(this.handleError);
 
     }
-
-    createTransaction() {
-        
-    }
-
 
     private handleError(error: Response) {
         console.error(error);
