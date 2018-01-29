@@ -49,7 +49,6 @@
                 [(ngModel)]="agencia"
                 name="agencia" 
                 placeholder="ex: 0001"
-                maxlength="4"
                 type="text" 
                 name="agencia"
                 formControlName="agencia" required>
@@ -62,7 +61,6 @@
                 [(ngModel)]="conta" 
                 name="conta"
                 placeholder="ex: 000001"
-                maxlength="6"
                 type="text" 
                 name="conta"
                 formControlName="conta" required>
@@ -74,8 +72,6 @@
                 [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
                 [(ngModel)]="valorTransferido"
                 placeholder="ex: R$100,00"
-                maxlength="13"
-                minlength="4"
                 type="text"
                 name="valorTransferido"
                 formControlName="valorTransferido" required>
