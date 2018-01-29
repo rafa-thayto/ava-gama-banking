@@ -1,15 +1,15 @@
 /*.nav-transaction{
-    
+
     text-align: center;
 }*/
 
 /*.icone{
    float: left;
-    
+
     color:black;
 }*/
-
-label{   
+/*
+label{
     margin-left: 1%;
     color:black;
     font-size: 16px;
@@ -40,4 +40,11 @@ i.medium {
 
 mat-grid-tile {
     font-size: 1rem;
+} */
+
+h1{
+    font-weight: 100;
+}
+mat-spinner{
+    margin-top: 200px;
 }

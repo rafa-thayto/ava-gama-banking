@@ -1,47 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Component } from '@angular/core';
+import { TransactionService } from '../../../app.services/transaction.service';
+import { ActivatedRoute } from '@angular/router';
+import { ITransaction } from '../../../app.interfaces/transaction';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/combineLatest';
+import { AuthService } from '../../../app.services/auth.service';
 
 @Component({
   selector: 'app-transaction-view',
   templateUrl: './transaction-view.component.html',
   styleUrls: ['./transaction-view.component.css']
 })
-export class TransactionViewComponent implements OnInit {
+export class TransactionViewComponent {
+  public transaction: ITransaction;
+  public loading: boolean = true;
 
-  tiles = [
-    {text: 'de:', cols: 1, rows: 1},
-    {text: 'Marcos Rodrigues', cols: 1, rows: 1},
-    {text: 'para:', cols: 1, rows: 1},
-    {text: 'Avanade', cols: 1, rows: 1},
-    {text: 'saldo atual:', cols: 1, rows: 1},
-    {text: 'R$ 1.000,00', cols: 1, rows: 1},
-    {text: 'débito:', cols: 1, rows: 1},
-    {text: '- R$ 50,00', cols: 1, rows: 1, color: `${'debito'=='debito'? 'red':'green'}`},
-    {text: 'saldo após:', cols: 1, rows: 1},
-    {text: 'R$ 950,00', cols: 1, rows: 1},
-    {text: 'data de execução:', cols: 1, rows: 1},
-    {text: '21/01/2018', cols: 1, rows: 1},
-  ];
-  
-  http: Http;
-
-  constructor(http: Http) {
-
-    this.http = http;
-
+  constructor(private authService: AuthService, private transactionService: TransactionService, private activatedRoute: ActivatedRoute) {
+    const transactionId = this.activatedRoute.snapshot.params.id;
+    Observable.combineLatest(this.authService.account,this.transactionService.getById(transactionId)).first()
+      .map(data => ({account: data[0], transaction: data[1]}))
+      .subscribe(data => {
+        data.transaction.isCredit = data.account.account_number === data.transaction.to.account_number;
+        console.log(data)
+        this.loading = false;
+        this.transaction = data.transaction;
+      })
   }
-
-  ngOnInit() {
-  }
-
-  obterTransacoes() {
-
-    this.http.get('URL')
-        .subscribe(() => {
-          console.log('Sucesso');
-      }, erro => {
-          console.log(erro);
-      });
-}
 
 }
