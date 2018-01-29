@@ -1,28 +1,46 @@
-<br>
-
-<div fxLayout="row" fxLayoutAlign="space-between stretch" >
-    <a routerLink='/dashboard' class="fundo"> <i class="medium material-icons">close</i></a>
-    <label class="lblTranf">Transferência </label>
-</div>  
-
-<br>
-<mat-grid-list cols="2" rowHeight="50px">
-    <mat-grid-tile
-        *ngFor="let tile of tiles"
-        [colspan]="tile.cols"
-        [rowspan]="tile.rows"
-        [style.color]="tile.color">
-      {{tile.text}}
-    </mat-grid-tile>
-  </mat-grid-list>
-
-  <br>
-  <mat-divider></mat-divider>
-  <br>
-
-<div class="codigoAutent">       
-        <label>Código de autenticação</label>
-        <br>
-        <label>AKPKGF33535</label>
-</div>  
-
+<div fxLayout=row fxLayoutAlign="center center">
+  <mat-spinner *ngIf=loading fxFlexAlign=center></mat-spinner>
+  <div fxLayout=column *ngIf=transaction fxFlex=95 fxLayoutGap=2.5 fxFlex.gt-sm=400px fxLayoutGap.gt-sm=0>
+    <div fxFlex=25px></div>
+    <div fxLayout=column fxFlex=50px fxLayoutAlign="center center">
+      <h1>Transferência</h1>
+    </div>
+    <div fxFlex=25px></div>
+    <div fxLayout=row fxFlex=50px>
+      <span>De</span>
+      <span fxFlex></span>
+      <span>{{transaction.from.client.name}}</span>
+    </div>
+    <div fxLayout=row fxFlex=50px>
+      <span>Para</span>
+      <span fxFlex></span>
+      <span>{{transaction.to.client.name}}</span>
+    </div>
+    <!-- <div fxLayout=row>
+        <span>Saldo Anterior</span>
+        <span fxFlex></span>
+        <span>{{transaction.from.client.name}}</span>
+      </div> -->
+    <div fxLayout=row fxFlex=50px>
+      <span>Valor</span>
+      <span fxFlex></span>
+      <span [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}">R$ {{transaction.value | number : '3.0-0'}}</span>
+    </div>
+    <!-- <div fxLayout=row>
+        <span>Saldo após</span>
+        <span fxFlex></span>
+        <span>{{transaction.from.client.name}}</span>
+      </div> -->
+    <div fxLayout=row fxFlex=50px>
+      <span>Data de execução</span>
+      <span fxFlex></span>
+      <span>{{transaction.date | date : 'dd/MM/yyyy hh:mm'}}</span>
+    </div>
+    <hr />
+    <div fxLayout=column fxLayoutAlign="center center">
+      <span>Código da transação</span>
+      <span fxFlex=25px></span>
+      <span>{{transaction._id}}</span>
+    </div>
+  </div>
+</div>
