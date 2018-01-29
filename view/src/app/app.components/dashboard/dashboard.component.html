@@ -18,15 +18,18 @@
       </div>
     </div>
   </div>
-  <mat-nav-list>
+  <mat-spinner fxHide [fxShow]=loading fxFlexAlign=center></mat-spinner>
+  <!-- <p class=msg *ngIf="(lastTransactions | async)?.length === 0">Nenhuma transação localizada</p> -->
+  <!-- //TODO: se a lista estiver vazia?-->
+  <mat-nav-list [fxHide]=loading>
     <h3 mat-subheader>Ultimas 10 transações</h3>
     <a mat-list-item *ngFor="let transaction of lastTransactions | async" [routerLink]='["transacoes",transaction._id]'>
       <mat-icon mat-list-icon *ngIf=!transaction.isCredit class=debito>arrow_downward</mat-icon>
       <mat-icon mat-list-icon *ngIf=transaction.isCredit class=credito>arrow_upward</mat-icon>
-      <h4 mat-line>{{transaction.isCredit ? transaction.from.client.name : transaction.to.client.name}}</h4>
+      <h4 mat-line>{{transaction.isCredit ? transaction?.from?.client?.name : transaction?.to?.client?.name}}</h4>
       <p mat-line>
-        ag: {{transaction.isCredit ? (transaction.from.ag | number : '3.0-0') : (transaction.to.ag | number : '3.0-0')}} c/c: {{transaction.isCredit
-        ? (transaction.from.account_number | number : '3.0-0') : (transaction.to.account_number | number : '3.0-0')}}
+        ag: {{transaction.isCredit ? (transaction.from?.ag | number : '3.0-0') : (transaction.to?.ag | number : '3.0-0')}} c/c: {{transaction.isCredit
+        ? (transaction?.from?.account_number | number : '3.0-0') : (transaction?.to?.account_number | number : '3.0-0')}}
       </p>
       <p mat-line> {{transaction.date | date : 'dd/MM/yyyy hh:mm'}} </p>
       <div fxFlex=100px [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}"> R$ {{transaction.value | number : '1.2-2'}} </div>
