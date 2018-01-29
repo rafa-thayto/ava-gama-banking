@@ -36,7 +36,7 @@
                 <mat-label>Sua conta</mat-label>
                 <input 
                 matInput 
-                textMask]="{mask: maskConta}"
+                [textMask]="{mask: maskConta}"
                 [(ngModel)]="minhaConta"
                 type="text" name="conta"
                 formControlName="minhaConta" disabled>
@@ -46,7 +46,8 @@
                 <input 
                 matInput 
                 [textMask]=" {mask: maskAgencia}"
-                [(ngModel)]="agencia" 
+                [(ngModel)]="agencia"
+                name="agencia" 
                 placeholder="ex: 0001"
                 maxlength="4"
                 type="text" 
@@ -58,6 +59,7 @@
                 matInput 
                 textMask]="{mask: maskConta}"
                 [(ngModel)]="conta" 
+                name="conta"
                 placeholder="ex: 000001"
                 maxlength="6"
                 type="text" 
