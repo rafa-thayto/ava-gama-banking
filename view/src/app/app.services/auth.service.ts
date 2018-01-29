@@ -26,16 +26,21 @@ export class AuthService {
   public token: ReplaySubject<string>;
   public isLogged: Observable<boolean>;
   public account: ReplaySubject<IAccount>;
+  public accounts: Observable<IAccount[]>;
   public client: ReplaySubject<IClient>;
 
   private onTokenChange(token: string) {
     this._token = token;
     this.tokenService.token = token;
-    if (typeof token !== 'string') return;
-    this.clientService.getClientInfo().first().subscribe(client => {
-      this.client.next(client);
-      this.account.next(client.accounts[0]);
-    });
+    if (typeof token !== 'string') {
+      this.client.next(null);
+      this.account.next(null);
+    } else {
+      this.clientService.getClientInfo().first().subscribe(client => {
+        this.client.next(client);
+        this.account.next(client.accounts[0]);
+      });
+    }
   }
 
   private initListeners() {
@@ -54,22 +59,30 @@ export class AuthService {
     this.account = new ReplaySubject(1);
     this.client = new ReplaySubject(1);
     this.token = new ReplaySubject(1);
+    this.accounts = this.client.map(client => client ? client.accounts : null);
     this.isLogged = this.token.map(token => token ? true : false);
-    this.isLogged.subscribe(isLogged => console.log("isLogged ? ",isLogged))
+    this.isLogged.subscribe(isLogged => console.log("isLogged ? ", isLogged))
     this.initListeners();
     this.initToken();
   }
 
-  public login = (cpf: number, password: string): Observable<boolean> =>
-    this.http
+  public login(cpf: number, password: string): Observable<boolean> {
+    if (typeof cpf !== 'number') return Observable.throw('invalid cpf');
+    if (typeof password !== 'string') return Observable.throw('invalid password');
+    return this.http
       .post<IToken>(`${environment.api.host}${this.endpoint}/login`, { cpf, password })
       .do(res => this.token.next(res.token))
       .map(() => true);
+  }
 
-  public logout = (): Observable<boolean> => Observable.from([true]).do(() => this.token.next(null)).mapTo(true)
+  public logout(): Observable<boolean> {
+    return Observable.from([true]).do(() => this.token.next(null)).mapTo(true);
+  }
 
-  public isAuthenticated = (): Observable<boolean> =>
-    this.http
+  public isAuthenticated(): Observable<boolean> {
+    return this.http
       .get(`${environment.api.host}${this.endpoint}/isTokenValid`)
       .map(() => true);
+  }
+
 }

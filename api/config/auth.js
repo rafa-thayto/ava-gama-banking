@@ -20,12 +20,12 @@ module.exports.isAuthenticated = (req, res, next) => {
         return res.status(403).end();
     }
     req.token = token;
+    req.sourceIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     req.clientId = getTokenPayload(token).id || null;
     if (!req.clientId) return res.status(403).end();
     next();
 }
 
-module.exports.isAuthorized = (req, res, next) => next();
 module.exports.isSamePassword = (password, hash) => bcrypt.compareSync(password, hash);
 module.exports.strToHash = password => bcrypt.hashSync(password, 10);
 module.exports.createToken = payload => jwt.sign(payload, SECRET, JWT_OPTIONS);

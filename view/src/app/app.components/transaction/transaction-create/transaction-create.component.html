@@ -1,79 +1,147 @@
-<!--header-->
-<div class="nav-transaction">
-    <a routerLink='/dashboard' class="fundo"> <i class="medium material-icons icone">close</i></a>
-    <label class="lblTranf">Nova Transferência </label>
-</div>
-<br>
-
-<!--main-->
+<!-- <header>
+    <h4 class="mat-display-1">Nova trasferência</h4>
+</header>
 <main>
-<<<<<<< HEAD
-
-    <!-- <input  matInput [textMask] =" {mask: maskAgencia}" [(ngModel)] ="agencia" name="Agência" placeholder="agencia de destino " id="agencia-destino" type="text"  class="validate" ><br>
-                <input matInput [textMask] =" {mask: maskConta} " [(ngModel)] ="conta" name="Conta"  placeholder="conta destino " id="conta-destino" type="text" class="validate" ><br>
-                <input matInput currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="R$ valor a ser transferido " name="transferencia" type="text" class="validate" maxlength="23"><br> 
-                <label>para:</label>
-                <label>saldo atual:</label>      
-                <button routerLink='confirmacao' class="waves-effect waves-light btn botao-continuar" id="btn-continuar" >continuar</button> -->
-
     <form>
-        <mat-form-field class="demo-full-width">
-            <input matInput [textMask]=" {mask: maskAgencia}" [(ngModel)]="agencia" name="Agência" placeholder="agencia de destino "
-                id="agencia-destino" type="text" class="validate">
+        <mat-form-field>
+            <input matInput [textMask]=" {mask: maskAgencia}" [(ngModel)]="agencia" name="Agência" placeholder="agencia de destino type="text" class="validate">
         </mat-form-field>
-        <br>
-        <mat-form-field class="demo-full-width">
+
+        <mat-form-field>
             <input matInput [textMask]=" {mask: maskConta} " [(ngModel)]="conta" name="Conta" placeholder="conta destino " id="conta-destino"
                 type="text" class="validate">
         </mat-form-field>
-        <br>
 
-        <mat-form-field class="demo-full-width">
+        <mat-form-field>
             <input matInput currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="R$ valor a ser transferido "
-                name="transferencia" type="text" class="validate" maxlength="23">
-        </mat-form-field>
-        <br>
-
-        <br>
-        <mat-form-field class="demo-full-width">
-            <label>De:</label>
+                id="transf" name="transferencia" type="text" class="validate" maxlength="23">
         </mat-form-field>
 
-        <br>
-        <mat-form-field class="demo-full-width">
-            <label>Para:</label>
-        </mat-form-field>
+        <div class="saldo">
+            <label>saldo atual: R$0,00</label>
+        </div>
 
-        <br>
-        <mat-form-field class="demo-full-width">
-            <label>saldo atual:</label>
-        </mat-form-field>
-        <br>
-        
-        <button routerLink='confirmacão' class="btn box mat-button" id="btn-continuar">continuar</button>
+        <div>
+            <button mat-button color="warn" routerLink='confirmacao' class="waves-effect waves-light btn botao-continuar" id="btn-continuar">continuar</button>
+        </div>
     </form>
-=======
-    <form class="formulario">
-            <mat-form-field class="demo-full-width">    
-                 <input  matInput [textMask] =" {mask: maskAgencia}" [(ngModel)] ="agencia" name="Agência" placeholder="agencia de destino " id="agencia-destino" type="text"  class="validate" ><br>   
-            </mat-form-field> 
-            
-            <mat-form-field class="demo-full-width">
-                 <input matInput [textMask] =" {mask: maskConta} " [(ngModel)] ="conta" name="Conta"  placeholder="conta destino " id="conta-destino" type="text" class="validate" ><br>
-             </mat-form-field>
 
-            <mat-form-field class="demo-full-width">
-                 <input matInput currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="R$ valor a ser transferido " id="transf" name="transferencia" type="text" class="validate" maxlength="23"><br> 
-            </mat-form-field>    
-             <br>
-            <div class="saldo">
-                <label>saldo atual: R$0,00</label>   
-            </div>
-            <br>
+</main> -->
+
+<mat-horizontal-stepper [linear]="isLinear">
+    <!-- Transferência -->
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup" fxLayout="row" class="container">
+            <ng-template matStepLabel>Transferência</ng-template>
+            <mat-form-field>
+                <mat-label>Sua conta</mat-label>
+                <input 
+                matInput 
+                minlength="1"
+                maxlength="4"
+                placeholder="ex: 0001"                
+                [(ngModel)]="minhaConta"
+                type="text" name="minhaConta"
+                formControlName="minhaConta">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Agência de destino</mat-label>
+                <input 
+                matInput 
+                minlength="1"
+                maxlength="4"
+                [(ngModel)]="agencia"
+                placeholder="ex: 0001"
+                type="text" name="agencia"
+                formControlName="agencia" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Conta de destino</mat-label>
+                <input 
+                matInput 
+                minlength="1"
+                maxlength="6"
+                [(ngModel)]="conta" 
+                placeholder="ex: 000001"
+                type="text" name="conta"
+                formControlName="conta" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Valor a ser transferido</mat-label>
+                <input 
+                matInput
+                minlength="1"
+                maxlength="9"
+                [(ngModel)]="valorTransferido"
+                placeholder="ex: R$100,00"
+                type="text" name="valorTransferido"
+                formControlName="valorTransferido" required>
+                <span matPrefix>R$&nbsp;</span>
+            </mat-form-field>
+
             <div>
-                <button mat-button color="warn" routerLink='confirmacao' class="waves-effect waves-light btn botao-continuar" id="btn-continuar" >continuar</button>
-            </div>    
-  </form>
->>>>>>> dd337de856d8a76c0394e83b1577aaf7bf782825
-
-</main>
+                <span>{{minhaConta}}</span>
+                <span>{{agencia}}</span>
+                <span>{{conta}}</span>
+                <span>{{valorTransferido}}</span>
+                <button class="btn-orange" mat-raised-button color="primary" matStepperNext>confirmar</button>
+            </div>
+        </form>
+    </mat-step>
+    <!-- Fim Transferência -->
+    
+    <!-- Confirmação -->
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Confirmação</ng-template>
+            <mat-form-field>
+                <mat-label>Sua conta</mat-label>
+                <input 
+                matInput 
+                type="text" name="minhaConta"
+                [value]="minhaConta">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Agência de destino</mat-label>
+                <input 
+                matInput 
+                placeholder="ex: 0001"
+                type="text" name="agencia"
+                [value]="agencia">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Conta de destino</mat-label>
+                <input 
+                matInput 
+                name="conta"
+                placeholder="ex: 000001"
+                type="text" name="conta"
+                [value]="conta">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Valor a ser transferido</mat-label>
+                <input 
+                matInput
+                placeholder="ex: R$100,00"
+                type="text" name="valorTransferido"
+                [value]="valorTransferido">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Senha</mat-label>
+                <input 
+                matInput
+                minlength="6"
+                maxlength="6"
+                placeholder="Digite sua senha"
+                [(ngModel)]="senha"
+                type="password" name="senha" 
+                formControlName="senha" required>
+            </mat-form-field>
+            <div>
+                <button class="btn-orange" mat-raised-button color="primary" mat-button matStepperPrevious>retornar</button>
+                <a class="btn-orange" mat-raised-button color="primary" mat-button routerLink="/transferencias/:id">confirmar</a>
+            </div>
+        </form>
+    </mat-step>
+    <!-- End Confirmação -->
+</mat-horizontal-stepper>

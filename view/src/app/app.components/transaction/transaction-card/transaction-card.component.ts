@@ -1,7 +1,7 @@
+import { AuthService } from './../../../app.services/auth.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { TransactionCreateComponent } from '../transaction-create/transaction-create.component';
 import { ITransaction } from '../../../app.interfaces/transaction';
-
 
 @Component({
   selector: 'app-transaction-card',
@@ -12,8 +12,9 @@ export class TransactionCardComponent implements OnInit {
 
   @Input() transaction: ITransaction
 
-  constructor() {
+   image = `https://www.gravatar.com/avatar/${Math.floor(Math.random() * 999999999999999999) + 1000000000000000000}?s=50&d=identicon&r=PG`
 
+  constructor(public authService: AuthService) {
 
   }
 

@@ -4,6 +4,7 @@ import { LoginComponent } from '../app.components/auth/login/login.component';
 import { TransactionCreateComponent } from '../app.components/transaction/transaction-create/transaction-create.component';
 import { TransactionListComponent } from '../app.components/transaction/transaction-list/transaction-list.component';
 import { DashboardComponent } from '../app.components/dashboard/dashboard.component';
+import { SnackbarComponent } from '../app.components/snackbar/snackbar.component';
 
 import { TransitionConfirmComponent } from '../app.components/transaction/transition-confirm/transition-confirm.component';
 
@@ -18,6 +19,7 @@ import { LogoutComponent } from '../app.components/auth/logout/logout.component'
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: DashboardComponent,
     canActivate: [IsAuthenticatedGuard]
   }, {
@@ -28,15 +30,25 @@ const routes: Routes = [
     component: LogoutComponent,
     canActivate: [IsAuthenticatedGuard]
   }, {
-    path: 'transferencia',
-    component: TransactionListComponent,
-    canActivate: [IsAuthenticatedGuard]
+    path: 'transferencias',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: TransactionListComponent,
+        canActivate: [IsAuthenticatedGuard]
+      }, {
+        path: 'nova',
+        component: TransactionCreateComponent,
+        canActivate: [IsAuthenticatedGuard]
+      }, {
+        path: ':id',
+        component: TransactionViewComponent,
+        canActivate: [IsAuthenticatedGuard]
+      }
+    ]
   }, {
-    path: 'transferencia/novo/confirmacao',
-    component: TransitionConfirmComponent,
-    canActivate: [IsAuthenticatedGuard]
-  }, {
-    path: 'pesquisa',
+    path: 'extrato',
     component: SearchComponent,
     canActivate: [IsAuthenticatedGuard]
   }, {
@@ -44,21 +56,8 @@ const routes: Routes = [
     component: AccountComponent,
     canActivate: [IsAuthenticatedGuard]
   }, {
-    path: 'transferencia/novo',
-    component: TransactionCreateComponent,
-    canActivate: [IsAuthenticatedGuard]
-  }, {
-    path: 'transferencia/visualizar/:idTransf',
-    component: TransactionViewComponent,
-    canActivate: [IsAuthenticatedGuard]
-  },{
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [IsAuthenticatedGuard]
-  },{
-    path: 'confirmacao',
-    component: TransitionConfirmComponent,
-    canActivate: [IsAuthenticatedGuard]
+    path: 'snackbar',
+    component: SnackbarComponent
   }, {
     path: "**",
     redirectTo: ""

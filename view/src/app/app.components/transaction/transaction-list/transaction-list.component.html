@@ -1,15 +1,10 @@
-<div class="button-row">
-        <a href="#"><button class="box btn" mat-button>Nova Transferência</button></a>
-        <a href="#"><button class="box btn" mat-button>Extrato</button></a>
-</div>
- 
+
  
 
-<!-- 
-<div class="button-row">
-    <button mat-raised-button>Basic</button>
-</div> -->
-
+<!-- class="col s12 m6" -->
+    <div *ngFor="let transaction of transactions" class="container" fxFlex.xs="100" fxFlexFill  fxFlex.gt-sm="25">
+            <app-transaction-card [transaction]="transaction"></app-transaction-card>
+    </div> 
 
 
 <!-- <mat-grid-list cols="12">
@@ -32,11 +27,8 @@
         </div>
 
     </mat-grid-list>
+    --> 
 
-    <div *ngFor="let transaction of transactions" class="col s12 m6">
-        <app-transaction-card [transaction]="transaction"></app-transaction-card>
-    </div>
-</div> --> 
 
 
 

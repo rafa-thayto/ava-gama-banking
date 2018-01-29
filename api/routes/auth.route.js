@@ -6,18 +6,16 @@ const SECRET = "TODO:CRIAR_UMA_SECRET";
 const JWT_OPTIONS = { expiresIn: '1h' };
 
 const passwordMissmatch = (req, res, next) => {
-    res.status(401)
-        .json({ message: 'wrong password.' });
-    res.end();
+    db.Log.error('auth.password.missmatch', req.token, req.sourceIp);
+    res.status(401).end();
 }
 const passwordMatch = (req, res, next, client) => {
-    console.log(client)
     const payload = { id: client._id || client.id };
+    db.Log.info('auth.password.match', req.token, req.sourceIp, payload);
     const token = auth.createToken(payload);
     res.json({ token: token });
     next();
 }
-
 const findClient = async (req, res, next) => {
     if (!req.body) req.body = {};
     const cpf = req.body.cpf;
@@ -39,8 +37,6 @@ const checkPassword = (req, res, next) => {
     if (auth.isSamePassword(password, client.password)) passwordMatch(req, res, next, client);
     else passwordMissmatch(req, res, next);
 }
-
-
 /**
  * @api {post} /auth/login Autenticar usuario
  * @apiName AuthLogin

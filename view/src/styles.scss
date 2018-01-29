@@ -111,13 +111,13 @@ body{
 
 // Botão laranja
 .box{
-  -webkit-box-shadow: 6px 6px 10px #999; 
+  -webkit-box-shadow: 6px 6px 10px #999;
   -moz-box-shadow: 6px 6px 10px #999;
-  box-shadow: 6px 6px 10px #999;	 
+  box-shadow: 6px 6px 10px #999;
 }
 
 .btn {
-  background: orangered;
+  background: #ff5800;
   color: #FFFFFF;
 }
 
@@ -133,4 +133,22 @@ a{
   top: 0;
   margin-left: -15px;
   z-index: 10;
+  height: 50px;
+  width: auto;
+}
+
+.orange {
+  background-color: #ff5800;  
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.right {
+  float: right;
 }

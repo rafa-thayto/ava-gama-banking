@@ -5,5 +5,7 @@ export interface IAccount {
     ag: number,
     account_number: number,
     balance: number,
-    password: string
+    password: string,
+    debit: number,
+    credit: number
 }

@@ -1,66 +1,82 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+/* ANGULAR MODULES + ROUTER */
 import { NgModule } from '@angular/core';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { routing } from './router/routes';
+import { FormsModule, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.components/root/app.component';
-import { LoginComponent } from './app.components/auth/login/login.component';
-import { TransactionListComponent } from './app.components/transaction/transaction-list/transaction-list.component';
-import { TransactionCreateComponent } from './app.components/transaction/transaction-create/transaction-create.component';
-import { TransactionCardComponent } from './app.components/transaction/transaction-card/transaction-card.component';
-import { TransactionViewComponent } from './app.components/transaction/transaction-view/transaction-view.component';
-import { BalanceComponent } from './app.components/balance/balance.component';
-import { AccountComponent } from './app.components/account/account.component';
-import { LogoutComponent } from './app.components/auth/logout/logout.component';
-import { SideMenuComponent } from './app.components/side-menu/side-menu.component';
-import { DashboardComponent } from './app.components/dashboard/dashboard.component';
+import { routing } from './router/routes';
+/* END ANGULAR MODULES */
 
-
-
-
+/* ~ MODULES ~ */
+import { MaterialModule } from "./material.module";
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { CurrencyMaskModule } from "ng2-currency-mask";
-import { SearchComponent } from './app.components/search/search.component';
-// import { MaterializeModule } from 'angular2-materialize';
-import { TransitionConfirmComponent } from './app.components/transaction/transition-confirm/transition-confirm.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { MatSnackBarModule } from "@angular/material";
 
-import { AccountService } from '../app/app.services/account.service';
+// import { MaterializeModule } from 'angular2-materialize';
+/* ~ END MODULES ~ */
+
+/* ~ COMPONENTS ~ */
+// Root
+import { AppComponent } from './app.components/root/app.component';
+
+// Account
+import { AccountComponent } from './app.components/account/account.component';
+
+// Auth
+import { LoginComponent } from './app.components/auth/login/login.component';
+import { LogoutComponent } from './app.components/auth/logout/logout.component';
 import { SecretkeyComponent } from './app.components/auth/secret-key/secretkey.component';
 
-import { TransactionService } from './app.services/transaction.service';
+// Balance
+import { BalanceComponent } from './app.components/balance/balance.component';
+
+// Dashboard
+import { DashboardComponent } from './app.components/dashboard/dashboard.component';
+
+// Search
+import { SearchComponent } from './app.components/search/search.component';
+
+// Side-menu
+import { SideMenuComponent } from './app.components/side-menu/side-menu.component';
+
+// Transaction
+import { TransactionCardComponent } from './app.components/transaction/transaction-card/transaction-card.component';
+import { TransitionConfirmComponent } from './app.components/transaction/transition-confirm/transition-confirm.component';
+import { TransactionCreateComponent } from './app.components/transaction/transaction-create/transaction-create.component';
+import { TransactionListComponent } from './app.components/transaction/transaction-list/transaction-list.component';
+import { TransactionViewComponent } from './app.components/transaction/transaction-view/transaction-view.component';
+/* ~ END COMPONENTS ~ */
+
+/* ~ SERVICES ~ */
+import { AccountService } from '../app/app.services/account.service';
 import { AuthService } from './app.services/auth.service';
 import { ClientService } from './app.services/client.service';
-import { TokenInterceptor } from './app.interceptors/token.interceptor';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
 import { NavbarService } from './app.services/navbar.service';
+import { TransactionService } from './app.services/transaction.service';
+/* ~ END SERVICES ~ */
 
-import { FlexLayoutModule } from '@angular/flex-layout';
+/* ~ INTERCEPTORS ~ */
+import { TokenInterceptor } from './app.interceptors/token.interceptor';
+/* ~ END INTERCEPTORS ~ */
 
-
-/**
- * material components
- *
- */
-import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTableModule } from '@angular/material/table';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+/* ~ GUARDS ~ */
+import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
 import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard';
+<<<<<<< HEAD
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion';
 
 
+=======
+import { SnackbarComponent } from './app.components/snackbar/snackbar.component';
+/* ~ END GUARDS ~ */
+>>>>>>> 2688b7ed26a0a5cadbf9df99becaf19a69f75806
 
 @NgModule({
   declarations: [
@@ -78,6 +94,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     SearchComponent,
     TransitionConfirmComponent,
     SecretkeyComponent,
+    SnackbarComponent,
 
   ],
   imports: [
@@ -88,28 +105,25 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ReactiveFormsModule,
     HttpModule,
     TextMaskModule,
-    // MaterializeModule,
     HttpClientModule,
-    MatInputModule,
-    MatCardModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatTableModule,
-    MatDatepickerModule,
     CurrencyMaskModule,
+<<<<<<< HEAD
     MatGridListModule,
     MatListModule,
     MatSelectModule,
+=======
+    MaterialModule,
+    MatSnackBarModule    
+    // MaterializeModule,
+>>>>>>> 2688b7ed26a0a5cadbf9df99becaf19a69f75806
 
   ],
 
   providers: [
 
     AccountService,
-    TokenInterceptor, //TODO: not working
+    TokenInterceptor,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
@@ -119,6 +133,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ClientService,
     TransactionService,
     NavbarService,
+    MatSnackBarModule,
     //guards
     IsNotAuthenticatedGuard,
     IsAuthenticatedGuard,
