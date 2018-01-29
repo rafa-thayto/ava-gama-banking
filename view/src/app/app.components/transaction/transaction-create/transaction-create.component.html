@@ -36,9 +36,9 @@
                 <mat-label>Sua conta</mat-label>
                 <input 
                 matInput 
-                textMask]="{mask: maskConta}"
+                [textMask]="{mask: maskConta}"
                 [(ngModel)]="minhaConta"
-                type="text" name="conta"
+                type="text" name="minhaConta"
                 formControlName="minhaConta" disabled>
             </mat-form-field>
             <mat-form-field>
@@ -50,17 +50,19 @@
                 placeholder="ex: 0001"
                 maxlength="4"
                 type="text" 
+                name="agencia"
                 formControlName="agencia" required>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Conta de destino</mat-label>
                 <input 
                 matInput 
-                textMask]="{mask: maskConta}"
+                [textMask]="{mask: maskConta}"
                 [(ngModel)]="conta" 
                 placeholder="ex: 000001"
                 maxlength="6"
                 type="text" 
+                name="conta"
                 formControlName="conta" required>
             </mat-form-field>
             <mat-form-field>
@@ -73,6 +75,7 @@
                 maxlength="13"
                 minlength="4"
                 type="text"
+                name="valorTransferido"
                 formControlName="valorTransferido" required>
             </mat-form-field>
 
