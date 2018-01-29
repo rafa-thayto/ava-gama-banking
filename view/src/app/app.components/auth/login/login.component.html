@@ -21,7 +21,7 @@
         <!-- <recaptcha class=margin-left-16 (resolved)="isHuman = true" siteKey="6LfDbDUUAAAAACGrd8UvRB1qUIxm7HP4zxVE2_O3"></recaptcha> -->
       </mat-card-content>
       <mat-card-actions fxFlexFill align=end>
-        <button mat-raised-button color=primary mat-button (click)=login() fxFlex style="height: 45px;" [disabled]='!(form.valid)'>entrar</button>
+        <button mat-raised-button color=primary mat-button (click)=login() fxFlex style="height: 45px;" [disabled]='!form.valid||load'>entrar</button>
       </mat-card-actions>
       <h3 fxFlex=100 class=error color=warn>{{error}}</h3> 
       <div class="load" fxFlex=100 fxLayout="column">

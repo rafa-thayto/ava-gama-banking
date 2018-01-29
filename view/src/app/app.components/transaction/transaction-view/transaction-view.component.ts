@@ -21,7 +21,6 @@ export class TransactionViewComponent {
       .map(data => ({account: data[0], transaction: data[1]}))
       .subscribe(data => {
         data.transaction.isCredit = data.account.account_number === data.transaction.to.account_number;
-        console.log(data)
         this.loading = false;
         this.transaction = data.transaction;
       })
