@@ -2,7 +2,8 @@
   <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap=1em fxFlex=150px>
     <div fxLayout=row fxLayoutAlign="space-around center">
       <div fxLayout="column" fxLayoutAlign="center center" fxHide fxShow.gt-sm>
-        <h2 class=debito>R$ {{1000 | number : '1.2-2'}}</h2>
+        <h2 *ngIf="!(authService.account | async)" class=debito>-</h2>
+        <h2 *ngIf="(authService.account | async)" class=debito>R$ {{(authService.account | async).debit | number : '1.2-2'}}</h2>
         <small>débito (últimos 30 dias)</small>
       </div>
       <div fxLayout="column" fxLayoutAlign="center center">
@@ -11,7 +12,8 @@
         <small>saldo atual</small>
       </div>
       <div fxLayout="column" fxLayoutAlign="center center" fxHide fxShow.gt-sm>
-        <h2 class=credito>R$ {{1000 | number : '1.2-2'}}</h2>
+        <h2 *ngIf="!(authService.account | async)" class=credito>-</h2>
+        <h2 *ngIf="(authService.account | async)" class=credito>R$ {{(authService.account | async).credit | number : '1.2-2'}}</h2>
         <small>crédito (últimos 30 dias)</small>
       </div>
     </div>
