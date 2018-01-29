@@ -13,6 +13,8 @@ import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 })
 export class SideMenuComponent {
 
+  @ViewChild('sidenav') sidenav
+
   public client: Observable<IClient>;
   public account: Observable<IAccount>;
   public sideMenuMode: string = 'push';
@@ -38,8 +40,6 @@ export class SideMenuComponent {
     this.client = this.authService.client;
     this.media.asObservable().subscribe(this.onMediaChange.bind(this));
   }
-
-  @ViewChild('sidenav') sidenav
 
   fechar() {
     if (window.innerWidth <= 960) { 
