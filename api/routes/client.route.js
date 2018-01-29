@@ -7,13 +7,33 @@ const Client = db.Client;
 
 const getLoggedClientInfo = async (req, res, next) => {
     const clientId = req.clientId;
-    console.log(clientId)
     try {
         const client = await Client.findById(clientId)
             .select('name document')
             .populate({ path: 'accounts', select: 'ag balance account_number' })
             .lean();
         if (!client) return res.status(404).end();
+        const today = new Date();
+        const pastMonth = today.setDate(today.getDate() - 30);
+        const promises = client.accounts.map(account => {
+            const accountId = account._id.toString();
+            const query = { $or: [{ from: accountId }, { to: accountId }], status: 'completado' };
+            return db.Transaction.find(query).where('date').gt(pastMonth)
+                .lean()
+                .then(transactions => {
+                    console.log(accountId)
+                    let debit = 0, credit = 0;
+                    transactions
+                        .forEach(transaction => {
+                            console.log(transaction.from.toString() === accountId ? transaction.value * -1 : transaction.value)
+                            if (transaction.from.toString() === accountId) debit += transaction.value;
+                            else credit += transaction.value;
+                        });
+                    account.debit = debit;
+                    account.credit = credit;
+                });
+        });
+        await Promise.all(promises);
         res.status(200).json(client);
     } catch (e) {
         res.status(500);
@@ -50,7 +70,6 @@ const getClientInfoByAccount = async (req, res, next) => {
  */
 router.get('/',
     auth.isAuthenticated,
-    auth.isAuthorized,
     async (req, res, next) => {
         if (req.query.ag || req.query.account_number) getClientInfoByAccount(req, res, next);
         else getLoggedClientInfo(req, res, next);

@@ -14,9 +14,7 @@ const Account = db.Account
  */
 router.get(
     '',
-    //TODO: remover parametros
     auth.isAuthenticated,
-    auth.isAuthorized,
     async (req, res, next) => {
         try {
             const agencia = req.account.ag
@@ -25,7 +23,6 @@ router.get(
             if (!account) return res.status(404)
             res.status(200).json(account)
         } catch (e) {
-            console.log(e)
             res.status(500);
         } finally {
             res.end()
