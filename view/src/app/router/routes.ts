@@ -41,10 +41,6 @@ const routes: Routes = [
         component: TransactionCreateComponent,
         canActivate: [IsAuthenticatedGuard]
       }, {
-        path: 'confirmar',
-        component: TransitionConfirmComponent,
-        canActivate: [IsAuthenticatedGuard]
-      }, {
         path: ':id',
         component: TransactionViewComponent,
         canActivate: [IsAuthenticatedGuard]
