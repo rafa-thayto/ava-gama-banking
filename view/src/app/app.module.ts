@@ -66,6 +66,12 @@ import { TokenInterceptor } from './app.interceptors/token.interceptor';
 /* ~ GUARDS ~ */
 import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
 import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
 import { SnackbarComponent } from './app.components/snackbar/snackbar.component';
 /* ~ END GUARDS ~ */
 
@@ -99,6 +105,9 @@ import { SnackbarComponent } from './app.components/snackbar/snackbar.component'
     HttpClientModule,
     BrowserAnimationsModule,
     CurrencyMaskModule,
+    MatGridListModule,
+    MatListModule,
+    MatSelectModule,
     MaterialModule,
     MatSnackBarModule    
     // MaterializeModule,

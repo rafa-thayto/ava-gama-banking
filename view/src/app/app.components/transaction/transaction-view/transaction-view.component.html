@@ -1,77 +1,24 @@
 <br>
-<div fxLayout="column" fxLayoutAlign="none center" >
+
 <div fxLayout="row" fxLayoutAlign="space-between stretch" >
     <a routerLink='/dashboard' class="fundo"> <i class="medium material-icons">close</i></a>
     <label class="lblTranf">Transferência </label>
 </div>  
 
 <br>
+<mat-grid-list cols="2" rowHeight="50px">
+    <mat-grid-tile
+        *ngFor="let tile of tiles"
+        [colspan]="tile.cols"
+        [rowspan]="tile.rows"
+        [style.color]="tile.color">
+      {{tile.text}}
+    </mat-grid-tile>
+  </mat-grid-list>
 
-<div fxLayout="row" fxLayoutAlign="space-between none" >
-    <div fxLayout="row" fxFlex="48" >
-        <label>de:</label>
-    </div>
-    <div fxLayout="row" fxFlex="48" >
-        <label>Marcos Rodrigues</label>
-    </div>
-</div>
-  
-<br>
-  
-<div fxLayout="row" fxLayoutAlign="center center" >
-    <div fxLayout="row" fxFlex="48" >
-        <label>para:</label>
-    </div>
-    <div fxLayout="row" fxFlex="48" >
-        <label>Avanade</label>
-    </div>
-</div>
-  
-    <br>
-  
-<div fxLayout="row" fxLayoutAlign="center center" >
-    <div fxLayout="row" fxFlex="48" >
-        <label>saldo atual:</label>
-    </div>
-    <div fxLayout="row" fxFlex="48" >
-        <label class="saldoGreen">R$ 1.000,00</label>
-    </div>
-</div>
-  
-<br>
-  
-<div fxLayout="row" fxLayoutAlign="center center" >
-    <div fxLayout="row" fxFlex="48" >
-        <label>débito:</label>
-    </div>
-    <div fxLayout="row" fxFlex="48" >
-        <label  class="saldoRed">- R$ 50,00</label>
-    </div>
-</div>
-  
   <br>
-  
-<div fxLayout="row" fxLayoutAlign="center center" >
-    <div fxLayout="row" fxFlex="48" >
-        <label>saldo após:</label>
-    </div>
-    <div fxLayout="row" fxFlex="48" >
-        <label class="saldoGreen">R$ 950,00</label>
-    </div>
-</div>
-
-<br>
-  
-<div fxLayout="row" fxLayoutAlign="center center" >
-    <div fxLayout="row" fxFlex="48" >
-        <label>data de execução:</label>
-    </div>
-    <div fxLayout="row" fxFlex="48" >
-        <label>21/01/2018 21:38</label>
-    </div>
-</div>
-
-<br><br>
+  <mat-divider></mat-divider>
+  <br>
 
 <div class="codigoAutent">       
         <label>Código de autenticação</label>
@@ -79,4 +26,3 @@
         <label>AKPKGF33535</label>
 </div>  
 
-</div>
