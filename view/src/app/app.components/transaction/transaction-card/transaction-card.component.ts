@@ -4,7 +4,7 @@ import { TransactionCreateComponent } from '../transaction-create/transaction-cr
 import { ITransaction } from '../../../app.interfaces/transaction';
 
 @Component({
-  selector: 'app-transaction-card',
+  selector: 'transaction-card',
   templateUrl: './transaction-card.component.html',
   styleUrls: ['./transaction-card.component.css']
 })

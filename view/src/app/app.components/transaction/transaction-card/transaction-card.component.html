@@ -5,11 +5,11 @@
         <mat-card-title>
           <b>Transferência</b>
         </mat-card-title>
-        <mat-card-subtitle>{{transaction.data | date:'dd/MM/yyyy'}}</mat-card-subtitle>
+        <mat-card-subtitle>{{transaction.date | date:'dd/MM/yyyy'}}</mat-card-subtitle>
       </mat-card-header>
         <mat-card-content >
-              <p fxLayoutAlign="end">{{transaction.name}} </p>
-              <p fxLayoutAlign="end" [ngClass]="(transaction.type == 'credito')?'green':'red'">R${{transaction.value}}</p>
+              <p fxLayoutAlign="end"><strong>{{transaction.isCredit ? transaction?.from?.client?.name : transaction?.to?.client?.name}}</strong></p>
+              <p fxLayoutAlign="end" [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}">R$ R$ {{transaction.value | number : '1.2-2'}}</p>
         </mat-card-content>
         <mat-card-actions align="end">
           <button mat-button >Detalhes</button>
