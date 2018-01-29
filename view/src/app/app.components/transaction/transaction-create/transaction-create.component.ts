@@ -39,6 +39,7 @@ export class TransactionCreateComponent implements OnInit {
 
   ngOnInit() {
     this.firstFormGroup = this.fb.group({
+      'minhaConta': ['', Validators.required],
       'agencia': ['' , Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(4)])],
       'conta': ['' , Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(6)])],
       'valorTransferido': ['' , Validators.compose([Validators.required, Validators.maxLength(13)])]
