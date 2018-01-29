@@ -3,11 +3,12 @@ import { IAccount } from "./account";
 type TransactionStatus = "pendente" | "completado" | "abortado";
 
 export interface ITransaction {
-    from: IAccount,
-    to: IAccount,
+    from: Partial<IAccount>,
+    to: Partial<IAccount>,
     date: Date,
     value: number,
     status: TransactionStatus,
     msg: string,
-    isCredit: boolean
+    isCredit?: boolean,
+    password?: string
 }

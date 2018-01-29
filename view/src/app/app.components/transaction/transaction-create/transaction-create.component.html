@@ -65,6 +65,42 @@
                 value="{{this.data.value}}"
                 [disabled]='true'>
             </mat-input-container> -->
+            <div fxLayout=row fxLayoutAlign="center center">
+                <mat-spinner *ngIf=loading fxFlexAlign=center></mat-spinner>
+                <div fxLayout=column *ngIf=transaction fxFlex=95 fxLayoutGap=2.5 fxFlex.gt-sm=400px fxLayoutGap.gt-sm=0>
+                  <div fxFlex=25px></div>
+                  <div fxLayout=column fxFlex=50px fxLayoutAlign="center center">
+                    <h1>Transferência</h1>
+                  </div>
+                  <div fxFlex=25px></div>
+                  <div fxLayout=row fxFlex=50px>
+                    <span>De</span>
+                    <span fxFlex></span>
+                    <span>{{transaction.from.client.name}}</span>
+                  </div>
+                  <div fxLayout=row fxFlex=50px>
+                    <span>Para</span>
+                    <span fxFlex></span>
+                    <span>{{transaction.to.client.name}}</span>
+                  </div>
+                  <div fxLayout=row fxFlex=50px>
+                    <span>Valor</span>
+                    <span fxFlex></span>
+                    <span [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}">R$ {{transaction.value | number : '3.0-0'}}</span>
+                  </div>
+                  <div fxLayout=row fxFlex=50px>
+                    <span>Data de execução</span>
+                    <span fxFlex></span>
+                    <span>{{transaction.date | date : 'dd/MM/yyyy hh:mm'}}</span>
+                  </div>
+                  <hr />
+                  <div fxLayout=column fxLayoutAlign="center center">
+                    <span>Código da transação</span>
+                    <span fxFlex=25px></span>
+                    <span>{{transaction._id}}</span>
+                  </div>
+                </div>
+              </div>
             <mat-input-container>
                 <mat-label>Senha</mat-label>
                 <input 

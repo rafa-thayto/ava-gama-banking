@@ -2,6 +2,8 @@ import { Component, OnInit, Input, transition } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { TransactionService } from './../../../app.services/transaction.service';
 import { Observable } from 'rxjs/Observable';
+import { ITransaction } from '../../../app.interfaces/transaction';
+import { ClientService } from '../../../app.services/client.service';
 
 @Component({
   selector: 'app-transaction-create',
@@ -14,6 +16,7 @@ export class TransactionCreateComponent implements OnInit {
   private contaControl: FormControl
   private agenciaControl: FormControl
   private senha: '';
+  public transaction: Partial<ITransaction>
   public data: {
     ag: '',
     account_number: '',
@@ -29,7 +32,7 @@ export class TransactionCreateComponent implements OnInit {
   // public maskAgencia = [/[0-9]/, /\d/, /\d/, /\d/]
   // public maskConta = [/[0-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]
 
-  constructor(private service: TransactionService, private fb: FormBuilder) {
+  constructor(private service: TransactionService, private fb: FormBuilder, private clientService: ClientService) {
     this.createControls()
     this.createForm()
   }
@@ -91,6 +94,20 @@ export class TransactionCreateComponent implements OnInit {
     // this.error = ''
     if (!this.firstFormGroup.valid) return
     this.data = this.firstFormGroup.value;
+    this.transaction = {
+      from: {
+        ag: 1,
+        account_number: 1
+      },
+      to: {
+        ag: 1,
+        account_number: 2
+      },
+      value: 1,
+      password: ''
+    }
+    // if (typeof this.data.ag === 'string')
+      // this.data.ag = parseInt(this.data.ag.replace(/[^0-9]/g, ''))
     // if (typeof data.cpf === 'string')
     //   data.cpf = parseInt(data.cpf.replace(/[^0-9]/g, ''));
     // const onSubmitSuccess = () => {
@@ -99,15 +116,15 @@ export class TransactionCreateComponent implements OnInit {
     // const onSubmitError = (error: any) => this.error = 'usuário e/ou senha inválidos';
     //TODO: add loading
     // this.authService.Submit(data.cpf, data.password).first().subscribe(onSubmitSuccess, onSubmitError);
-    console.log(this.data);
+
+      // this.clientService.getClientInfo(this.data.ag, this.data.account_number)
+    // console.log(this.data);
   }
 
   createTransaction() {
-    console.log(`
-      agencia: ${this.data.ag}
-      número da conta: ${this.data.account_number}
-      transação: ${this.data.value}
-    `);
+    this.data.account_number
+    this.data.ag
+    this.data.value
   }
 
   ngOnDestroy() {
