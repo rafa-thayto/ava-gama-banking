@@ -7,11 +7,14 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./snackbar.component.css']
 })
 export class SnackbarComponent implements OnInit {
+
   constructor(public snackBar: MatSnackBar) {}
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
+  saldoInsuficiente() {
+    this.snackBar.open('Não foi possível efetuar essa transação. Seu saldo é insuficiente.', 'Ok', {
       duration: 2000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top'
     });
   }
 
