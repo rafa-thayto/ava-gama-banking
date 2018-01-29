@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { TextMaskModule } from 'angular2-text-mask';
+import { MatSnackBarModule } from "@angular/material";
 
 // import { MaterializeModule } from 'angular2-materialize';
 /* ~ END MODULES ~ */
@@ -65,6 +66,7 @@ import { TokenInterceptor } from './app.interceptors/token.interceptor';
 /* ~ GUARDS ~ */
 import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
 import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard';
+import { SnackbarComponent } from './app.components/snackbar/snackbar.component';
 /* ~ END GUARDS ~ */
 
 @NgModule({
@@ -83,6 +85,7 @@ import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard
     SearchComponent,
     TransitionConfirmComponent,
     SecretkeyComponent,
+    SnackbarComponent,
 
   ],
   imports: [
@@ -96,7 +99,8 @@ import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard
     HttpClientModule,
     BrowserAnimationsModule,
     CurrencyMaskModule,
-    MaterialModule
+    MaterialModule,
+    MatSnackBarModule    
     // MaterializeModule,
 
   ],
@@ -114,6 +118,7 @@ import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard
     ClientService,
     TransactionService,
     NavbarService,
+    MatSnackBarModule,
     //guards
     IsNotAuthenticatedGuard,
     IsAuthenticatedGuard,
