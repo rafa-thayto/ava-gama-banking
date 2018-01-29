@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { ITransaction } from '../../../app.interfaces/transaction';
 import { ClientService } from '../../../app.services/client.service';
 import { AuthService } from '../../../app.services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transaction-create',
@@ -23,7 +24,7 @@ export class TransactionCreateComponent {
   public secondFormGroup: FormGroup
   public isLinear = true
 
-  constructor(private transactionService: TransactionService, private fb: FormBuilder, private clientService: ClientService, private authService: AuthService) {
+  constructor(private transactionService: TransactionService, private fb: FormBuilder, private clientService: ClientService, private authService: AuthService, private router: Router) {
     this.createControls()
     this.createForm()
   }
@@ -98,37 +99,13 @@ export class TransactionCreateComponent {
         this.transaction.from.client = { name: data.fromClient.name };
         this.loading = false;
       })
-
-
-    // this.transaction = {
-    //   from: {
-    //     ag: 1,
-    //     account_number: 1
-    //   },
-    //   to: {
-    //     ag: 1,
-    //     account_number: 2
-    //   },
-    //   value: 1,
-    //   password: ''
-    // }
-    // if (typeof this.data.ag === 'string')
-    // this.data.ag = parseInt(this.data.ag.replace(/[^0-9]/g, ''))
-    // if (typeof data.cpf === 'string')
-    //   data.cpf = parseInt(data.cpf.replace(/[^0-9]/g, ''));
-    // const onSubmitSuccess = () => {
-    //   this.authService.account.filter(account => !!account).first().subscribe(() => this.router.navigateByUrl('/'));
-    // };
-    // const onSubmitError = (error: any) => this.error = 'usuário e/ou senha inválidos';
-    //TODO: add loading
-    // this.authService.Submit(data.cpf, data.password).first().subscribe(onSubmitSuccess, onSubmitError);
-
-    // this.clientService.getClientInfo(this.data.ag, this.data.account_number)
-    // console.log(this.data);
   }
 
   createTransaction() {
-    const onSuccess = trasaction => { console.log(trasaction) }
+    const onSuccess = trasaction => {
+      this.authService.refreshBalance();
+      this.router.navigateByUrl(`/transferencias/${trasaction._id}`)
+    }
     const onError = error => { console.log(error) }
     const onComplete = () => { }
     console.log(this.transaction)
