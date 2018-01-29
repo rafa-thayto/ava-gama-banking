@@ -58,13 +58,17 @@ export class LoginComponent implements OnDestroy {
     this.error = ''
     if (!this.form.valid) return
     this.load = true
-    let data = this.form.value;
+    let data = this.form.value
+    this.form.disable()
     if (typeof data.cpf === 'string')
-      data.cpf = parseInt(data.cpf.replace(/[^0-9]/g, ''));
+      data.cpf = parseInt(data.cpf.replace(/[^0-9]/g, ''))
     const onLoginSuccess = () => {
       this.authService.account.filter(account => !!account).first().subscribe(() => this.router.navigateByUrl('/'));
     };    
-    const onComplete = () => this.load = false
+    const onComplete = () => 
+    this.load = false
+    this.form.enable()
+    
     const onLoginError = (error: any) => {
       this.error = 'usuário e/ou senha inválidos'
       onComplete()
