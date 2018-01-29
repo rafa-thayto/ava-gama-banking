@@ -61,7 +61,6 @@ export class AuthService {
     this.token = new ReplaySubject(1);
     this.accounts = this.client.map(client => client ? client.accounts : null);
     this.isLogged = this.token.map(token => token ? true : false);
-    this.isLogged.subscribe(isLogged => console.log("isLogged ? ", isLogged))
     this.initListeners();
     this.initToken();
   }
