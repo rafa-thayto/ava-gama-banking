@@ -1,6 +1,4 @@
-/* .toolbar-filler {
-    flex: 1 1 auto
-} */
+
 
 .mat-drawer {
     background-color: #ff5800!important;
@@ -9,44 +7,10 @@
     color: rgba(255, 255, 255, 0.87)!important;
 }
 
-/*
-
-
-[hidden] {
-    display: none;
- }
-
-.brand-logo img {
-    margin-top: 10px;
-    margin-left: 10px;
-    height: 3rem;
+mat-toolbar {
+    background-color: #ff5800;
 }
 
-#nav-mobile h5 {
-    margin-top: 1.2rem;
-}
-
-#nav-mobile  p {
-    margin-top: -0.7rem;
-}
-
-a{
-    height: 4rem;
-}
-
-.usuario{
-    font-size: 1rem;
-}
-
-.agencia-conta{
-    font-size: 0.8rem;
-}
-
-.icon-pessoa{
-    padding: 6px;
-    margin-top: 0.2rem;
-    font-size: 2.8rem;
-} */
 
 .profile{
     font-size: 0.8em;
