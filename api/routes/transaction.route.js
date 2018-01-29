@@ -142,8 +142,6 @@ router.get('/:transactionId', auth.isAuthenticated, getTransactions, checkTransa
  * @apiParam {Object} to dados do destino da transação
  * @apiParam {Number} to.ag agencia de destino
  * @apiParam {Number} to.account_number conta de destino
- * @apiParam {Number} ag agencia de destino
- * @apiParam {Number} account_number conta de destino
  * @apiParam {String} value valor da transacao
  * @apiParam {String} password senha de confirmação (senha da conta)
  *

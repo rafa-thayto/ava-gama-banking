@@ -63,7 +63,7 @@ export class LoginComponent implements OnDestroy {
       data.cpf = parseInt(data.cpf.replace(/[^0-9]/g, ''));
     const onLoginSuccess = () => {
       this.authService.account.filter(account => !!account).first().subscribe(() => this.router.navigateByUrl('/'));
-    };    
+    };
     const onComplete = () => this.load = false
     const onLoginError = (error: any) => {
       this.error = 'usuário e/ou senha inválidos'
