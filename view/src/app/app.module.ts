@@ -1,10 +1,12 @@
 /* ANGULAR MODULES + ROUTER */
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-
+import { registerLocaleData } from "@angular/common";
+import localePt from '@angular/common/locales/pt';
 import { routing } from './router/routes';
+registerLocaleData(localePt, 'pt')
 /* END ANGULAR MODULES */
 
 /* ~ MODULES ~ */
@@ -113,7 +115,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
   ],
 
   providers: [
-
+    { provide: LOCALE_ID, useValue: 'pt'},
     AccountService,
     TokenInterceptor,
     {
