@@ -21,7 +21,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class SearchComponent implements OnInit {
   public subscription: Subscription;
   public loading: boolean = true;
-  public lastTransactions: ITransaction[]
+  public sTransactions: ITransaction[]
 
   dateStart = '';
   dateEnd = '';
@@ -38,12 +38,10 @@ export class SearchComponent implements OnInit {
 
   constructor(private advancedfilterTransactions: TransactionService, public authService: AuthService , private router: Router) {
 
-    this.subscription = this.authService.account
-    .do(() => this.loading = true)
+    this.subscription = this.authService.account.do(() => this.loading = true)
     .flatMap(account => this.advancedfilterTransactions.find({ ag: account.ag, account_number: account.account_number}).first())
-    .delay(1000)
-    .do(() => this.loading = false)
-    .subscribe(transactions => this.lastTransactions = transactions)
+    .delay(1000).do(() => this.loading = false)
+    .subscribe(transactions => this.sTransactions = transactions)
 
    
   }

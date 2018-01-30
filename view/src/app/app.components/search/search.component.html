@@ -1,5 +1,5 @@
-<mat-drawer-container class="sideNav"  >
-<form>
+<div fxLayout=row class="teste">
+
         <mat-label class="label" >
          Pesquisar Extrato
         </mat-label>
@@ -45,21 +45,20 @@
   <button mat-raised-button color="warn" (click)=limpar()>Limpar</button>
   <button mat-raised-button color="warn" (click)=filtrar()>Filtar</button>
 
-</form>
-</mat-drawer-container>
+</div>
 
 <mat-spinner *ngIf=loading fxFlexAlign=center></mat-spinner>
   <!-- <p class=msg *ngIf="(lastTransactions | async)?.length === 0">Nenhuma transação localizada</p> -->
   <!-- //TODO: se a lista estiver vazia?-->
 
   <div [fxHide]=loading fxHide.sm fxLayoutWrap  fxLayout="start center" fxLayoutGap="1">
-    <div *ngFor="let transaction of lastTransactions" fxFlex="30">
+    <div *ngFor="let transaction of sTransactions" fxFlex="30">
       <transaction-card [transaction]="transaction"></transaction-card>
     </div>
 </div>
 <mat-nav-list [fxHide]=loading fxHide.gt-sm>
   <h3 mat-subheader>Ultimas 10 transações</h3>
-  <a mat-list-item *ngFor="let transaction of lastTransactions" [routerLink]='["/","transferencias",transaction._id]'>
+  <a mat-list-item *ngFor="let transaction of sTransactions" [routerLink]='["/","transferencias",transaction._id]'>
     <mat-icon mat-list-icon *ngIf=!transaction.isCredit class=debito>arrow_downward</mat-icon>
     <mat-icon mat-list-icon *ngIf=transaction.isCredit class=credito>arrow_upward</mat-icon>
     <h4 mat-line>{{transaction.isCredit ? transaction?.from?.client?.name : transaction?.to?.client?.name}}</h4>
