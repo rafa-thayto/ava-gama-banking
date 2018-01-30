@@ -18,8 +18,5 @@ export class AccountService {
         if (typeof ag !== 'number') return Observable.throw("invalid agency");
         if (typeof account_number !== 'number') return Observable.throw("invalid account number");
         return this.http.get<IAccount>(`${environment.api.host}${this.endpoint}`)
-
     }
 }
-
-
