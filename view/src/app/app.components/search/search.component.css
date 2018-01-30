@@ -22,3 +22,6 @@
 mat-sidenav{
   padding: 1em;
 }
+mat-sidenav-content{
+  width: 100%;
+}

@@ -1,23 +1,32 @@
 <mat-sidenav-container fxFlexFill>
-  <mat-sidenav mode="side" opened="true" class=mat-elevation-z1 fxLayout="column" fxLayoutAlign="center stretch" fxFlex.gt-sm=300px fxLayoutGap=1em fixedInViewport=true>
-    <mat-label class="label">
+  <mat-sidenav mode="side" opened="true" class=mat-elevation-z1 fxLayout="column" fxLayoutAlign="center stretch" fxFlex.gt-sm=230.3px
+    fxLayoutGap=1em fixedInViewport=true>
+    <!-- <mat-label class="label">
       Filtrar
-    </mat-label>
+    </mat-label> -->
     <mat-form-field>
-      <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="Valor Inicial" type="number"
-        class="validate" name="valueStart" [(ngModel)]="valueStart">
+      <input matInput placeholder="Valor Inicial" type="number" [(ngModel)]=valueStart>
     </mat-form-field>
     <mat-form-field>
-      <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="Valor Final" type="number"
-        class="validate" name="valueEnd" [(ngModel)]="valueEnd">
+      <input matInput placeholder="Valor Final" type="number" name="valueEnd" [(ngModel)]=valueEnd>
     </mat-form-field>
     <mat-form-field>
+      <input matInput [matDatepicker]="dateStartPicker" placeholder="Date Inicial" [(ngModel)]=dateStart>
+      <mat-datepicker-toggle matSuffix [for]="dateStartPicker"></mat-datepicker-toggle>
+      <mat-datepicker #dateStartPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dateEndPicker" placeholder="Data Final" [(ngModel)]=dateEnd>
+      <mat-datepicker-toggle matSuffix [for]="dateEndPicker"></mat-datepicker-toggle>
+      <mat-datepicker #dateEndPicker></mat-datepicker>
+    </mat-form-field>
+    <!-- <mat-form-field>
       <input matInput [textMask]=" {mask: MaskDate}" type="text" name="dateStart" placeholder="Date Inicial" [(ngModel)]="dateStart">
     </mat-form-field>
     <mat-form-field>
       <input matInput [textMask]=" {mask: MaskDate}" type="text" name="dateEnd" placeholder="Data Final" [(ngModel)]="dateEnd">
-    </mat-form-field>
-    <mat-form-field>
+    </mat-form-field> -->
+    <!-- <mat-form-field>
       <input matInput [textMask]=" {mask: maskAgencia}" placeholder="Agência" name="ag" [(ngModel)]="ag">
     </mat-form-field>
     <mat-form-field>
@@ -25,15 +34,15 @@
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="Pessoa" name="clienteName" [(ngModel)]="clienteName">
-    </mat-form-field>
+    </mat-form-field> -->
     <!-- <mat-form-field>
       <mat-select [(value)]="typeAccount" placeholder="Tipo de Conta">
         <mat-option value="Corrente">Corrente</mat-option>
         <mat-option value="Poupança">Poupança</mat-option>
       </mat-select>
     </mat-form-field> -->
-    <button mat-raised-button color="warn" (click)=limpar()>Limpar</button>
-    <button mat-raised-button color="warn" (click)=filtrar()>Filtar</button>
+    <!-- <button mat-raised-button (click)=limpar()>Limpar</button> -->
+    <button mat-raised-button color="primary" (click)=filtrar()>Filtrar</button>
   </mat-sidenav>
   <mat-sidenav-content fxLayout=column>
     <mat-spinner *ngIf=loading fxFlexAlign=center></mat-spinner>
@@ -41,13 +50,13 @@
       <!-- <p class=msg *ngIf="(lastTransactions | async)?.length === 0">Nenhuma transação localizada</p> -->
       <!-- //TODO: se a lista estiver vazia?-->
       <div fxHide fxShow.gt-sm fxLayoutWrap fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="1">
-        <div *ngFor="let transaction of sTransactions" fxFlex="50" fxFlex.gt-md=33>
+        <div *ngFor="let transaction of transactions" fxFlex="50" fxFlex.gt-md=33>
           <transaction-card [transaction]="transaction"></transaction-card>
         </div>
       </div>
       <mat-nav-list fxShow fxHide.gt-sm>
         <h3 mat-subheader>Ultimas 10 transações</h3>
-        <a mat-list-item *ngFor="let transaction of sTransactions" [routerLink]='["/","transferencias",transaction._id]'>
+        <a mat-list-item *ngFor="let transaction of transactions" [routerLink]='["/","transferencias",transaction._id]'>
           <mat-icon mat-list-icon *ngIf=!transaction.isCredit class=debito>arrow_downward</mat-icon>
           <mat-icon mat-list-icon *ngIf=transaction.isCredit class=credito>arrow_upward</mat-icon>
           <h4 mat-line>{{transaction.isCredit ? transaction?.from?.client?.name : transaction?.to?.client?.name}}</h4>

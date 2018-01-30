@@ -52,10 +52,10 @@ const getAccount = async (req, res, next) => {
 }
 const buildQuery = (req, res, next) => {
     let query = db.Transaction.find({ $or: [{ from: req.accountId }, { to: req.accountId }] });
-    if (req.query.dateStart) query = query.where('date').gt(req.query.dateStart);
-    if (req.query.dateEnd) query = query.where('date').lt(req.query.dateEnd);
-    if (req.query.valueStart) query = query.where('value').gt(req.query.valueStart);
-    if (req.query.valueEnd) query = query.where('value').gt(req.query.valueEnd);
+    if (req.query.dateStart) query = query.where('date').gte(req.query.dateStart);
+    if (req.query.dateEnd) query = query.where('date').lte(req.query.dateEnd);
+    if (req.query.valueStart) query = query.where('value').gte(req.query.valueStart);
+    if (req.query.valueEnd) query = query.where('value').lte(req.query.valueEnd);
     if (req.query.limit) query = query.limit(parseInt(req.query.limit));
     if (req.query.skip) query = query.skip(parseInt(req.query.skip));
     query = query.sort({ date: -1 }).populate(populateFromOpt).populate(populateToOpt).select('-createdAt -updatedAt');

@@ -10,7 +10,7 @@ import 'rxjs/add/observable/throw';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-interface IRequest {
+export interface IRequest {
     ag: number;
     account_number: number;
     dateStart?: Date;
@@ -29,7 +29,7 @@ export class TransactionService {
 
     constructor(private _http: Http, public http: HttpClient) { }
 
-    public find(options: IRequest): Observable<ITransaction[]> {
+    public find(options: Partial<IRequest>): Observable<ITransaction[]> {
         let params = new HttpParams();
         params = params.append("ag", options.ag.toString());
         params = params.append("account_number", options.account_number.toString());

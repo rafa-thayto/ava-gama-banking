@@ -4,83 +4,67 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Http, Headers } from '@angular/http'
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { TransactionService } from '../../app.services/transaction.service';
+import { TransactionService, IRequest } from '../../app.services/transaction.service';
 import { NavbarService } from '../../app.services/navbar.service';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { AuthService } from '../../app.services/auth.service';
 import { ITransaction } from '../../app.interfaces/transaction';
 
 import 'rxjs/add/operator/mergeMap';
 import { Subscription } from 'rxjs/Subscription';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
+
+  public dateStart: Date;
+  public dateEnd: Date = new Date();
+  public valueStart: number;
+  public valueEnd: number;
+  // clienteName: String;
+  // typeAccount: String;
+  // error: String;
+
   public subscription: Subscription;
   public loading: boolean = true;
-  public sTransactions: ITransaction[]
+  public transactions: ITransaction[] = [];
+  public inputWatcher: ReplaySubject<Partial<IRequest>>;
 
-  dateStart = '';
-  dateEnd = '';
-  valueStart: number;
-  valueEnd: number;
-  ag: number;
-  account_number: number;
-  clienteName: String;
-  typeAccount: String;
-  error: String;
-
-  filter;
-
-
-  constructor(private advancedfilterTransactions: TransactionService, public authService: AuthService , private router: Router) {
-
-    this.subscription = this.authService.account.do(() => this.loading = true)
-    .flatMap(account => this.advancedfilterTransactions.find({ ag: account.ag, account_number: account.account_number}).first())
-    .delay(1000).do(() => this.loading = false)
-    .subscribe(transactions => this.sTransactions = transactions)
-
-
+  constructor(private transactionService: TransactionService, public authService: AuthService) {
+    this.inputWatcher = new ReplaySubject(1);
+    const accountObs = this.authService.account;
+    this.subscription = Observable.combineLatest(accountObs, this.inputWatcher)
+      .do(() => this.loading = true)
+      .map(data => {
+        let options: Partial<IRequest> = data[1]
+        options.ag = data[0].ag;
+        options.account_number = data[0].account_number;
+        console.log(options)
+        return options;
+      })
+      .flatMap(request => this.transactionService.find(request).first())
+      .do(() => this.loading = false)
+      .subscribe(
+        transactions => this.transactions = transactions,
+        error => console.log(error)
+      )
+    this.filtrar();
   }
 
-public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
-public maskConta = [ /[1-9]/, /\d/, /\d/,/\d/,/\d/, '-', /\d/, /\d/]
-public maskTransf = [ /[1-9]/,/\d/,/\d/,'.',/\d/,/\d/,/\d/,'.',/\d/]
-public MaskDate = [ /[0-9]/,/\d/,'/',/\d/,/\d/,'/',/\d/,/\d/,/\d/,/\d/]
-
-  ngOnInit() {
-
-  }
-
-  limpar() {
-
-  this.dateStart = '';
-  this.dateEnd = '';
-  this.valueStart = 0;
-  this.valueEnd = 0;
-  this.ag = 0;
-  this.account_number = 0;
-  this.clienteName = '';
-  this.typeAccount = '';
-  this.error ='';
-  }
   filtrar() {
-
-    //parse String to Date
-    var auxDate = this.dateStart.split('/');
-    var stringFormatada = auxDate[0] + '-' + auxDate[1] + '-' + auxDate[2];
-    var dateStart = new Date(stringFormatada);
-
-    var auxDate = this.dateEnd.split('/');
-    var stringFormatada = auxDate[0] + '-' + auxDate[1] + '-' + auxDate[2];
-    var dateEnd = new Date(stringFormatada);
-
-    this.error = ''
-    this.filter = this.advancedfilterTransactions.advancedfilterTransactions(dateStart,dateEnd,this.valueStart,this.valueEnd,this.ag,this.account_number,this.clienteName,this.typeAccount)
-    console.log(this.advancedfilterTransactions)
+    console.log(this.valueEnd)
+    const options: Partial<IRequest> = {
+      dateStart: this.dateStart,
+      dateEnd: this.dateEnd,
+      valueStart: this.valueStart,
+      valueEnd: this.valueEnd
+    };
+    this.inputWatcher.next(options);
   }
 
   ngOnDestroy() {
