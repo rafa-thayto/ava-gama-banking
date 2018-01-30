@@ -100,11 +100,7 @@ import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard
     HttpClientModule,
     BrowserAnimationsModule,
     CurrencyMaskModule,
-    MatGridListModule,
-    MatListModule,
-    MatSelectModule,
-    MaterialModule,
-    MatSnackBarModule
+    MaterialModule
     // MaterializeModule,
 
   ],
