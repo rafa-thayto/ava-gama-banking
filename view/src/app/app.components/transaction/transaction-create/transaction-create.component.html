@@ -58,12 +58,12 @@
                         <div fxLayout=row fxFlex=50px>
                             <span>Saldo atual:</span>
                             <span fxFlex></span>
-                            <span [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}">R$ {{transaction.value | number : '3.0-0'}}</span>
+                            <span [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}">R$ {{(authService.account | async).balance | number : '1.2-2'}}</span>
                         </div>
                         <div fxLayout=row fxFlex=50px>
                             <span>Saldo após:</span>
                             <span fxFlex></span>
-                            <span [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}">R$ {{transaction.value | number : '3.0-0'}}</span>
+                            <span [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}">R$ {{((authService.account | async).balance)-(transaction.value) | number : '3.0-0'}}</span>
                         </div>
                         <!-- <div fxLayout=row fxFlex=50px>
                             <span>Data de execução</span>
