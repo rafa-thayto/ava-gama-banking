@@ -7,7 +7,11 @@ import { Router } from '@angular/router';
 import { TransactionService } from '../../app.services/transaction.service';
 import { NavbarService } from '../../app.services/navbar.service';
 import {MatSelectModule} from '@angular/material/select';
-import { TransactionCardComponent } from '../transaction/transaction-card/transaction-card.component'
+import { AuthService } from '../../app.services/auth.service';
+import { ITransaction } from '../../app.interfaces/transaction';
+
+import 'rxjs/add/operator/mergeMap';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-search',
@@ -15,6 +19,9 @@ import { TransactionCardComponent } from '../transaction/transaction-card/transa
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  public subscription: Subscription;
+  public loading: boolean = true;
+  public lastTransactions: ITransaction[]
 
   dateStart = '';
   dateEnd = '';
@@ -26,8 +33,17 @@ export class SearchComponent implements OnInit {
   typeAccount: String;
   error: String;
 
+  filter;
 
-  constructor(private advancedfilterTransactions: TransactionService, public navbarService: NavbarService, private router: Router) {
+
+  constructor(private advancedfilterTransactions: TransactionService, public authService: AuthService , private router: Router) {
+
+    this.subscription = this.authService.account
+    .do(() => this.loading = true)
+    .flatMap(account => this.advancedfilterTransactions.find({ ag: account.ag, account_number: account.account_number}).first())
+    .delay(1000)
+    .do(() => this.loading = false)
+    .subscribe(transactions => this.lastTransactions = transactions)
 
    
   }
@@ -65,8 +81,12 @@ public MaskDate = [ /[0-9]/,/\d/,'/',/\d/,/\d/,'/',/\d/,/\d/,/\d/,/\d/]
     var dateEnd = new Date(stringFormatada);
 
     this.error = ''
-    this.advancedfilterTransactions.advancedfilterTransactions(dateStart,dateEnd,this.valueStart,this.valueEnd,this.ag,this.account_number,this.clienteName,this.typeAccount)
+    this.filter = this.advancedfilterTransactions.advancedfilterTransactions(dateStart,dateEnd,this.valueStart,this.valueEnd,this.ag,this.account_number,this.clienteName,this.typeAccount)
     console.log(this.advancedfilterTransactions)
+  }
+
+  ngOnDestroy() {
+    if (!this.subscription.closed) this.subscription.unsubscribe();
   }
 
 }
