@@ -12,6 +12,13 @@
 }
 
  */
-.teste{
+/* .teste{
   width: 200px;
+} */
+
+:host{
+  height: 100%;
+}
+mat-sidenav{
+  padding: 1em;
 }

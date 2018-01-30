@@ -158,3 +158,8 @@ a{
 .credito{
   color: green;
 }
+
+
+.flex-grow .mat-card-header-text{
+  flex-grow: 1 !important;
+}
