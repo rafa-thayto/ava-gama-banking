@@ -43,7 +43,7 @@ export class SearchComponent implements OnInit {
     .delay(1000).do(() => this.loading = false)
     .subscribe(transactions => this.sTransactions = transactions)
 
-   
+
   }
 
 public maskAgencia = [ /[1-9]/, /\d/, /\d/,/\d/]
