@@ -1,10 +1,12 @@
 /* ANGULAR MODULES + ROUTER */
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-
+import { registerLocaleData } from "@angular/common";
+import localePt from '@angular/common/locales/pt';
 import { routing } from './router/routes';
+registerLocaleData(localePt, 'pt')
 /* END ANGULAR MODULES */
 
 /* ~ MODULES ~ */
@@ -67,11 +69,6 @@ import { TokenInterceptor } from './app.interceptors/token.interceptor';
 /* ~ GUARDS ~ */
 import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
 import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard';
-import { MatListModule } from '@angular/material/list';
-import { MatGridListModule } from '@angular/material';
-import {MatSelectModule} from '@angular/material/select';
-import {MatExpansionModule} from '@angular/material/expansion';
-
 /* ~ END GUARDS ~ */
 
 @NgModule({
@@ -103,17 +100,13 @@ import {MatExpansionModule} from '@angular/material/expansion';
     HttpClientModule,
     BrowserAnimationsModule,
     CurrencyMaskModule,
-    MatGridListModule,
-    MatListModule,
-    MatSelectModule,
-    MaterialModule,
-    MatSnackBarModule    
+    MaterialModule
     // MaterializeModule,
 
   ],
 
   providers: [
-
+    { provide: LOCALE_ID, useValue: 'pt'},
     AccountService,
     TokenInterceptor,
     {
