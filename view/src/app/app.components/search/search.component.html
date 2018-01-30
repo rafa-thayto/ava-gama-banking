@@ -1,72 +1,64 @@
-<div fxLayout=row class="teste">
-
-        <mat-label class="label" >
-         Pesquisar Extrato
-        </mat-label>
-        <mat-form-field class="demo-full-width">
-          <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="Valor Inicial" type="number"
-            class="validate" name="valueStart" [(ngModel)]="valueStart">
-        </mat-form-field>
-
-        <mat-form-field class="demo-full-width">
-          <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="Valor Final"  type="number"
-            class="validate" name="valueEnd" [(ngModel)]="valueEnd">
-        </mat-form-field>
-
-        <mat-form-field class="demo-full-width">
-          <input matInput [textMask]=" {mask: MaskDate}" type="text" name="dateStart" placeholder="Date Inicial" [(ngModel)]="dateStart">
-        </mat-form-field>
-
-
-        <mat-form-field class="demo-full-width">
-          <input matInput [textMask]=" {mask: MaskDate}" type="text" name="dateEnd" placeholder="Data Final" [(ngModel)]="dateEnd">
-        </mat-form-field>
-    
-        <mat-form-field class="demo-full-width">
-          <input matInput [textMask]=" {mask: maskAgencia}" placeholder="Agência" name="ag" [(ngModel)]="ag">
-        </mat-form-field>
-
-        <mat-form-field class="demo-full-width">
-          <input matInput [textMask]=" {mask: maskConta}" placeholder="Conta" name="account_number" [(ngModel)]="account_number" minlength=4>
-        </mat-form-field>
-
-        <mat-form-field class="demo-full-width">
-          <input matInput placeholder="Pessoa" name="clienteName" [(ngModel)]="clienteName">
-        </mat-form-field>
-
-          <mat-form-field>
-              <mat-select [(value)]="typeAccount" class="demo-full-width" placeholder="Tipo de Conta">
-                  <mat-option value="Corrente">Corrente</mat-option>
-                <mat-option value="Poupança">Poupança</mat-option>
-              </mat-select>
-            </mat-form-field>
-  
-
-  <button mat-raised-button color="warn" (click)=limpar()>Limpar</button>
-  <button mat-raised-button color="warn" (click)=filtrar()>Filtar</button>
-
-</div>
-
-<mat-spinner *ngIf=loading fxFlexAlign=center></mat-spinner>
-  <!-- <p class=msg *ngIf="(lastTransactions | async)?.length === 0">Nenhuma transação localizada</p> -->
-  <!-- //TODO: se a lista estiver vazia?-->
-
-  <div [fxHide]=loading fxHide.sm fxLayoutWrap  fxLayout="start center" fxLayoutGap="1">
-    <div *ngFor="let transaction of sTransactions" fxFlex="30">
-      <transaction-card [transaction]="transaction"></transaction-card>
+<mat-sidenav-container fxFlexFill>
+  <mat-sidenav mode="side" opened="true" class=mat-elevation-z1 fxLayout="column" fxLayoutAlign="center stretch" fxFlex.gt-sm=300px fxLayoutGap=1em fixedInViewport=true>
+    <mat-label class="label">
+      Filtrar
+    </mat-label>
+    <mat-form-field>
+      <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="Valor Inicial" type="number"
+        class="validate" name="valueStart" [(ngModel)]="valueStart">
+    </mat-form-field>
+    <mat-form-field>
+      <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput placeholder="Valor Final" type="number"
+        class="validate" name="valueEnd" [(ngModel)]="valueEnd">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [textMask]=" {mask: MaskDate}" type="text" name="dateStart" placeholder="Date Inicial" [(ngModel)]="dateStart">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [textMask]=" {mask: MaskDate}" type="text" name="dateEnd" placeholder="Data Final" [(ngModel)]="dateEnd">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [textMask]=" {mask: maskAgencia}" placeholder="Agência" name="ag" [(ngModel)]="ag">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [textMask]=" {mask: maskConta}" placeholder="Conta" name="account_number" [(ngModel)]="account_number" minlength=4>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Pessoa" name="clienteName" [(ngModel)]="clienteName">
+    </mat-form-field>
+    <!-- <mat-form-field>
+      <mat-select [(value)]="typeAccount" placeholder="Tipo de Conta">
+        <mat-option value="Corrente">Corrente</mat-option>
+        <mat-option value="Poupança">Poupança</mat-option>
+      </mat-select>
+    </mat-form-field> -->
+    <button mat-raised-button color="warn" (click)=limpar()>Limpar</button>
+    <button mat-raised-button color="warn" (click)=filtrar()>Filtar</button>
+  </mat-sidenav>
+  <mat-sidenav-content fxLayout=column>
+    <mat-spinner *ngIf=loading fxFlexAlign=center></mat-spinner>
+    <div [fxHide]=loading>
+      <!-- <p class=msg *ngIf="(lastTransactions | async)?.length === 0">Nenhuma transação localizada</p> -->
+      <!-- //TODO: se a lista estiver vazia?-->
+      <div fxHide fxShow.gt-sm fxLayoutWrap fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="1">
+        <div *ngFor="let transaction of sTransactions" fxFlex="50" fxFlex.gt-md=33>
+          <transaction-card [transaction]="transaction"></transaction-card>
+        </div>
+      </div>
+      <mat-nav-list fxShow fxHide.gt-sm>
+        <h3 mat-subheader>Ultimas 10 transações</h3>
+        <a mat-list-item *ngFor="let transaction of sTransactions" [routerLink]='["/","transferencias",transaction._id]'>
+          <mat-icon mat-list-icon *ngIf=!transaction.isCredit class=debito>arrow_downward</mat-icon>
+          <mat-icon mat-list-icon *ngIf=transaction.isCredit class=credito>arrow_upward</mat-icon>
+          <h4 mat-line>{{transaction.isCredit ? transaction?.from?.client?.name : transaction?.to?.client?.name}}</h4>
+          <p mat-line>
+            ag: {{transaction.isCredit ? (transaction.from?.ag | number : '3.0-0') : (transaction.to?.ag | number : '3.0-0')}} c/c: {{transaction.isCredit
+            ? (transaction?.from?.account_number | number : '3.0-0') : (transaction?.to?.account_number | number : '3.0-0')}}
+          </p>
+          <p mat-line> {{transaction.date | date : 'dd/MM/yyyy'}} </p>
+          <div fxFlex=100px [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}"> R$ {{transaction.value | number : '1.2-2'}} </div>
+        </a>
+      </mat-nav-list>
     </div>
-</div>
-<mat-nav-list [fxHide]=loading fxHide.gt-sm>
-  <h3 mat-subheader>Ultimas 10 transações</h3>
-  <a mat-list-item *ngFor="let transaction of sTransactions" [routerLink]='["/","transferencias",transaction._id]'>
-    <mat-icon mat-list-icon *ngIf=!transaction.isCredit class=debito>arrow_downward</mat-icon>
-    <mat-icon mat-list-icon *ngIf=transaction.isCredit class=credito>arrow_upward</mat-icon>
-    <h4 mat-line>{{transaction.isCredit ? transaction?.from?.client?.name : transaction?.to?.client?.name}}</h4>
-    <p mat-line>
-      ag: {{transaction.isCredit ? (transaction.from?.ag | number : '3.0-0') : (transaction.to?.ag | number : '3.0-0')}} c/c: {{transaction.isCredit
-      ? (transaction?.from?.account_number | number : '3.0-0') : (transaction?.to?.account_number | number : '3.0-0')}}
-    </p>
-    <p mat-line> {{transaction.date | date : 'dd/MM/yyyy'}} </p>
-    <div fxFlex=100px [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}"> R$ {{transaction.value | number : '1.2-2'}} </div>
-  </a>
-</mat-nav-list>
+  </mat-sidenav-content>
+</mat-sidenav-container>
