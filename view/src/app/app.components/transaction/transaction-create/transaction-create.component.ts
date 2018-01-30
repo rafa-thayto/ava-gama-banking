@@ -8,9 +8,9 @@ import { AuthService } from '../../../app.services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-transaction-create',
-  templateUrl: './transaction-create.component.html',
-  styleUrls: ['./transaction-create.component.css']
+  selector: "app-transaction-create",
+  templateUrl: "./transaction-create.component.html",
+  styleUrls: ["./transaction-create.component.css"]
 })
 export class TransactionCreateComponent {
   public senhaControl: FormControl;
@@ -20,31 +20,39 @@ export class TransactionCreateComponent {
   public loading: boolean = false;
   public transaction: Partial<ITransaction>;
 
-  public firstFormGroup: FormGroup
-  public secondFormGroup: FormGroup
-  public isLinear = true
+  public firstFormGroup: FormGroup;
+  public secondFormGroup: FormGroup;
+  public isLinear = true;
 
-  constructor(private transactionService: TransactionService, private fb: FormBuilder, private clientService: ClientService, private authService: AuthService, private router: Router) {
-    this.createControls()
-    this.createForm()
+  constructor(
+    private transactionService: TransactionService,
+    private fb: FormBuilder,
+    private clientService: ClientService,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.createControls();
+    this.createForm();
   }
+
+  public maskTransf = [/[1-9]/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, ".", /\d/];
 
   createAgenciaControl() {
     const syncValidators = [];
     syncValidators.push(Validators.required);
-    this.agenciaControl = new FormControl('1', syncValidators);
+    this.agenciaControl = new FormControl("1", syncValidators);
   }
 
   createContaControl() {
     const syncValidators = [];
     syncValidators.push(Validators.required);
-    this.contaControl = new FormControl('37', syncValidators);
+    this.contaControl = new FormControl("37", syncValidators);
   }
 
   createValorTransferidoControl() {
     const syncValidators = [];
     syncValidators.push(Validators.required);
-    this.valorTransferido = new FormControl('10', syncValidators);
+    this.valorTransferido = new FormControl("10", syncValidators);
   }
 
   createSenhaControl() {
@@ -52,14 +60,14 @@ export class TransactionCreateComponent {
     syncValidators.push(Validators.required);
     syncValidators.push(Validators.minLength(6));
     syncValidators.push(Validators.maxLength(25));
-    this.senhaControl = new FormControl('', syncValidators);
+    this.senhaControl = new FormControl("", syncValidators);
   }
 
   createControls() {
-    this.createAgenciaControl()
-    this.createContaControl()
-    this.createSenhaControl()
-    this.createValorTransferidoControl()
+    this.createAgenciaControl();
+    this.createContaControl();
+    this.createSenhaControl();
+    this.createValorTransferidoControl();
   }
 
   createForm() {
@@ -67,7 +75,7 @@ export class TransactionCreateComponent {
       ag: this.agenciaControl,
       account_number: this.contaControl,
       value: this.valorTransferido
-    }
+    };
 
     this.firstFormGroup = new FormGroup(controls);
     this.secondFormGroup = new FormGroup({ password: this.senhaControl });
@@ -75,7 +83,7 @@ export class TransactionCreateComponent {
 
   save() {
     this.transaction = null;
-    if (!this.firstFormGroup.valid) return
+    if (!this.firstFormGroup.valid) return;
     this.loading = true;
     const formValue = this.firstFormGroup.value;
     this.transaction = {
@@ -83,37 +91,46 @@ export class TransactionCreateComponent {
         ag: parseInt(formValue.ag),
         account_number: parseInt(formValue.account_number)
       },
-      value: parseInt(formValue.value)
+      value: Number(formValue.value)
     };
 
     const fromClientInfo = this.authService.client.first();
     const fromAccountInfo = this.authService.account.first();
-    const toClientInfo = this.clientService.getClientInfo(this.transaction.to.ag, this.transaction.to.account_number).first();;
+    const toClientInfo = this.clientService
+      .getClientInfo(this.transaction.to.ag, this.transaction.to.account_number)
+      .first();
     Observable.combineLatest(fromClientInfo, fromAccountInfo, toClientInfo)
-      .map(data => ({ fromClient: data[0], fromAccount: data[1], toClient: data[2] }))
+      .map(data => ({
+        fromClient: data[0],
+        fromAccount: data[1],
+        toClient: data[2]
+      }))
       .delay(1000)
       .subscribe(data => {
         this.transaction.to.client = data.toClient;
-        console.log(data.fromAccount)
+        console.log(data.fromAccount);
         this.transaction.from = data.fromAccount;
         this.transaction.from.client = { name: data.fromClient.name };
         this.loading = false;
-      })
+      });
   }
 
   createTransaction() {
     const onSuccess = trasaction => {
       this.authService.refreshBalance();
-      this.router.navigateByUrl(`/transferencias/${trasaction._id}`)
-    }
-    const onError = error => { console.log(error) }
-    const onComplete = () => { }
-    console.log(this.transaction)
+      this.router.navigateByUrl(`/transferencias/${trasaction._id}`);
+    };
+    const onError = error => {
+      console.log(error);
+    };
+    const onComplete = () => {};
+    console.log(this.transaction);
     this.transaction.password = this.senhaControl.value;
-    this.transactionService.createTransaction(this.transaction).subscribe(onSuccess, onError, onComplete)
+    this.transactionService
+      .createTransaction(this.transaction)
+      .subscribe(onSuccess, onError, onComplete);
     // this.data.account_number
     // this.data.ag
     // this.data.value
   }
-
 }

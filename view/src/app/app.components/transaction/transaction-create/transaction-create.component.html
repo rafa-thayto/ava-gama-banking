@@ -14,7 +14,8 @@
                 </mat-input-container>
                 <mat-input-container>
                     <mat-label>Valor a ser transferido</mat-label>
-                    <input matInput placeholder="ex: R$100,00" type="text" formControlName="value">
+                    <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left'}" matInput placeholder="ex: R$100,00"
+                    type="text" formControlName="value" class="validate" [(ngModel)]="value">
                     <span matPrefix>&nbsp;</span>
                 </mat-input-container>
                 <button mat-raised-button color="primary" matStepperNext [disabled]='!(firstFormGroup.valid)' (click)="save()">continuar</button>
@@ -53,7 +54,9 @@
                         <div fxLayout=row fxFlex=50px>
                             <span>Valor</span>
                             <span fxFlex></span>
-                            <span [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}">R$ {{transaction.value | number : '1.2-2'}}</span>
+
+
+                            <span currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left'}" [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}">R$ {{transaction.value | number : '1.2-2'}}</span>
                         </div>
                         <div fxLayout=row fxFlex=50px>
                             <span>Saldo atual:</span>
