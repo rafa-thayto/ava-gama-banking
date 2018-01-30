@@ -12,7 +12,7 @@
               <p fxLayoutAlign="end" [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}">R$ {{transaction.value | number : '1.2-2'}}</p>
         </mat-card-content>
         <mat-card-actions align="end">
-          <button mat-button >Detalhes</button>
+          <a [routerLink]='["/","transferencias",transaction._id]'><button mat-button >Detalhes</button></a>
         </mat-card-actions>
       </mat-card>
 
