@@ -1,9 +1,9 @@
 import { IAccount } from "./account";
+import { IDocument } from "./document";
 
 type TransactionStatus = "pendente" | "completado" | "abortado";
 
-export interface ITransaction {
-    _id?: string,
+export interface ITransaction extends IDocument{
     from: Partial<IAccount>,
     to: Partial<IAccount>,
     date: Date,

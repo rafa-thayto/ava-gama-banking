@@ -49,7 +49,7 @@ import { SideMenuComponent } from './app.components/side-menu/side-menu.componen
 import { TransactionCardComponent } from './app.components/transaction/transaction-card/transaction-card.component';
 import { TransitionConfirmComponent } from './app.components/transaction/transition-confirm/transition-confirm.component';
 import { TransactionCreateComponent } from './app.components/transaction/transaction-create/transaction-create.component';
-import { TransactionListComponent } from './app.components/transaction/transaction-list/transaction-list.component';
+// import { TransactionListComponent } from './app.components/transaction/transaction-list/transaction-list.component';
 import { TransactionViewComponent } from './app.components/transaction/transaction-view/transaction-view.component';
 /* ~ END COMPONENTS ~ */
 
@@ -69,13 +69,14 @@ import { TokenInterceptor } from './app.interceptors/token.interceptor';
 /* ~ GUARDS ~ */
 import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
 import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard';
+import { TransactionsModule } from './transactions/transactions.module';
 /* ~ END GUARDS ~ */
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    TransactionListComponent,
+    // TransactionListComponent,
     TransactionCreateComponent,
     TransactionCardComponent,
     TransactionViewComponent,
@@ -102,6 +103,7 @@ import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard
     CurrencyMaskModule,
     MaterialModule
     // MaterializeModule,
+    , TransactionsModule
 
   ],
 

@@ -1,0 +1,26 @@
+<mat-nav-list fxShow>
+  <!-- <p class=msg *ngIf="(lastTransactions | async)?.length === 0">Nenhuma transação localizada</p> -->
+  <!-- //TODO: se a lista estiver vazia?-->
+  <h3 mat-subheader *ngIf=subheader>{{subheader}}</h3>
+  <div fxLayout.gt-sm=row fxLayoutWrap.gt-sm>
+    <div *ngFor="let transaction of transactions" fxLayout=column fxFlex=100 fxFlex.xs=100 fxFlex.sm=100 fxFlex.md=50 fxFlex.gt-md=33
+      ngClass.gt-sm=padding>
+      <a mat-list-item [routerLink]='["/","transferencias",transaction._id]' ngClass.gt-sm='mat-card no-padding'>
+        <img mat-list-avatar [src]=getAvatarUrl(transaction)>
+        <h4 mat-line class=mat-card-title>
+          <strong>{{transaction.isCredit ? transaction?.from?.client?.name : transaction?.to?.client?.name}}</strong>
+        </h4>
+        <p mat-line class='mat-card-subtitle'>
+          ag: {{transaction.isCredit ? (transaction.from?.ag | number : '3.0-0') : (transaction.to?.ag | number : '3.0-0')}} c/c: {{transaction.isCredit
+          ? (transaction?.from?.account_number | number : '3.0-0') : (transaction?.to?.account_number | number : '3.0-0')}}
+        </p>
+        <div fxFlex fxLayout=column fxLayoutAlign="space-between stretch" class=text-right>
+          <span [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}">R$ {{transaction.value | number : '1.2-2'}}</span>
+          <span class='mat-card-subtitle m-t-16'>{{transaction.date | date : 'dd/MM/yyyy hh:mm'}}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</mat-nav-list>
+<!-- não remover, o angular apenas carrega o css do card quando o elemento está presente -->
+<mat-card fxHide></mat-card>

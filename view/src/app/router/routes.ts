@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../app.components/auth/login/login.component';
 import { TransactionCreateComponent } from '../app.components/transaction/transaction-create/transaction-create.component';
-import { TransactionListComponent } from '../app.components/transaction/transaction-list/transaction-list.component';
+// import { TransactionListComponent } from '../app.components/transaction/transaction-list/transaction-list.component';
 import { DashboardComponent } from '../app.components/dashboard/dashboard.component';
 
 import { TransitionConfirmComponent } from '../app.components/transaction/transition-confirm/transition-confirm.component';
@@ -31,11 +31,11 @@ const routes: Routes = [
     path: 'transferencias',
     children: [
       {
-        path: '',
-        pathMatch: 'full',
-        component: TransactionListComponent,
-        canActivate: [IsAuthenticatedGuard]
-      }, {
+      //   path: '',
+      //   pathMatch: 'full',
+      //   component: TransactionListComponent,
+      //   canActivate: [IsAuthenticatedGuard]
+      // }, {
         path: 'nova',
         component: TransactionCreateComponent,
         canActivate: [IsAuthenticatedGuard]
