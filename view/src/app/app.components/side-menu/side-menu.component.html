@@ -21,7 +21,7 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav #filternav position="end" mode=push class=mat-elevation-z1 fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap=1em class=filternav>
+  <mat-sidenav #filternav position="end"[mode]=sideMenuMode class=mat-elevation-z1 fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap=1em class=filternav>
     <mat-form-field>
       <input matInput placeholder="Valor Inicial" type="number" [(ngModel)]=filtersService.valueStart>
     </mat-form-field>

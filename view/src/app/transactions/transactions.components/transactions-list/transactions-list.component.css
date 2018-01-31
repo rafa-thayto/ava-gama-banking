@@ -14,3 +14,8 @@
 .m-t-16{
     margin-top: 16px !important;
 }
+
+.sem-registro{
+    text-align: center;
+    display: inherit;
+}
