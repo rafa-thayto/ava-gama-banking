@@ -52,6 +52,7 @@ const getAccount = async (req, res, next) => {
 }
 const buildQuery = (req, res, next) => {
     let query = db.Transaction.find({ $or: [{ from: req.accountId }, { to: req.accountId }] });
+    query = query.where("status", "completado");
     if (req.query.dateStart) query = query.where('date').gte(req.query.dateStart);
     if (req.query.dateEnd) query = query.where('date').lte(req.query.dateEnd);
     if (req.query.valueStart) query = query.where('value').gte(req.query.valueStart);

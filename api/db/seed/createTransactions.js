@@ -1,5 +1,5 @@
 const db = require("../");
-const maxTransactionsPerAccount = 50;
+const maxTransactionsPerAccount = 500;
 const maxTransactionValue = 15000;
 const Account = db.Account;
 const Transaction = db.Transaction;

@@ -1,5 +1,5 @@
 const db = require("../");
-const maxClients = 50;
+const maxClients = 100;
 const auth = require("../../config/auth");
 const names = ["pedro", "bruno", "rafael", "anselmo", "geovana", "jennfer", "marcos", "paulo", "ricardo"];
 const Client = db.Client;
