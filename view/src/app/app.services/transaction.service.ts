@@ -33,10 +33,24 @@ export class TransactionService {
         let params = new HttpParams();
         params = params.append("ag", options.ag.toString());
         params = params.append("account_number", options.account_number.toString());
-        if (options.dateStart) params = params.append("dateStart", options.dateStart.toISOString());
-        if (options.dateEnd) params = params.append("dateEnd", options.dateEnd.toISOString());
-        if (options.valueStart) params = params.append("valueStart", options.valueStart.toString());
-        if (options.valueEnd) params = params.append("valueEnd", options.valueEnd.toString());
+        if (options.dateStart) {
+            const date = options.dateStart;
+            date.setHours(0);
+            date.setMinutes(0);
+            date.setSeconds(0);
+            date.setMilliseconds(0);
+            params = params.append("dateStart", date.toISOString())
+        };
+        if (options.dateEnd) {
+            const date = options.dateEnd;
+            date.setHours(23);
+            date.setMinutes(59);
+            date.setSeconds(59);
+            date.setMilliseconds(59);
+            params = params.append("dateEnd", date.toISOString());
+        }
+        if (typeof options.valueStart === 'number') params = params.append("valueStart", options.valueStart.toString());
+        if (typeof options.valueEnd === 'number') params = params.append("valueEnd", options.valueEnd.toString());
         if (options.limit) params = params.append("limit", options.limit.toString());
         if (options.skip) params = params.append("skip", options.skip.toString());
         return this.http.get<ITransaction[]>(`${environment.api.host}${this.endpoint}`, { params })

@@ -25,3 +25,12 @@ mat-sidenav{
 mat-sidenav-content{
   width: 100%;
 }
+
+button[mat-fab]{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+}
+mat-spinner{
+  margin-top: 200px;
+}

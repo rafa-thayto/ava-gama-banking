@@ -1,0 +1,33 @@
+<mat-toolbar color=primary ngClass.gt-sm='toobar-transparent' fxLayout=row fxLayoutAlign="start center" [fxHide]=navBarService.isHidden>
+  <div fxFlex fxHide fxShow.gt-sm></div>
+  <button mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
+    <mat-icon aria-label="Menu">menu</mat-icon>
+  </button>
+  <img src='/assets/ava-gama-banking-logo-branco.png' fxFlex=100px fxHide.gt-sm />
+  <img src='/assets/ava-gama-banking-laranja.png' fxFlex=150px fxHide fxShow.gt-sm />
+  <div fxFlex fxLayout="row" fxLayoutAlign="end center">
+    <mat-menu #accountsMenu="matMenu" yPosition="below">
+      <button mat-menu-item *ngFor='let account of authService.accounts | async' (click)=authService.account.next(account)>
+        ag: {{account.ag | number : '3.0-0'}} c/c: {{account.account_number | number : '6.0-0'}}
+      </button>
+    </mat-menu>
+    <div fxLayout=column fxLayoutAlign="end end" class=profile>
+      <small fxLayout=column fxLayoutAlign="end end">
+        <strong>
+          {{(authService.client | async)?.name}}
+        </strong>
+      </small>
+      <small>
+        <button mat-button [matMenuTriggerFor]="accountsMenu">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+          ag: {{((authService.account | async)?.ag) | number : '3.0-0'}} c/c: {{((authService.account | async)?.account_number) | number : '3.0-0'}}
+        </button>
+      </small>
+    </div>
+    <!-- TODO: icone da conta corrente -->
+    <img mat-list-avatar src='http://www.gravatar.com/avatar/5a6dcfdd92871822e2c3fbf4?s=50&d=identicon&r=PG' fxHide fxShow.gt-sm>
+    <a mat-icon-button routerLink='/logout'>
+      <mat-icon>exit_to_app</mat-icon>
+    </a>
+  </div>
+</mat-toolbar>

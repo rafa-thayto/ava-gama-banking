@@ -6,14 +6,17 @@ import { AuthService } from '../../app.services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { NavbarService } from '../../app.services/navbar.service'
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
+import { FiltersService } from '../../app.services/filters.service';
+import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 @Component({
   selector: 'side-menu',
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.css']
 })
-export class SideMenuComponent {
+export class SideMenuComponent implements AfterViewInit {
 
-  @ViewChild('sidenav') sidenav
+  @ViewChild('sidenav') sidenav;
+  @ViewChild('filternav') filternav;
 
   public client: Observable<IClient>;
   public account: Observable<IAccount>;
@@ -35,18 +38,27 @@ export class SideMenuComponent {
     }
   }
 
-  constructor(private authService: AuthService, public navBarService: NavbarService, private router: Router, public media: ObservableMedia) {
+  constructor(
+    private authService: AuthService,
+    public navBarService: NavbarService,
+    private router: Router,
+    public media: ObservableMedia,
+    public filtersService: FiltersService) {
     this.account = this.authService.account;
     this.client = this.authService.client;
     this.media.asObservable().subscribe(this.onMediaChange.bind(this));
   }
 
+  ngAfterViewInit(){
+    this.filtersService.filternav = this.filternav;
+  }
+
   fechar() {
-    if (window.innerWidth <= 960) { 
+    if (window.innerWidth <= 960) {
       this.sidenav.toggle()
     }
   }
-  
+
 
 
 }

@@ -1,15 +1,28 @@
-.mat-drawer.nav  {
+
+
+.mat-drawer {
     background-color: #ff5800!important;
 }
 .mat-list .mat-list-item, .mat-nav-list .mat-list-item, .mat-selection-list .mat-list-item {
     color: rgba(255, 255, 255, 0.87)!important;
 }
-.nav mat-toolbar {
+
+mat-toolbar {
     background-color: #ff5800;
 }
-.filternav{
-    padding: 1em;
+
+
+.profile{
+    font-size: 0.8em;
+    text-align: right;
+    margin-right: 15px;
 }
+
+.toobar-transparent{
+    background-color: transparent !important;
+    color: #333;
+}
+
 .selected{
     background: rgba(0, 0, 0, 0.1) !important;
 }

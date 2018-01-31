@@ -70,6 +70,8 @@ import { TokenInterceptor } from './app.interceptors/token.interceptor';
 import { IsAuthenticatedGuard } from './app.guards/is-authenticated.guard';
 import { IsNotAuthenticatedGuard } from './app.guards/is-not-authenticated.guard';
 import { TransactionsModule } from './transactions/transactions.module';
+import { TopBarComponent } from './app.components/topbar/topbar.component';
+import { FiltersService } from './app.services/filters.service';
 /* ~ END GUARDS ~ */
 
 @NgModule({
@@ -87,7 +89,8 @@ import { TransactionsModule } from './transactions/transactions.module';
     DashboardComponent,
     SearchComponent,
     TransitionConfirmComponent,
-    SecretkeyComponent
+    SecretkeyComponent,
+    TopBarComponent
 
   ],
   imports: [
@@ -122,6 +125,7 @@ import { TransactionsModule } from './transactions/transactions.module';
     NavbarService,
     MatSnackBarModule,
     SnackbarService,
+    FiltersService,
     //guards
     IsNotAuthenticatedGuard,
     IsAuthenticatedGuard,
