@@ -39,20 +39,20 @@ export class TransactionCreateComponent {
 
   createAgenciaControl() {
     const syncValidators = [];
-    syncValidators.push(Validators.required);
+    syncValidators.push(Validators.compose([Validators.required, Validators.max(1)]));
     this.agenciaControl = new FormControl("1", syncValidators);
   }
 
   createContaControl() {
     const syncValidators = [];
     syncValidators.push(Validators.required);
-    this.contaControl = new FormControl("37", syncValidators);
+    this.contaControl = new FormControl("", syncValidators);
   }
 
   createValorTransferidoControl() {
     const syncValidators = [];
     syncValidators.push(Validators.required);
-    this.valorTransferido = new FormControl("10", syncValidators);
+    this.valorTransferido = new FormControl("", syncValidators);
   }
 
   createSenhaControl() {
