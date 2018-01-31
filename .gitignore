@@ -55,4 +55,4 @@ db/data/
 
 #api docs
 api/docs
-seed/json/*
+**/seed/json/*
