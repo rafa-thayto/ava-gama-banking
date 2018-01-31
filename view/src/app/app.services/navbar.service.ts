@@ -11,6 +11,10 @@ export class NavbarService {
   get isVisible(): boolean {
     return this._show;
   }
+
+  set isVisible(value) {
+  }
+
   get isHidden(): boolean {
     return !this.isVisible;
   }

@@ -33,9 +33,6 @@ import { LoginComponent } from './app.components/auth/login/login.component';
 import { LogoutComponent } from './app.components/auth/logout/logout.component';
 import { SecretkeyComponent } from './app.components/auth/secret-key/secretkey.component';
 
-// Balance
-import { BalanceComponent } from './app.components/balance/balance.component';
-
 // Dashboard
 import { DashboardComponent } from './app.components/dashboard/dashboard.component';
 
@@ -47,7 +44,6 @@ import { SideMenuComponent } from './app.components/side-menu/side-menu.componen
 
 // Transaction
 import { TransactionCardComponent } from './app.components/transaction/transaction-card/transaction-card.component';
-import { TransitionConfirmComponent } from './app.components/transaction/transition-confirm/transition-confirm.component';
 import { TransactionCreateComponent } from './app.components/transaction/transaction-create/transaction-create.component';
 // import { TransactionListComponent } from './app.components/transaction/transaction-list/transaction-list.component';
 import { TransactionViewComponent } from './app.components/transaction/transaction-view/transaction-view.component';
@@ -82,13 +78,11 @@ import { FiltersService } from './app.services/filters.service';
     TransactionCreateComponent,
     TransactionCardComponent,
     TransactionViewComponent,
-    BalanceComponent,
     AccountComponent,
     LogoutComponent,
     SideMenuComponent,
     DashboardComponent,
     SearchComponent,
-    TransitionConfirmComponent,
     SecretkeyComponent,
     TopBarComponent
 

@@ -4,8 +4,6 @@ import { TransactionCreateComponent } from '../app.components/transaction/transa
 // import { TransactionListComponent } from '../app.components/transaction/transaction-list/transaction-list.component';
 import { DashboardComponent } from '../app.components/dashboard/dashboard.component';
 
-import { TransitionConfirmComponent } from '../app.components/transaction/transition-confirm/transition-confirm.component';
-
 import { SearchComponent } from '../app.components/search/search.component';
 import { AccountComponent } from '../app.components/account/account.component';
 

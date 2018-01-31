@@ -13,7 +13,7 @@ async function beforeSave(next) {
     const Account = model.model("Account");
 
     try {
-        const res = await Account.collection.updateOne({ '_id': fromAccount, balance: { $gt: transactionValue } }, { $inc: { balance: -transactionValue } });
+        const res = await Account.collection.updateOne({ '_id': fromAccount, balance: { $gte: transactionValue } }, { $inc: { balance: -transactionValue } });
         if (res.result.ok === 0) throw new Error('i/o error');
         if (res.result.nModified === 0) {
             this.status = "abortado";
