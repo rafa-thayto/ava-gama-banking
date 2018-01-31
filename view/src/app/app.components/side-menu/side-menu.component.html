@@ -4,15 +4,18 @@
       <img src='/assets/a3.png' class=a3 />
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/" (click)='fechar()' routerLinkActive #rla0=routerLinkActive [ngClass]='{ "selected": rla0.isActive }' [routerLinkActiveOptions]="{ exact: true }">
+      <a mat-list-item routerLink="/" (click)='fechar()' routerLinkActive #rla0=routerLinkActive [ngClass]='{ "selected": rla0.isActive }'
+        [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon matListIcon>account_balance</mat-icon>
         <span matLine>Minha conta</span>
       </a>
-      <a mat-list-item routerLink="/transferencias/nova" (click)='fechar()' routerLinkActive #rla1=routerLinkActive [ngClass]='{ "selected": rla1.isActive }' [routerLinkActiveOptions]="{ exact: true }">
+      <a mat-list-item routerLink="/transferencias/nova" (click)='fechar()' routerLinkActive #rla1=routerLinkActive [ngClass]='{ "selected": rla1.isActive }'
+        [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon matListIcon>swap_horiz</mat-icon>
         <span matLine>Nova transferência</span>
       </a>
-      <a mat-list-item routerLink="/extrato" (click)='fechar()' routerLinkActive #rla2=routerLinkActive [ngClass]='{ "selected": rla2.isActive }' [routerLinkActiveOptions]="{ exact: true }">
+      <a mat-list-item routerLink="/extrato" (click)='fechar()' routerLinkActive #rla2=routerLinkActive [ngClass]='{ "selected": rla2.isActive }'
+        [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon matListIcon>history</mat-icon>
         <span matLine>Extrato</span>
       </a>
@@ -28,18 +31,24 @@
     <div fxFlex fxLayout="row" fxLayoutAlign="end center">
       <mat-menu #accountsMenu="matMenu" yPosition="below">
         <button mat-menu-item *ngFor='let account of authService.accounts | async' (click)=authService.account.next(account)>
-          ag: {{account.ag | number : '3.0-0'}} c/c: {{account.account_number | number : '3.0-0'}}
+          ag: {{account.ag | number : '3.0-0'}} c/c: {{account.account_number | number : '6.0-0'}}
         </button>
       </mat-menu>
-      <div fxLayout=column class=profile>
-        <small>{{(client | async)?.name}}</small>
+      <div fxLayout=column fxLayoutAlign="end end" class=profile>
+        <small fxLayout=column fxLayoutAlign="end end">
+          <strong>
+            {{(client | async)?.name}}
+          </strong>
+        </small>
         <small>
-          ag: {{((account | async)?.ag) | number : '3.0-0'}} c/c: {{((account | async)?.account_number) | number : '3.0-0'}}
+          <button mat-button [matMenuTriggerFor]="accountsMenu">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+            ag: {{((account | async)?.ag) | number : '3.0-0'}} c/c: {{((account | async)?.account_number) | number : '3.0-0'}}
+          </button>
         </small>
       </div>
-      <button mat-icon-button [matMenuTriggerFor]="accountsMenu">
-        <mat-icon>keyboard_arrow_down</mat-icon>
-      </button>
+      <!-- TODO: icone da conta corrente -->
+      <img mat-list-avatar src='http://www.gravatar.com/avatar/5a6dcfdd92871822e2c3fbf4?s=50&d=identicon&r=PG' fxHide fxShow.gt-sm>
       <a mat-icon-button routerLink='/logout'>
         <mat-icon>exit_to_app</mat-icon>
       </a>
