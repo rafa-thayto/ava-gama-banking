@@ -1,6 +1,6 @@
 {
-  "name": "banking.www",
-  "version": "0.0.0",
+  "name": "Ava Gama Banking",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
