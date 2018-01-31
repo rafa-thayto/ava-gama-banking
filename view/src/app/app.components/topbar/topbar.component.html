@@ -25,7 +25,7 @@
       </small>
     </div>
     <!-- TODO: icone da conta corrente -->
-    <img mat-list-avatar src='http://www.gravatar.com/avatar/5a6dcfdd92871822e2c3fbf4?s=50&d=identicon&r=PG' fxHide fxShow.gt-sm>
+    <img mat-list-avatar src='http://www.gravatar.com/avatar/{{(authService.account | async)?._id}}?s=50&d=identicon&r=PG' fxHide fxShow.gt-sm>
     <a mat-icon-button routerLink='/logout'>
       <mat-icon>exit_to_app</mat-icon>
     </a>

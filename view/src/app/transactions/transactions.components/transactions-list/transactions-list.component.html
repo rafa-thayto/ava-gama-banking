@@ -2,7 +2,7 @@
   <!-- <p class=msg *ngIf="(lastTransactions | async)?.length === 0">Nenhuma transação localizada</p> -->
   <!-- //TODO: se a lista estiver vazia?-->
   <h3 mat-subheader *ngIf=subheader>{{subheader}}</h3>
-  <h3 mat-subheader class=sem-registro *ngIf=!transactions.length>Nenhum registro localizado</h3>
+  <h3 mat-subheader class=sem-registro *ngIf=!transactions?.length>Nenhum registro localizado</h3>
 
   <div fxLayout.gt-sm=row fxLayoutWrap.gt-sm>
     <div *ngFor="let transaction of transactions" fxLayout=column fxFlex=100 fxFlex.xs=100 fxFlex.sm=100 fxFlex.md=50 fxFlex.gt-md=33
@@ -18,7 +18,7 @@
         </p>
         <div fxFlex fxLayout=column fxLayoutAlign="space-between stretch" class=text-right>
           <span [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}">R$ {{transaction.value | number : '1.2-2'}}</span>
-          <span class='mat-card-subtitle m-t-16'>{{transaction.date | date : 'dd/MM/yyyy hh:mm'}}</span>
+          <span class='mat-card-subtitle m-t-16'>{{transaction.date | date : 'dd/MM/yyyy HH:mm'}}</span>
         </div>
       </a>
     </div>
