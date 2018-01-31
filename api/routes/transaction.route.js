@@ -65,7 +65,7 @@ const buildQuery = (req, res, next) => {
 const runQuery = async (req, res, next) => {
     try {
         let transactions = await req.mongoQuery.lean();
-        if (!transactions || transactions.length === 0) return res.status(404).end();
+        if (!transactions || transactions.length === 0) return res.status(200).json([]).end();
         db.Log.info('transaction.read', req.token, req.sourceIp, transactions);
         transaction = transactions.map(transaction => {
             transaction.isCredit = transaction.to._id.toString() === req.accountId.toString();
