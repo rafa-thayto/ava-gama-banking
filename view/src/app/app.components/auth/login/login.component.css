@@ -1,0 +1,32 @@
+:host{
+  height: 100%;
+}
+
+img{
+  height: 50px;
+  width: auto;
+}
+
+.bg{
+  background-image: url(/assets/bg-login.jpg);
+  background-size: cover;
+  position: relative;
+}
+.filter{
+  background-color: rgba(243, 86, 39, 0.8);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.error{
+  text-align: center;
+  color: red;
+  font-weight: 300;
+  font-size: 1em;
+  height: 18px;
+}
+.load{
+  height: 30px;
+}

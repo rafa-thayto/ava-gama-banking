@@ -1,0 +1,48 @@
+<mat-sidenav-container fxFlexFill>
+  <mat-sidenav #sidenav [mode]=sideMenuMode [(opened)]="sideMenuOpen &&  navBarService.isVisible" class=mat-elevation-z2 position=start class=nav>
+    <mat-toolbar>
+      <img src='/assets/a3.png' class=a3 />
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" (click)='fechar()' routerLinkActive #rla0=routerLinkActive [ngClass]='{ "selected": rla0.isActive }'
+        [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon matListIcon>account_balance</mat-icon>
+        <span matLine>Minha conta</span>
+      </a>
+      <a mat-list-item routerLink="/transferencias/nova" (click)='fechar()' routerLinkActive #rla1=routerLinkActive [ngClass]='{ "selected": rla1.isActive }'
+        [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon matListIcon>swap_horiz</mat-icon>
+        <span matLine>Nova transferência</span>
+      </a>
+      <a mat-list-item routerLink="/extrato" (click)='fechar()' routerLinkActive #rla2=routerLinkActive [ngClass]='{ "selected": rla2.isActive }'
+        [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon matListIcon>history</mat-icon>
+        <span matLine>Extrato</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav #filternav position="end"[mode]=sideMenuMode class=mat-elevation-z1 fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap=1em class=filternav>
+    <mat-form-field>
+      <input matInput placeholder="Valor Inicial" type="number" [(ngModel)]=filtersService.valueStart>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Valor Final" type="number" name="valueEnd" [(ngModel)]=filtersService.valueEnd>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dateStartPicker" placeholder="Date Inicial" [(ngModel)]=filtersService.dateStart>
+      <mat-datepicker-toggle matSuffix [for]="dateStartPicker"></mat-datepicker-toggle>
+      <mat-datepicker #dateStartPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dateEndPicker" placeholder="Data Final" [(ngModel)]=filtersService.dateEnd>
+      <mat-datepicker-toggle matSuffix [for]="dateEndPicker"></mat-datepicker-toggle>
+      <mat-datepicker #dateEndPicker></mat-datepicker>
+    </mat-form-field>
+    <span fxFlex></span>
+    <button mat-raised-button color="primary" (click)="(filtersService.filtrar() || true) && filtersService.filternav.close()">Filtrar</button>
+  </mat-sidenav>
+  <mat-sidenav-content fxLayout=column>
+    <app-topbar [sidenav]=sidenav></app-topbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,50 @@
+/*.nav-transaction{
+
+    text-align: center;
+}*/
+
+/*.icone{
+   float: left;
+
+    color:black;
+}*/
+/*
+label{
+    margin-left: 1%;
+    color:black;
+    font-size: 16px;
+}
+
+.lblTranf{
+    color:black;
+    font-size: 26px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.saldoGreen{
+    color:rgb(6, 173, 26);
+}
+
+.saldoRed{
+    color:rgb(255, 5, 5);
+}
+
+i.medium {
+    font-size: 35px;
+}
+
+.codigoAutent{
+    text-align: center;
+}
+
+mat-grid-tile {
+    font-size: 1rem;
+} */
+
+h1{
+    font-weight: 100;
+}
+mat-spinner{
+    margin-top: 200px;
+}

@@ -1,0 +1,12 @@
+<!-- TODO: add link + ripple -->
+<!-- <a [routerLink]='["/","transferencias",transaction._id]'><button mat-button >Detalhes</button></a> -->
+<mat-card>
+  <mat-card-header class=flex-grow>
+    <img mat-card-avatar src="{{image}}" class="example-header-image">
+    <mat-card-title>
+      <strong>{{transaction.isCredit ? transaction?.from?.client?.name : transaction?.to?.client?.name}}</strong>
+    </mat-card-title>
+    <mat-card-subtitle>{{transaction.date | date:'dd/MM/yyyy'}}</mat-card-subtitle>
+    <p fxLayoutAlign="end" [ngClass]="{'credito':transaction.isCredit, 'debito': !transaction.isCredit}">R$ {{transaction.value | number : '1.2-2'}}</p>
+  </mat-card-header>
+</mat-card>

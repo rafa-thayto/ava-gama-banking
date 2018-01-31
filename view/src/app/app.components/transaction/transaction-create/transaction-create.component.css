@@ -1,0 +1,34 @@
+/* .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.container > * {
+    width: 90%;
+    margin: 10px 2.5%;
+}
+
+.btn-orange {
+    background: #ff5800;
+}
+
+
+@media screen and (min-width: 700px) {
+    .container > * {
+        width: 40%;
+        margin: 10px 5%;
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    .container > * {
+        width: 30%;
+        margin: 10px 10%;
+    }
+} */
+
+
+mat-horizontal-stepper{
+    background-color: transparent;
+}

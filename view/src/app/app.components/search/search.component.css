@@ -1,0 +1,36 @@
+/* .demo-full-width{
+  width: 200px;
+  display: flex;
+}
+
+.sideNav{
+  width: 200px;
+  background:white;
+  height: 595px;
+  box-shadow: 5px 3px 20px #ff5722;
+  display: column;;
+}
+
+ */
+/* .teste{
+  width: 200px;
+} */
+
+:host{
+  height: 100%;
+}
+mat-sidenav{
+  padding: 1em;
+}
+mat-sidenav-content{
+  width: 100%;
+}
+
+button[mat-fab]{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+}
+mat-spinner{
+  margin-top: 200px;
+}

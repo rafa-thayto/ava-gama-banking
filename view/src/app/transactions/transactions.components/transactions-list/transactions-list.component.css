@@ -1,0 +1,21 @@
+
+.padding{
+    padding: 1em;
+}
+.text-right{
+    text-align: right;
+}
+.mat-card-subtitle{
+    margin: 0 !important;
+}
+::ng-deep .mat-list-text{
+    width: auto !important;
+}
+.m-t-16{
+    margin-top: 16px !important;
+}
+
+.sem-registro{
+    text-align: center;
+    display: inherit;
+}

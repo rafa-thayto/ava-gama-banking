@@ -1,0 +1,7 @@
+<div fxLayout=column>
+  <mat-spinner *ngIf=loading fxFlexAlign=center></mat-spinner>
+  <transactions-list [transactions]=transactions [fxHide]=loading></transactions-list>
+  <button mat-fab (click)=filtersService.filternav.toggle()>
+    <mat-icon>filter_list</mat-icon>
+  </button>
+</div>
