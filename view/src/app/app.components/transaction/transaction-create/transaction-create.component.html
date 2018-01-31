@@ -75,11 +75,11 @@
                         </div> -->
                     </div>
                 </div>
-                <mat-input-container>
+                <mat-input-container *ngIf='transaction && !loading'>
                     <mat-label>Senha</mat-label>
                     <input matInput placeholder="Digite sua senha" type="password" formControlName="password">
                 </mat-input-container>
-                <div fxLayout=row>
+                <div fxLayout=row *ngIf='transaction && !loading'>
                     <button mat-raised-button color="primary" mat-button matStepperPrevious fxFlex=45>retornar</button>
                     <div fxFlex=10></div>
                     <button mat-raised-button color="primary" mat-button (click)="createTransaction()" [disabled]='!(secondFormGroup.valid)'
