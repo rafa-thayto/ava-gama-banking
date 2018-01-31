@@ -1,6 +1,6 @@
 <div fxLayout=row fxLayoutAlign="center center">
   <mat-spinner *ngIf=loading fxFlexAlign=center></mat-spinner>
-  <div fxLayout=column *ngIf=transaction fxFlex=95 fxLayoutGap=2.5 fxFlex.gt-sm=400px fxLayoutGap.gt-sm=0>
+  <mat-card fxLayout=column *ngIf=transaction fxFlex=95 fxLayoutGap=2.5 fxFlex.gt-sm=400px fxLayoutGap.gt-sm=0>
     <div fxFlex=25px></div>
     <div fxLayout=column fxFlex=50px fxLayoutAlign="center center">
       <h1>Transferência</h1>
@@ -9,12 +9,24 @@
     <div fxLayout=row fxFlex=50px>
       <span>De</span>
       <span fxFlex></span>
-      <span>{{transaction.from.client.name}}</span>
+      <span fxLayout=column fxLayoutAlign="start end">
+        <span>{{transaction.from.client.name}}</span>
+        <span fxFlex=10px></span>
+        <small>
+          ag: {{transaction.from.ag | number : '3.0-0'}} c/c: {{(transaction.from.account_number | number : '3.0-0')}}
+        </small>
+      </span>
     </div>
     <div fxLayout=row fxFlex=50px>
       <span>Para</span>
       <span fxFlex></span>
-      <span>{{transaction.to.client.name}}</span>
+      <span fxLayout=column fxLayoutAlign="start end">
+        <span>{{transaction.to.client.name}}</span>
+        <span fxFlex=10px></span>
+        <small>
+          ag: {{transaction.to.ag | number : '3.0-0'}} c/c: {{(transaction.to.account_number | number : '3.0-0')}}
+        </small>
+      </span>
     </div>
     <!-- <div fxLayout=row>
         <span>Saldo Anterior</span>
@@ -42,5 +54,5 @@
       <span fxFlex=25px></span>
       <span>{{transaction._id}}</span>
     </div>
-  </div>
+  </mat-card>
 </div>
