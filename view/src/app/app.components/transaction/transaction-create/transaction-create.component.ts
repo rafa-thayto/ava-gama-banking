@@ -108,7 +108,7 @@ export class TransactionCreateComponent {
       .delay(1000)
       .subscribe(data => {
         this.transaction.to.client = data.toClient;
-        console.log(data.fromAccount);
+        // console.log(data.fromAccount);
         this.transaction.from = data.fromAccount;
         this.transaction.from.client = { name: data.fromClient.name };
         this.loading = false;

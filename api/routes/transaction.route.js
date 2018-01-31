@@ -183,7 +183,6 @@ const getSourceAccount = async (req, res, next) => {
     next();
 }
 const getDestinyAccount = async (req, res, next) => {
-    console.log("AAAAAAAAAAAA");
     const toAccount = req.body.to;
     if (!toAccount) return res.status(400).end();
     if (!toAccount.ag) return res.status(400).end();
@@ -192,8 +191,6 @@ const getDestinyAccount = async (req, res, next) => {
     if (!account) return res.status(404).end();
     req.toAccountId = account._id;
     if (req.fromAccountId === req.toAccountId) return res.status(400).end();
-    console.log("BBBBBBBBBBBBBB");
-
     next();
 }
 const createTransaction = async (req, res, next) => {

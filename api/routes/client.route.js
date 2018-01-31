@@ -21,11 +21,9 @@ const getLoggedClientInfo = async (req, res, next) => {
             return db.Transaction.find(query).where('date').gt(pastMonth)
                 .lean()
                 .then(transactions => {
-                    console.log(accountId)
                     let debit = 0, credit = 0;
                     transactions
                         .forEach(transaction => {
-                            console.log(transaction.from.toString() === accountId ? transaction.value * -1 : transaction.value)
                             if (transaction.from.toString() === accountId) debit += transaction.value;
                             else credit += transaction.value;
                         });
