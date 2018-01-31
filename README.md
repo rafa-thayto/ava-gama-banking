@@ -107,7 +107,7 @@ Link:
 
 Utilizado para gerenciar a conexao com a base de dados e criar, consultar e validar documentos.
 
-### dados de aceso:
+### Dados de acesso:
 
     ip: 67.205.161.225
     usuario: gama
@@ -130,32 +130,33 @@ Todas as senhas são armazenadas em hash. O bcrypt é utilizado para gerar os ha
 ## Api
 
 ### Framework = ExpressJS
-### Autenticacao
+### Autenticação
 
 * [Json Web Token](https://jwt.io/)
 
         header.payload.signature
 
-* Fluxo para geracao do token:
+* Fluxo para geração do token:
   1. Requisição contendo credencial
   2. API recebe dados
   3. Consulta base de dados pelo respectivo usuário
   4. Confere se a senha enviada coincide com a hash da senha armazenada no db
   5. Gera TOKEN e envia token ao cliente
 
-* O token expira a cada 1 hora, sendo necessário uma nova autenticação
+* O token expira a cada 1 hora, sendo necessário uma nova autenticação.
 
-* Fluxo para autenticacao:
-  1. Usuario envia requisição à api com o seguinte header:
+* Fluxo para autenticação:
+  1. Usuário envia requisição à api com o seguinte header:
 ``` http
     Authorization: JWT <token>
 ```
   2. API recebe solicitação
-  3. Verifica se o token é valido (autentica)
+  3. Verifica se o token é válido (autentica)
   4. Captura o payload do token e armazena na req
   5. As rotas utilizam as informações que estão no escopo da req
-  6. Reposta é fornecida ao usuario conforme documentação abaixo.
-### Documentacao
+  6. Resposta é fornecida ao usuário conforme documentação abaixo
+  
+### Documentação
 
 1. gerar:
 ```bash
