@@ -167,7 +167,7 @@ const checkPassword = async (req, res, next) => {
     const password = req.body.password;
     if (!password) return res.status(400).end();
     const fromAccount = req.fromAccount;
-    if (!auth.isSamePassword(req.body.password, fromAccount.password)) return res.status(403).end();
+    if (!auth.isSamePassword(req.body.password, fromAccount.password)) return res.status(400).end();
     next();
 }
 const getSourceAccount = async (req, res, next) => {

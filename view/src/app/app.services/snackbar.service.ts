@@ -7,8 +7,16 @@ export class SnackbarService {
   constructor(public snackBar: MatSnackBar) {}
 
   saldoInsuficiente() {
-    this.snackBar.open('Não foi possível efetuar essa transação. Seu saldo é insuficiente.', 'Ok', {
-      duration: 2000,
+    this.snackBar.open('Saldo insuficiente.', 'OK', {
+      duration: 10000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top'
+    });
+  }
+
+  senhaIncorreta() {
+    this.snackBar.open('Senha incorreta, tente novamente.', null, {
+      duration: 4000,
       horizontalPosition: 'right',
       verticalPosition: 'top'
     });

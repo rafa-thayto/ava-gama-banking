@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { ITransaction } from '../../../app.interfaces/transaction';
 import { ClientService } from '../../../app.services/client.service';
 import { AuthService } from '../../../app.services/auth.service';
+import { SnackbarService } from '../../../app.services/snackbar.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,11 +25,14 @@ export class TransactionCreateComponent {
   public secondFormGroup: FormGroup;
   public isLinear = true;
 
+  public saldoInsuficiente: boolean = false
+
   constructor(
     private transactionService: TransactionService,
     private fb: FormBuilder,
     private clientService: ClientService,
     private authService: AuthService,
+    private snackbarService: SnackbarService,
     private router: Router
   ) {
     this.createControls();
@@ -82,6 +86,7 @@ export class TransactionCreateComponent {
   }
 
   save() {
+    this.saldoInsuficiente = false;
     this.transaction = null;
     if (!this.firstFormGroup.valid) return;
     this.loading = true;
@@ -107,6 +112,10 @@ export class TransactionCreateComponent {
       }))
       .delay(1000)
       .subscribe(data => {
+        if(data.fromAccount.balance < this.transaction.value) { 
+          this.saldoInsuficiente = true
+          this.snackbarService.saldoInsuficiente();
+        }
         this.transaction.to.client = data.toClient;
         // console.log(data.fromAccount);
         this.transaction.from = data.fromAccount;
@@ -121,7 +130,9 @@ export class TransactionCreateComponent {
       this.router.navigateByUrl(`/transferencias/${trasaction._id}`);
     };
     const onError = error => {
-      console.log(error);
+      this.snackbarService.senhaIncorreta();
+      this.senhaControl.reset();
+
     };
     const onComplete = () => {};
     console.log(this.transaction);

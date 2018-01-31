@@ -98,7 +98,8 @@ import { FiltersService } from './app.services/filters.service';
     HttpClientModule,
     BrowserAnimationsModule,
     CurrencyMaskModule,
-    MaterialModule
+    MaterialModule,
+    MatSnackBarModule
     // MaterializeModule,
     , TransactionsModule
 
@@ -117,7 +118,6 @@ import { FiltersService } from './app.services/filters.service';
     ClientService,
     TransactionService,
     NavbarService,
-    MatSnackBarModule,
     SnackbarService,
     FiltersService,
     //guards
