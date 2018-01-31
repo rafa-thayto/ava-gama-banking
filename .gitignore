@@ -10,7 +10,7 @@
 *.swo
 *.swp
 *.vi
-*.zip
+#*.zip
 *~
 
 # OS or Editor folders
@@ -55,3 +55,4 @@ db/data/
 
 #api docs
 api/docs
+seed/json/*
